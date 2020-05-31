@@ -1,0 +1,29 @@
+{
+  "devDependencies": {
+    "vuepress": "^1.5.0"
+  },
+  "name": "just-react",
+  "description": "React技术揭秘",
+  "version": "1.0.0",
+  "main": "index.js",
+  "directories": {
+    "doc": "docs"
+  },
+  "scripts": {
+    "start": "vuepress dev docs",
+    "build": "vuepress build docs"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/BetaSu/just-react.git"
+  },
+  "keywords": [
+    "react"
+  ],
+  "author": "beta_su",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/BetaSu/just-react/issues"
+  },
+  "homepage": "https://github.com/BetaSu/just-react#readme"
+}
