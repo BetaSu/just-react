@@ -11,7 +11,8 @@
   },
   "scripts": {
     "start": "vuepress dev docs",
-    "build": "vuepress build docs"
+    "build": "vuepress build docs",
+    "deploy": "sh deploy.sh"
   },
   "repository": {
     "type": "git",
