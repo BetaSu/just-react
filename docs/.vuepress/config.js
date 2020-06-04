@@ -8,7 +8,7 @@ module.exports = {
     repo: 'BetaSu/just-react',
     editLinks: true,
     docsDir: 'docs',
-    editLinkText: '在 GitHub 上编辑此页',
+    editLinkText: '为该章节纠错',
     lastUpdated: '上次更新',
     nav: [
       {
