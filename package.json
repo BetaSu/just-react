@@ -18,6 +18,9 @@
     "type": "git",
     "url": "git+https://github.com/BetaSu/just-react.git"
   },
+  "resolutions": {
+    "watchpack": "1.6.1"
+  },
   "keywords": [
     "react"
   ],

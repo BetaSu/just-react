@@ -4,6 +4,13 @@ module.exports = {
   base: '/just-react/',
   dest: 'dist',
   serviceWorker: false,
+  configureWebpack: {
+    resolve: {
+      alias: {
+        // '@img': '/img/'
+      }
+    }
+  },
   themeConfig: {
     repo: 'BetaSu/just-react',
     editLinks: true,
@@ -20,8 +27,10 @@ module.exports = {
       ['/', '前言'],
       {
         title: '第一章 准备工作',
+        collapsable: false,
         children: [
-        ['/准备工作/React理念', 'React理念']
+          ['/preparation/idea', 'React理念'],
+          ['/preparation/constructure', 'React结构划分']
         ]
       }
     ]
