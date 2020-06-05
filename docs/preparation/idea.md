@@ -61,7 +61,8 @@
 
 设想以下场景：
 
-![搜索框](/img/searchbox.gif)
+<img :src="$withBase('/img/searchbox.gif')" alt="搜索框">
+<!-- ![搜索框](/img/searchbox.gif) -->
 
 有一个地址搜索框，在输入字符时会实时显示地址匹配结果。
 
@@ -70,7 +71,8 @@
 但这只是治标不治本。只要组件的更新操作是同步的，那么当更新开始直到渲染完毕前，组件中总会有一定数量的工作占用线程，浏览器没有空闲时间绘制UI，造成卡顿。
 
 >React核心团队成员Dan在介绍React为什么会并发（[Concurrent Mode](https://zh-hans.reactjs.org/docs/concurrent-mode-intro.html)）更新组件时说：
-![Dan关于用户体验的思考](/img/update.png)
+<img :src="$withBase('/img/update.png')" alt="Dan关于用户体验的思考">
+<!-- ![Dan关于用户体验的思考](/img/update.png) -->
 
 当输入字符时，用户期望下拉框一瞬间就出现么？并不是。如果我们能稍稍延迟一点下拉框更新的时间，为浏览器留出时间渲染UI，让输入不卡顿。这才是用户期望的**自然**体验。
 
@@ -80,8 +82,13 @@
 
 一切，都是为了**自然**的体验。
 
-<!-- [Demo](https://code.h5jun.com/kores/7/edit?html,js,output) -->
+::: details Demo
+这里提供2个同步 vs 并发的Demo：
 
+[并发Demo](https://codesandbox.io/s/w8j0s?file=/src/index.js)
+
+[如果以上外围链接不能访问，可以看这个国内Demo](https://code.h5jun.com/coges/1/edit?html,js,output)
+:::
 
 ## 总结
 
@@ -89,12 +96,13 @@
 
 即使过程中有如此大的改动，从13年第一次Commit到如今2020年，`this.setState`却始终不变，出色的完成着开发者交代的工作。
 > React 13年第一次 commit
-![第一次commit](/img/firstCommit.png)
-
+<!-- ![第一次commit](/img/firstCommit.png) -->
+<img :src="$withBase('/img/firstCommit.png')" alt="第一次commit">
 最后再让我们看看，Dan回答网友关于`React`发展方向的提问
-
-![用户向Dan提问](/img/ques1.png)
-![Dan回答](/img/ans1.png)
+<img :src="$withBase('/img/ques1.png')" alt="用户向Dan提问">
+<img :src="$withBase('/img/ans1.png')" alt="Dan回答">
+<!-- ![用户向Dan提问](/img/ques1.png)
+![Dan回答](/img/ans1.png) -->
 
 相比于新增feature，React更在意底层抽象的表现力。结合理念，相信你已经明白这意味着什么了。
 
