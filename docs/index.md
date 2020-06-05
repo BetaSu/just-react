@@ -12,19 +12,31 @@
 这就像我们想了解一颗炮仗是如何爆炸的，先了整个炮仗的结构，最后再了解如何把引线插在炮仗上不就轻而易举了么？
 
 ## TODO
-第一章 准备工作
-- React理念
-- React结构划分
-- 源码的文件结构
-- 深入理解JSX
 
-第二章 渲染流程
-- mount
-- update
+### 第一章 准备工作
 
-第三章 协调流程
-- key
-- 单一组件协调
-- 多组件协调
+✅ React理念
 
-第四章 调度流程
+✅ 老的React架构
+
+✅ 新的React架构
+
+:black_square_button: 源码的文件结构
+
+:black_square_button: 深入理解JSX
+
+### 第二章 渲染流程
+
+:black_square_button: mount
+
+:black_square_button: update
+
+### 第三章 协调流程
+
+:black_square_button: key
+
+:black_square_button: 单一组件协调
+
+:black_square_button: 多组件协调
+
+### 第四章 调度流程

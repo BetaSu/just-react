@@ -30,7 +30,8 @@
         collapsable: false,
         children: [
           ['/preparation/idea', 'React理念'],
-          ['/preparation/constructure', 'React结构划分']
+          ['/preparation/oldConstructure', '老的React架构'],
+          ['/preparation/newConstructure', '新的React架构']
         ]
       }
     ]
