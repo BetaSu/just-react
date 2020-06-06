@@ -26,7 +26,7 @@
     sidebar: [
       ['/', '前言'],
       {
-        title: '第一章 准备工作',
+        title: '第一章 前置知识',
         collapsable: false,
         children: [
           ['/preparation/idea', 'React理念'],
