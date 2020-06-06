@@ -1,5 +1,3 @@
-## 从React15到React16
-
 上一节我们聊到React15架构不能支撑异步更新以至于需要重构。那么这一节我们来学习重构后的React16是如何支持异步更新的。
 
 ## React16架构
@@ -55,6 +53,8 @@ export const Deletion = /*              */ 0b0000000001000;
 
 整个**Scheduler**与**Reconciler**的工作都在内存中进行。只有当所有组件都完成**Reconciler**的工作，才会统一交给**Renderer**。
 
+> 你可以在[这里](https://zh-hans.reactjs.org/docs/codebase-overview.html#fiber-reconciler)看到`React`官方对React16新**Reconciler**的解释
+
 ### Renderer（渲染器）
 
 **Renderer**根据**Reconciler**为虚拟DOM打的标记，同步执行对应的DOM操作。
@@ -71,18 +71,14 @@ export const Deletion = /*              */ 0b0000000001000;
 
 在React16架构中整个更新流程为：
 
-1. 点击`button`产生一个更新，更新内容为：`state.count`从1变为2
-2. 更新被交给**Scheduler**，**Scheduler**发现没有其他更高优先任务，就将该任务交给**Reconciler**
-3. **Reconciler**接到任务，开始遍历虚拟DOM，判断哪些虚拟DOM需要更新，为需要更新的虚拟DOM打上标记
-4. **Reconciler**遍历完所有虚拟DOM，通知**Renderer**
-5. **Renderer**根据虚拟DOM的标记执行对应DOM操作
+<img :src="$withBase('/img/process.png')" alt="更新流程">
 
-其中步骤2、3、4随时可能由于如下原因被中断：
+其中红框中的步骤随时可能由于以下原因被中断：
 
-- 有其他更高优先任务需要先更新
+- 有其他更高优任务需要先更新
 - 当前帧没有剩余时间
 
-由于**Scheduler**和**Reconciler**的工作都在内存中进行，不会更新页面上的DOM，所以用户不会看见更新不完全的DOM。
+由于红框中的工作都在内存中进行，不会更新页面上的DOM，即使反复中断用户也不会看见更新不完全的DOM。
 
 > 实时上，由于**Scheduler**和**Reconciler**都是平台无关的，所以`React`为他们单独发了一个包[react-Reconciler](https://www.npmjs.com/package/react-Reconciler)。你可以用这个包自己实现一个`ReactDOM`，具体见**参考资料**
  

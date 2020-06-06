@@ -31,7 +31,8 @@
         children: [
           ['/preparation/idea', 'React理念'],
           ['/preparation/oldConstructure', '老的React架构'],
-          ['/preparation/newConstructure', '新的React架构']
+          ['/preparation/newConstructure', '新的React架构'],
+          ['/preparation/file', '源码的文件结构']
         ]
       }
     ]
