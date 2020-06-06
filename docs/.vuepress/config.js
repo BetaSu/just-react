@@ -32,7 +32,15 @@
           ['/preparation/idea', 'React理念'],
           ['/preparation/oldConstructure', '老的React架构'],
           ['/preparation/newConstructure', '新的React架构'],
-          ['/preparation/file', '源码的文件结构']
+          ['/preparation/file', '源码的文件结构'],
+          ['/preparation/jsx', '深入理解JSX']
+        ]
+      },
+      {
+        title: '第二章 整体流程概览',
+        collapsable: false,
+        children: [
+          
         ]
       }
     ]
