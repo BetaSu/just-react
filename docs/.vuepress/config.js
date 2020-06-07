@@ -1,4 +1,4 @@
-              module.exports = {
+module.exports = {
   title: 'React 技术揭秘',
   description: 'React源码解析',
   base: '/just-react/',
@@ -18,6 +18,10 @@
     editLinkText: '为该章节纠错',
     lastUpdated: '上次更新',
     nav: [
+      {
+        text: '🙋‍♂️和我交流',
+        link: '/me'
+      },
       {
         text: '配套代码',
         link: 'https://github.com/BetaSu/react-on-the-way'
