@@ -44,7 +44,7 @@ module.exports = {
         title: '第二章 整体流程概览',
         collapsable: false,
         children: [
-          
+          ['/process/update', '如何触发更新'],
         ]
       }
     ]
