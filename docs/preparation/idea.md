@@ -58,6 +58,8 @@
 
 ## 理解“响应自然”
 
+该如何理解“响应自然”？React给出的答案是[将人机交互研究的结果整合到真实的 UI 中](https://zh-hans.reactjs.org/docs/concurrent-mode-intro.html#putting-research-into-production)。
+
 设想以下场景：
 
 <img :src="$withBase('/img/searchbox.gif')" alt="搜索框">
@@ -73,7 +75,9 @@
 <img :src="$withBase('/img/update.png')" alt="Dan关于用户体验的思考">
 <!-- ![Dan关于用户体验的思考](/img/update.png) -->
 
-当输入字符时，用户在意下拉框是否一瞬间就出现么？并不在意。
+让我们从“响应自然”的角度考虑：当输入字符时，用户是否在意下拉框能在一瞬间就更新？
+
+事实是：并不在意。
 
 如果我们能稍稍延迟下拉框更新的时间，为浏览器留出时间渲染UI，让输入不卡顿。这样的体验是更**自然**的。
 
@@ -81,21 +85,23 @@
 
 当预留的时间不够用时，`React`将线程控制权交还给浏览器使其有时间渲染UI，`React`则等待下一帧时间到来继续被中断的工作。
 
-一切，都是为了**自然**的体验。
 
-::: details Demo
-这里提供2个**同步更新** vs **可中断的异步更新**的Demo：
+::: details 同步更新 vs 异步更新 Demo
+我们有个更新很耗时的大列表，让我们看看**同步更新**和**异步更新**时，输入框的响应速度
 
-[Demo](https://codesandbox.io/s/w8j0s?file=/src/index.js)
+[同步更新](https://codesandbox.io/s/pensive-shirley-wkp46)
 
-[如果以上外围链接不能访问，可以看这个国内Demo](https://code.h5jun.com/coges/1/edit?html,js,output)
+[异步更新](https://codesandbox.io/s/infallible-dewdney-9fkv9)
+
 :::
+
+可以从Demo看到，当牺牲了列表的更新速度，`React`大幅提高了输入响应速度，使交互更自然。
 
 ## 总结
 
 通过以上内容，我们可以看到，`React`为了践行“构建**快速响应**的大型 Web 应用程序”理念做出的努力。这其中有些优化手段可以在现有架构上增加，而有些（如：异步可中断更新）只能重构整个架构实现。
 
-即使过程中有如此大的改动，从13年第一次Commit到如今2020年，`this.setState`却始终不变，出色的完成着开发者交代的工作。
+即使版本经历了很大更迭，从13年第一次Commit到如今2020年，`React`的主要API却很少变化。`this.setState`风采依旧，日复一日出色的完成着开发者交代的工作。
 > React 13年第一次 commit
 <!-- ![第一次commit](/img/firstCommit.png) -->
 <img :src="$withBase('/img/firstCommit.png')" alt="第一次commit">
