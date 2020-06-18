@@ -25,7 +25,7 @@
 
 ### 第二章 整体流程概览
 
-:black_square_button: Fiber架构
+✅ Fiber架构
 
 :black_square_button: Mount
 
