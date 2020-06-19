@@ -27,9 +27,11 @@
 
 ✅ Fiber架构
 
-:black_square_button: Mount
+✅ Reconciler流程概括
 
-:black_square_button: Update
+:black_square_button: mount时Reconciler流程
+
+:black_square_button: update时Reconciler流程
 
 ### 第三章 协调流程
 

@@ -63,9 +63,6 @@ function FiberNode(
   this.firstEffect = null;
   this.lastEffect = null;
 
-  this.lanes = NoLanes;
-  this.childLanes = NoLanes;
-
   this.alternate = null;
 }
 ```

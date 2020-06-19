@@ -45,7 +45,8 @@ module.exports = {
         collapsable: false,
         children: [
           ['/process/fiber', 'Fiber架构'],
-          // ['/process/mount', 'mount流程'],
+          ['/process/reconciler', 'Reconciler流程概览'],
+          // ['/process/mount', 'mount时Reconciler流程'],
         ]
       }
     ]
