@@ -140,6 +140,10 @@ this.firstEffect = null;
 this.lastEffect = null;
 ```
 
+## 总结
+
+本节我们了解了`Fiber`的起源与架构，但是`Fiber`节点是什么时候生成、什么时候更新的呢？我们会在下一节中揭晓。
+
 ## 参考资料
 
 [Lin Clark - A Cartoon Intro to Fiber - React Conf 2017](https://www.bilibili.com/video/BV1it411p7v6?from=search&seid=3508901752524570226)
