@@ -23,15 +23,15 @@
 
 ✅ 深入理解JSX
 
-### 第二章 整体流程概览
+### 第二章 Reconciler工作流程
 
 ✅ Fiber架构
 
-✅ Reconciler流程概括
+✅ 流程概览
 
-:black_square_button: mount时Reconciler流程
+:black_square_button: beginWork
 
-:black_square_button: update时Reconciler流程
+:black_square_button: compeleteWork
 
 ### 第三章 协调流程
 

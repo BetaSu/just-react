@@ -41,12 +41,12 @@ module.exports = {
         ]
       },
       {
-        title: '第二章 整体流程概览',
+        title: '第二章 Reconciler工作流程',
         collapsable: false,
         children: [
           ['/process/fiber', 'Fiber架构'],
-          ['/process/reconciler', 'Reconciler流程概览'],
-          // ['/process/mount', 'mount时Reconciler流程'],
+          ['/process/reconciler', '流程概览'],
+          ['/process/beginWork', 'beginWork'],
         ]
       }
     ]
