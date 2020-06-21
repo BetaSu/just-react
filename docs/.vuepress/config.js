@@ -70,8 +70,8 @@ module.exports = {
 					[
 						"/process/beginWork",
 						"beginWork"
-          ],
-          [
+					],
+					[
 						"/process/completeWork",
 						"completeWork"
 					]
