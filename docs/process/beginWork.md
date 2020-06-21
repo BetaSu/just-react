@@ -29,12 +29,10 @@ function beginWork(
 
 所以我们可以通过`current === null ?`来区分组件是`mount`还是`update`。
 
-当一个组件在两次更新中接收的`props`和组件自身`type`都没变化，那么该组件是不需要更新的。
-
 基于此原因，`beginWork`的工作可以分为两部分：
 
-- 第一部分：如果`current`存在可能可以克隆`current.child`作为`workInProgress.child`，这样就能提前跳出第二部分生成新子`Fiber`节点的过程
-- 第二部分：根据`tag`不同，创建不同类型的子`Fiber`节点
+- `update`时：如果`current`存在，在满足一定条件时可以复用`current`节点，这样就能克隆`current.child`作为`workInProgress.child`，而不需要新建`workInProgress.child`。
+- `mount`时：当不能复用`current`。会根据`tag`不同，创建不同类型的子`Fiber`节点
 
 ```js
 function beginWork(
@@ -43,11 +41,11 @@ function beginWork(
   renderExpirationTime: ExpirationTime,
 ): Fiber | null {
 
-  // 第一部分：如果current存在可能存在优化路径，可以复用上一次更新的Fiber节点
+  // update时：如果current存在可能存在优化路径，可以复用current（即上一次更新的Fiber节点）
   if (current !== null) {
     // ...省略
 
-    // 优化路径，本次更新当前Fiber不需要进行后续处理
+    // 复用current
     return bailoutOnAlreadyFinishedWork(
       current,
       workInProgress,
@@ -57,7 +55,7 @@ function beginWork(
     didReceiveUpdate = false;
   }
 
-  // 第二部分：根据tag不同，创建不同的子Fiber节点
+  // mount时：根据tag不同，创建不同的子Fiber节点
   switch (workInProgress.tag) {
     case IndeterminateComponent: 
       // ...省略
@@ -78,7 +76,7 @@ function beginWork(
 }
 ```
 
-## 方法第一部分代码
+## update时
 
 我们可以看到，满足如下情况时`didReceiveUpdate === false`（即可以直接复用前一次更新的子`Fiber`，不需要新建子`Fiber`）
 
@@ -113,7 +111,7 @@ if (current !== null) {
     didReceiveUpdate = false;
   }
 ```
-## 方法第二部分代码
+## mount时
 
 当不满足优化路径时，我们就进入第二部分，新建子`Fiber`。
 
@@ -122,7 +120,7 @@ if (current !== null) {
 > 可以从[这里](https://github.com/facebook/react/blob/master/packages/react-reconciler/src/ReactWorkTags.js)看到`tag`对应的组件类型
 
 ```js
-// 第二部分：根据tag不同，创建不同的Fiber节点
+// mount时：根据tag不同，创建不同的Fiber节点
 switch (workInProgress.tag) {
   case IndeterminateComponent: 
     // ...省略
