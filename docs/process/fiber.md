@@ -63,6 +63,11 @@ function FiberNode(
   this.firstEffect = null;
   this.lastEffect = null;
 
+  // 调度优先级相关
+  this.lanes = NoLanes;
+  this.childLanes = NoLanes;
+
+  // 指向该fiber在另一次更新时对应的fiber
   this.alternate = null;
 }
 ```
@@ -118,6 +123,7 @@ this.stateNode = null;
 ### 作为动态的工作单元
 
 作为动态的工作单元，`Fiber`中如下参数保存了本次更新相关的信息，我们会在后续的更新流程中使用到具体属性时再详细介绍
+
 ```js
 
 // 保存本次更新造成的状态改变相关信息
@@ -136,6 +142,20 @@ this.nextEffect = null;
 this.firstEffect = null;
 this.lastEffect = null;
 ```
+
+如下两个字段保存调度优先级相关的信息，会在讲解`Scheduler`时介绍。
+
+```js
+// 调度优先级相关
+this.lanes = NoLanes;
+this.childLanes = NoLanes;
+```
+
+::: warning 注意
+在2020年5月，调度优先级策略经历了比较大的重构。以`expirationTime`属性为代表的优先级模型被`lane`取代。详见[这个PR](https://github.com/facebook/react/pull/18796)
+
+如果你的源码中`fiber.expirationTime`仍存在，请参照[调试源码](../preparation/source.html)章节获取最新代码。
+:::
 
 ## 总结
 

@@ -10,18 +10,15 @@ module.exports = {
 	},
 	"themeConfig": {
 		"repo": "BetaSu/just-react",
+		"repoLabel": '点亮⭐不迷路',
 		"editLinks": true,
 		"docsDir": "docs",
 		"editLinkText": "为该章节纠错",
 		"lastUpdated": "上次更新",
 		"nav": [
 			{
-				"text": "🙋‍♂️和我交流",
+				"text": "🙋‍♂️ 和我交流",
 				"link": "/me"
-			},
-			{
-				"text": "配套代码",
-				"link": "https://github.com/BetaSu/react-on-the-way"
 			}
 		],
 		"sidebar": [
@@ -50,6 +47,10 @@ module.exports = {
 						"源码的文件结构"
 					],
 					[
+						"/preparation/source",
+						"调试源码"
+					],
+					[
 						"/preparation/jsx",
 						"深入理解JSX"
 					]
@@ -74,6 +75,16 @@ module.exports = {
 					[
 						"/process/completeWork",
 						"completeWork"
+					]
+				]
+			},
+			{
+				"title": "第三章 Renderer工作流程",
+				"collapsable": false,
+				"children": [
+					[
+						"/renderer/prepare",
+						"流程概览"
 					]
 				]
 			}

@@ -3,7 +3,7 @@
 
 ## 方法概览
 
-可以从[源码这里](https://github.com/facebook/react/blob/master/packages/react-reconciler/src/ReactFiberBeginWork.old.js#L3040)看到`beginWork`的定义。整个方法大概有500行代码。
+可以从[源码这里](https://github.com/facebook/react/blob/master/packages/react-reconciler/src/ReactFiberBeginWork.new.js#L3040)看到`beginWork`的定义。整个方法大概有500行代码。
 
 从上一节我们已经知道，`beginWork`的工作是传入当前`Fiber节点`，创建子`Fiber`节点，我们从传参来看看具体是如何做的。
 
@@ -13,7 +13,7 @@
 function beginWork(
   current: Fiber | null,
   workInProgress: Fiber,
-  renderExpirationTime: ExpirationTime,
+  renderLanes: Lanes,
 ): Fiber | null {
   // ...省略函数体
 }
@@ -21,7 +21,7 @@ function beginWork(
 其中传参：
 - current：当前组件对应的`Fiber`节点在上一次更新时的`Fiber`节点
 - workInProgress：当前组件对应的`Fiber节点`
-- renderExpirationTime：优先级，在讲解`Scheduler`时再讲解
+- renderLanes：优先级相关，在讲解`Scheduler`时再讲解
 
 我们知道，组件`mount`时，由于是首次渲染，是不存在当前组件对应的`Fiber`节点在上一次更新时的`Fiber`节点。所以`mount`时`current === null`。
 
@@ -38,7 +38,7 @@ function beginWork(
 function beginWork(
   current: Fiber | null,
   workInProgress: Fiber,
-  renderExpirationTime: ExpirationTime,
+  renderLanes: Lanes
 ): Fiber | null {
 
   // update时：如果current存在可能存在优化路径，可以复用current（即上一次更新的Fiber节点）
@@ -49,7 +49,7 @@ function beginWork(
     return bailoutOnAlreadyFinishedWork(
       current,
       workInProgress,
-      renderExpirationTime,
+      renderLanes,
     );
   } else {
     didReceiveUpdate = false;
@@ -81,7 +81,7 @@ function beginWork(
 我们可以看到，满足如下情况时`didReceiveUpdate === false`（即可以直接复用前一次更新的子`Fiber`，不需要新建子`Fiber`）
 
 1. `oldProps === newProps && workInProgress.type === current.type`，即`props`与`fiber.type`不变
-2. `updateExpirationTime < renderExpirationTime`，即当前`Fiber`节点优先级不够
+2. `!includesSomeLane(renderLanes, updateLanes)`，即当前`Fiber`节点优先级不够，会在讲解`Scheduler`时介绍
 
 ```js
 if (current !== null) {
@@ -94,7 +94,7 @@ if (current !== null) {
       (__DEV__ ? workInProgress.type !== current.type : false)
     ) {
       didReceiveUpdate = true;
-    } else if (updateExpirationTime < renderExpirationTime) {
+    } else if (!includesSomeLane(renderLanes, updateLanes)) {
       didReceiveUpdate = false;
       switch (workInProgress.tag) {
         // 省略处理
@@ -102,7 +102,7 @@ if (current !== null) {
       return bailoutOnAlreadyFinishedWork(
         current,
         workInProgress,
-        renderExpirationTime,
+        renderLanes,
       );
     } else {
       didReceiveUpdate = false;
@@ -140,7 +140,7 @@ switch (workInProgress.tag) {
 }
 ```
 
-对于我们常见的组件类型，如（`FunctionComponent`/`ClassComponent`/`HostComponent`），最终会进入[reconcileChildren](https://github.com/facebook/react/blob/master/packages/react-reconciler/src/ReactFiberBeginWork.old.js#L232)方法。
+对于我们常见的组件类型，如（`FunctionComponent`/`ClassComponent`/`HostComponent`），最终会进入[reconcileChildren](https://github.com/facebook/react/blob/master/packages/react-reconciler/src/ReactFiberBeginWork.new.js#L232)方法。
 
 ## reconcileChildren
 
@@ -154,7 +154,7 @@ export function reconcileChildren(
   current: Fiber | null,
   workInProgress: Fiber,
   nextChildren: any,
-  renderExpirationTime: ExpirationTime,
+  renderLanes: Lanes
 ) {
   if (current === null) {
     // 对于mount的组件
@@ -162,7 +162,7 @@ export function reconcileChildren(
       workInProgress,
       null,
       nextChildren,
-      renderExpirationTime,
+      renderLanes,
     );
   } else {
     // 对于update的组件
@@ -170,7 +170,7 @@ export function reconcileChildren(
       workInProgress,
       current.child,
       nextChildren,
-      renderExpirationTime,
+      renderLanes,
     );
   }
 }
@@ -214,7 +214,7 @@ export const Deletion = /*                 */ 0b00000000001000;
 
 那么`mount`时，`fiber.stateNode === null`，且在`reconcileChildren`中调用的`mountChildFibers`不会为`Fiber`节点赋值`effectTag`。那么首屏渲染如何完成呢？
 
-针对第一个问题，`fiber.stateNode`会在`compeleteWork`中创建，我们会在下一节介绍。
+针对第一个问题，`fiber.stateNode`会在`completeWork`中创建，我们会在下一节介绍。
 
 第二个问题的答案十分巧妙：假设`mountChildFibers`也会赋值`effectTag`，那么可以预见`mount`时整棵`Fiber`树所有节点都会有`Placement effectTag`。那么`Renderer`在执行`DOM`操作时每个节点都会执行一次插入操作，这样大量的`DOM`操作是极低效的。
 

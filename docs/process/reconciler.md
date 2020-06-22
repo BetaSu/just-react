@@ -10,7 +10,7 @@
 
 ## “递”阶段
 
-`Reconciler`向下深度优先遍历组件，遍历到的每个组件调用[beginWork方法](https://github.com/facebook/react/blob/master/packages/react-reconciler/src/ReactFiberBeginWork.old.js#L3031)为组件的**子组件**生成对应的`Fiber`节点，并将其与已生成的`Fiber`节点连接形成`Fiber`树。
+`Reconciler`向下深度优先遍历组件，遍历到的每个组件调用[beginWork方法](https://github.com/facebook/react/blob/master/packages/react-reconciler/src/ReactFiberBeginWork.new.js#L3040)为组件的**子组件**生成对应的`Fiber`节点，并将其与已生成的`Fiber`节点连接形成`Fiber`树。
 
 当遍历到叶子节点（即没有子组件的组件）时就会进入“归”阶段。
 
@@ -21,7 +21,7 @@
 
 ## “归”阶段
 
-在“归”阶段会调用[completeWork](https://github.com/facebook/react/blob/master/packages/react-reconciler/src/ReactFiberCompleteWork.old.js#L652)处理`Fiber`。
+在“归”阶段会调用[completeWork](https://github.com/facebook/react/blob/master/packages/react-reconciler/src/ReactFiberCompleteWork.new.js#L652)处理`Fiber`。
 
 当某个`Fiber`执行完`completeWork`，如果其存在兄弟`Fiber`（即`fiber.sibling !== null`），会进入其兄弟`Fiber`的“递”阶段。
 
