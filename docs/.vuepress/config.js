@@ -10,7 +10,7 @@ module.exports = {
 	},
 	"themeConfig": {
 		"repo": "BetaSu/just-react",
-		"repoLabel": '点亮⭐不迷路',
+		"repoLabel": "点亮⭐不迷路",
 		"editLinks": true,
 		"docsDir": "docs",
 		"editLinkText": "为该章节纠错",

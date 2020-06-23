@@ -16,13 +16,18 @@ commitRoot(root);
 
 除此之外，还有些生命周期钩子（比如`componentDidXXX`）、`hook`（比如`useEffect`）需要执行。
 
-所以整个`commit`阶段（即`Renderer`的工作流程）分为三部分：
+`commit`阶段的主要工作（即`Renderer`的工作流程）分为三部分：
 
-- 执行`DOM`操作前
+- before mutation阶段（执行`DOM`操作前）
 
-- 执行`DOM`操作
+- mutation阶段（执行`DOM`操作）
 
-- 执行`DOM`操作后
+- layout阶段（执行`DOM`操作后）
+
+你可以从[这里](https://github.com/facebook/react/blob/master/packages/react-reconciler/src/ReactFiberWorkLoop.new.js#L1787)看到`commit`阶段的完整代码
+
+## 准备工作
 
 
-##
+
+## 收尾工作
