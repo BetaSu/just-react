@@ -85,6 +85,18 @@ module.exports = {
 					[
 						"/renderer/prepare",
 						"流程概览"
+					],
+					[
+						"/renderer/beforeMutation",
+						"before mutation阶段"
+					],
+					[
+						"/renderer/mutation",
+						"mutation阶段"
+					],
+					[
+						"/renderer/layout",
+						"layout阶段"
 					]
 				]
 			}
