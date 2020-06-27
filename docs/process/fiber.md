@@ -112,7 +112,7 @@ function App() {
 this.tag = tag;
 // key属性
 this.key = key;
-// 类似type
+// 大部分情况同type，某些情况不同，比如FunctionComponent使用React.memo包裹
 this.elementType = null;
 // 对于 FunctionComponent，指函数本身，对于ClassCompoent，指class，对于HostComponent，指DOM节点tagName
 this.type = null;
