@@ -16,4 +16,6 @@ git push -f git@gitee.com:kasong/just-react.git master:gh-pages
 
 cd -
 
+rm -rf dist
+
 node .bin/changeBase.js 
