@@ -53,11 +53,15 @@ module.exports = {
 					[
 						"/preparation/jsx",
 						"深入理解JSX"
+					],
+					[
+						"/preparation/summary",
+						"总结"
 					]
 				]
 			},
 			{
-				"title": "第二章 Reconciler工作流程",
+				"title": "第二章 render阶段",
 				"collapsable": false,
 				"children": [
 					[
@@ -79,7 +83,7 @@ module.exports = {
 				]
 			},
 			{
-				"title": "第三章 Renderer工作流程",
+				"title": "第三章 commit阶段",
 				"collapsable": false,
 				"children": [
 					[
@@ -98,6 +102,13 @@ module.exports = {
 						"/renderer/layout",
 						"layout阶段"
 					]
+				]
+			},
+			{
+				"title": "第四章 Diff算法",
+				"collapsable": false,
+				"children": [
+					
 				]
 			}
 		]

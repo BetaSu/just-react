@@ -1,4 +1,4 @@
-上一节我们了解到`Reconciler`的工作可以分为“递”阶段和“归”阶段。其中“递”阶段会执行`beginWork`，“归”阶段会执行`completeWork`。这一节我们看看“递”阶段的`beginWork`方法究竟做了什么。
+上一节我们了解到`render阶段`的工作可以分为“递”阶段和“归”阶段。其中“递”阶段会执行`beginWork`，“归”阶段会执行`completeWork`。这一节我们看看“递”阶段的`beginWork`方法究竟做了什么。
 
 
 ## 方法概览
@@ -188,7 +188,7 @@ export function reconcileChildren(
 
 ## effectTag
 
-我们知道，`Reconciler`的工作是在内存中进行，当工作结束后会通知`Renderer`需要执行的`DOM`操作。具体需要执行什么`DOM`操作就是保存在`fiber.effectTag`中。
+我们知道，`render阶段`的工作是在内存中进行，当工作结束后会通知`Renderer`需要执行的`DOM`操作。具体需要执行什么`DOM`操作就是保存在`fiber.effectTag`中。
 
 > 你可以从[这里](https://github.com/facebook/react/blob/master/packages/react-reconciler/src/ReactSideEffectTags.js)看到`effectTag`对应的`DOM`操作
 

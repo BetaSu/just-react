@@ -28,7 +28,9 @@
 
 ✅ 深入理解JSX
 
-### 第二章 Reconciler工作流程
+✅ 总结
+
+### 第二章 render阶段
 
 ✅ Fiber架构
 
@@ -38,20 +40,22 @@
 
 ✅ completeWork
 
-### 第三章 Renderer工作流程
+### 第三章 commit阶段
 
-:black_square_button: 流程概览
+✅ 流程概览
 
-:black_square_button: before mutation阶段
+✅ before mutation阶段
 
-:black_square_button: mutation阶段
+✅ mutation阶段
 
 :black_square_button: layout阶段
 
-:black_square_button: 收尾阶段
+### 第四章 Diff算法
 
-### 第四章 Scheduler工作流程
+:black_square_button: 单一节点
+:black_square_button: 多个节点
 
 ### 第五章 状态更新
 
-### 第六章 Diff算法
+
+

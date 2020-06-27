@@ -1,12 +1,4 @@
-我们之前讲到`React`的工作架构`Scheduler - Reconciler - Renderer`，为什么先讲`Reconciler`的工作流程呢？原因有二:
-
-1. `Scheduler`作为独立模块，负责任务调度（注：在`React`中，从状态改变到页面渲染这之间发生的事称为一次**任务**），并不影响渲染流程。我们后面会单独讲解。
-
-2. `Renderer`负责执行DOM操作（注：我们这里针对的是`ReactDOM`），相对逻辑简单。
-
-3. 组件更新的大部分计算工作发生在`Reconciler`中。
-
-我们知道`Fiber Reconciler`是从`Stack Reconciler`重构而来，通过遍历的方式实现可中断的递归，所以`Reconciler`的工作可以分为两部分：“递”和“归”。
+我们知道`Fiber Reconciler`是从`Stack Reconciler`重构而来，通过遍历的方式实现可中断的递归，所以`render阶段`的工作可以分为两部分：“递”和“归”。
 
 ## “递”阶段
 
@@ -15,7 +7,7 @@
 当遍历到叶子节点（即没有子组件的组件）时就会进入“归”阶段。
 
 ::: warning 注意
-`beginWork`方法是为组件的**子组件**，而不是组件本身创建`Fiber`节点。当调用`ReactDOM.render`，在进入`Reconciler`前会生成一个`rootFiber`，所以接下来需要生成的`Fiber`其实是`rootFiber`的子`Fiber`
+`beginWork`方法是为组件的**子组件**，而不是组件本身创建`Fiber`节点。当调用`ReactDOM.render`，在进入`render阶段`前会生成一个`rootFiber`，所以接下来需要生成的`Fiber`其实是`rootFiber`的子`Fiber`
 :::
 
 
@@ -27,7 +19,7 @@
 
 如果不存在兄弟`Fiber`，会进入父级`Fiber`的“归”阶段。
 
-组件的“递”和“归”阶段会交错执行直到“归”到`rootFiber`。如此，`Reconciler`的工作就结束了。
+组件的“递”和“归”阶段会交错执行直到“归”到`rootFiber`。如此，`render阶段`的工作就结束了。
 
 ## 例子
 
@@ -48,7 +40,7 @@ ReactDOM.render(<App/>, document.getElementById('root'));
 对应的`Fiber`树结构：
 <img :src="$withBase('/img/fiber.png')" alt="Fiber架构">
 
-`Reconciler`会依次执行：
+`render阶段`会依次执行：
 
 ```sh
 1. rootFiber beginWork
@@ -79,4 +71,4 @@ ReactDOM.render(<App/>, document.getElementById('root'));
 
 ## 总结
 
-本节我们介绍了`Reconciler`工作中会调用的方法。在接下来两节中，我们会讲解`beginWork`和`completeWork`做的具体工作。
+本节我们介绍了`render阶段`会调用的方法。在接下来两节中，我们会讲解`beginWork`和`completeWork`做的具体工作。

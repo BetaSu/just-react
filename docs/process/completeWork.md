@@ -1,4 +1,4 @@
-上一节我们知道了组件执行`beginWork`后会创建子`Fiber`节点，节点上可能存在`effectTag`。在[流程概览](/process/reconciler)我们知道组件在`Reconciler`会经历`beginWork`与`completeWork`。
+上一节我们知道组件执行`beginWork`后会创建子`Fiber`节点，节点上可能存在`effectTag`。在[流程概览](/process/reconciler)我们知道组件在`render阶段`会经历`beginWork`与`completeWork`。
 
 这一节让我们看看`completeWork`会做什么工作。
 
@@ -161,7 +161,7 @@ if (
 
 ## effectList
 
-至此`Reconciler`的绝大部分工作就完成了。还有一个问题：作为`DOM`操作的依据，`Renderer`需要找到所有有`effectTag`的`Fiber`节点。如果在`Renderer`内再遍历一次`Fiber`树显然是很低效的。
+至此`render阶段`的绝大部分工作就完成了。还有一个问题：作为`DOM`操作的依据，`Renderer`需要找到所有有`effectTag`的`Fiber`节点。如果在`Renderer`内再遍历一次`Fiber`树显然是很低效的。
 
 为了解决这个问题，在`completeWork`的上层函数`completeUnitOfWork`中，每个执行完`completeWork`且存在`effectTag`的`Fiber`节点会被保存在一条被称为`effectList`的单向链表中。
 
@@ -180,7 +180,7 @@ fiberRootNode.firstEffect -----------> fiber -----------> fiber
 
 ## 流程结尾
 
-至此，`Reconciler`完成全部工作。在`performSyncWorkOnRoot`函数中根`Fiber`节点被传递给`commitRoot`方法，开启`Renderer`工作流程。
+至此，`render阶段`全部工作完成。在`performSyncWorkOnRoot`函数中根`Fiber`节点被传递给`commitRoot`方法，开启`commit阶段`工作流程。
 
 ```js
 commitRoot(root);
