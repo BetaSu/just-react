@@ -7,7 +7,9 @@
 当遍历到叶子节点（即没有子组件的组件）时就会进入“归”阶段。
 
 ::: warning 注意
-`beginWork`方法是为组件的**子组件**，而不是组件本身创建`Fiber`节点。当调用`ReactDOM.render`，在进入`render阶段`前会生成一个`rootFiber`，所以接下来需要生成的`Fiber`其实是`rootFiber`的子`Fiber`
+`beginWork`方法是为组件的**子组件**，而不是组件本身创建`Fiber`节点。原因是当调用`ReactDOM.render`，在进入`render阶段`之前会生成一个`rootFiber`，所以接下来需要生成的`Fiber`其实是`rootFiber`的子`Fiber`
+
+`rootFiber`及`Fiber树`的构建相关知识在[本章双缓存机制小节](./doubleBuffer.html)介绍
 :::
 
 

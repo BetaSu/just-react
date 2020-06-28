@@ -27,9 +27,9 @@ git clone https://github.com/facebook/react.git
 
 ## packages目录
 
-目录下的文件夹非常多，我们来看看：
+目录下的文件夹非常多，我们来看下：
 
-### [react](https://github.com/facebook/react/tree/master/packages/react)
+### [react](https://github.com/facebook/react/tree/master/packages/react)文件夹
 
 React的核心，包含所有全局 React API，如：
 - React.createElement
@@ -38,11 +38,11 @@ React的核心，包含所有全局 React API，如：
 
 这些API是全平台通用的，它不包含`ReactDOM`、`ReactNative`等平台特定的代码。在NPM上作为[单独的一个包](https://www.npmjs.com/package/react)发布。
 
-### [scheduler](https://github.com/facebook/react/tree/master/packages/scheduler)
+### [scheduler](https://github.com/facebook/react/tree/master/packages/scheduler)文件夹
 
 Scheduler（调度器）的实现。
 
-### [shared](https://github.com/facebook/react/tree/master/packages/shared)
+### [shared](https://github.com/facebook/react/tree/master/packages/shared)文件夹
 
 源码中其他模块公用的**方法**和**全局变量**，比如在[shared/ReactSymbols.js](https://github.com/facebook/react/blob/master/packages/shared/ReactSymbols.js)中保存`React`不同组件类型的定义。
 
@@ -54,11 +54,11 @@ export let REACT_FRAGMENT_TYPE = 0xeacb;
 // ...
 ```
 
-### [legacy-events](https://github.com/facebook/react/tree/master/packages/legacy-events)
+### [legacy-events](https://github.com/facebook/react/tree/master/packages/legacy-events)文件夹
 
 `React`的合成事件机制。
 
-### Renderer
+### Renderer相关的文件夹
 
 如下几个文件夹为对应的**Renderer**
 
@@ -70,9 +70,9 @@ export let REACT_FRAGMENT_TYPE = 0xeacb;
 - react-test-renderer
 ```
 
-### 实验性的包
+### 试验性包的文件夹
 
-`React`将自己流程中的一部分抽离出来，形成可以独立使用的实验性包，他们都不被建议在生产环境使用。包括如下文件夹：
+`React`将自己流程中的一部分抽离出来，形成可以独立使用的包，由于他们是试验性质的，所以不被建议在生产环境使用。包括如下文件夹：
 
 ```
 - react-server        # 创建自定义SSR流
@@ -82,7 +82,7 @@ export let REACT_FRAGMENT_TYPE = 0xeacb;
 - react-reconciler    # Reconciler的实现，你可以用他构建自己的Renderer
 ```
 
-### 辅助的包
+### 辅助包的文件夹
 
 `React`将一些辅助功能形成单独的包。包括如下文件夹：
 
@@ -93,7 +93,7 @@ export let REACT_FRAGMENT_TYPE = 0xeacb;
 - react-refresh  # “热重载”的React官方实现
 ```
 
-### [react-reconciler](https://github.com/facebook/react/tree/master/packages/react-reconciler)
+### [react-reconciler](https://github.com/facebook/react/tree/master/packages/react-reconciler)文件夹
 
 我们需要重点关注**react-reconciler**，在接下来源码学习中80%的代码量都来自这个包。
 

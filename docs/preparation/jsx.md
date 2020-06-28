@@ -24,7 +24,7 @@ import React from 'react';
 
 
 
-你可以通过[@babel/plugin-transform-react-jsx](https://babeljs.io/docs/en/babel-plugin-transform-react-jsx)插件告诉`Babel`编译时需要将`JSX`编译为什么函数的调用（默认为`React.createElement`）。
+`JSX`并不是只能被编译为`React.createElement`方法，你可以通过[@babel/plugin-transform-react-jsx](https://babeljs.io/docs/en/babel-plugin-transform-react-jsx)插件显式告诉`Babel`编译时需要将`JSX`编译为什么函数的调用（默认为`React.createElement`）。
 
 比如在[preact](https://github.com/preactjs/preact)这个类`React`库中，`JSX`会被编译为一个名为`h`的函数调用。
 ```jsx
@@ -51,12 +51,15 @@ export function createElement(type, config, children) {
 
   if (config != null) {
     // 将 config 处理后赋值给 props
+    // ...省略
   }
 
   const childrenLength = arguments.length - 2;
   // 处理 children，会被赋值给props.children
+  // ...省略
 
   // 处理 defaultProps
+  // ...省略
 
   return ReactElement(
     type,

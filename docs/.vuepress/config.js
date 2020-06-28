@@ -111,7 +111,16 @@ module.exports = {
 			{
 				"title": "第四章 Diff算法",
 				"collapsable": false,
-				"children": []
+				"children": [
+					[
+						"/diff/prepare",
+						"概览"
+					],
+					[
+						"/diff/one",
+						"单一节点Diff"
+					]
+				]
 			}
 		]
 	},
