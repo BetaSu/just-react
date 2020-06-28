@@ -95,7 +95,7 @@ if (current !== null && workInProgress.stateNode != null) {
 
 你可以从[这里](https://github.com/facebook/react/blob/master/packages/react-reconciler/src/ReactFiberCompleteWork.new.js#L204)看到`updateHostComponent`方法定义。
 
-在`updateHostComponent`内部，被处理完的`props`会被赋值给`workInProgress.updateQueue`，最终会在`Renderer`中被渲染在页面上。
+在`updateHostComponent`内部，被处理完的`props`会被赋值给`workInProgress.updateQueue`，最终会在`commit阶段`中被渲染在页面上。
 
 ```ts
 workInProgress.updateQueue = (updatePayload: any);
@@ -153,7 +153,7 @@ if (
 }
 ```
 
-还记得[上一节](./beginWork.html#effecttag)我们说到：`mount`时只会在根`Fiber`节点存在`Placement effectTag`。那么`Renderer`是如何通过一次插入`DOM`操作（对应一个`Placement effectTag`）将整棵`DOM`树插入页面的呢？
+还记得[上一节](./beginWork.html#effecttag)我们说到：`mount`时只会在根`Fiber`节点存在`Placement effectTag`。那么`commit阶段`是如何通过一次插入`DOM`操作（对应一个`Placement effectTag`）将整棵`DOM`树插入页面的呢？
 
 原因就在于`completeWork`中的`appendAllChildren`方法。
 
@@ -161,13 +161,13 @@ if (
 
 ## effectList
 
-至此`render阶段`的绝大部分工作就完成了。还有一个问题：作为`DOM`操作的依据，`Renderer`需要找到所有有`effectTag`的`Fiber`节点。如果在`Renderer`内再遍历一次`Fiber`树显然是很低效的。
+至此`render阶段`的绝大部分工作就完成了。还有一个问题：作为`DOM`操作的依据，`commit阶段`需要找到所有有`effectTag`的`Fiber`节点。如果在`commit阶段`再遍历一次`Fiber`树显然是很低效的。
 
 为了解决这个问题，在`completeWork`的上层函数`completeUnitOfWork`中，每个执行完`completeWork`且存在`effectTag`的`Fiber`节点会被保存在一条被称为`effectList`的单向链表中。
 
 `effectList`中第一个`Fiber`节点保存在`fiber.firstEffect`，最后一个元素保存在`fiber.lastEffect`。
 
-类似`appendAllChildren`，在“归”的阶段，所有有`effectTag`的`Fiber`节点都会被追加在`effectList`中，最终形成一条以`fiberRootNode.firstEffect`为起点的单向链表。
+类似`appendAllChildren`，在“归”阶段，所有有`effectTag`的`Fiber`节点都会被追加在`effectList`中，最终形成一条以`fiberRootNode.firstEffect`为起点的单向链表。
 
 ```js
                            nextEffect         nextEffect

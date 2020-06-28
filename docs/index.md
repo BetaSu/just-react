@@ -2,7 +2,7 @@
 
 1. 不预设观点 —— 所有观点来自React核心团队成员在公开场合发表的内容。
 2. 辅助资料详尽 —— 提供在线Demo、参考资源。
-3. 代码剪枝 —— 讲解流程时只关注流程相关的方法调用，省略额外功能的干扰。
+3. 代码剪枝 —— 讲解流程时只关注流程相关的代码，省略额外功能的干扰。
 4. 保持更新 —— 在React版本更新后会及时补充。当前版本`v16.13.1`。
 
 ## 章节说明
@@ -40,6 +40,8 @@
 
 ✅ completeWork
 
+✅ 双缓存机制
+
 ### 第三章 commit阶段
 
 ✅ 流程概览
@@ -48,14 +50,29 @@
 
 ✅ mutation阶段
 
-:black_square_button: layout阶段
+✅ layout阶段
 
 ### 第四章 Diff算法
 
 :black_square_button: 单一节点
+
 :black_square_button: 多个节点
 
 ### 第五章 状态更新
+
+:black_square_button: Update对象
+
+:black_square_button: ReactDOM.render
+
+:black_square_button: this.setState
+
+:black_square_button: this.forceUpdate
+
+:black_square_button: useState
+
+### 第六章 hook
+
+### 第七章 异步调度
 
 
 

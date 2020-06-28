@@ -216,12 +216,14 @@ export const Deletion = /*                 */ 0b00000000001000;
 
 针对第一个问题，`fiber.stateNode`会在`completeWork`中创建，我们会在下一节介绍。
 
-第二个问题的答案十分巧妙：假设`mountChildFibers`也会赋值`effectTag`，那么可以预见`mount`时整棵`Fiber`树所有节点都会有`Placement effectTag`。那么`Renderer`在执行`DOM`操作时每个节点都会执行一次插入操作，这样大量的`DOM`操作是极低效的。
+第二个问题的答案十分巧妙：假设`mountChildFibers`也会赋值`effectTag`，那么可以预见`mount`时整棵`Fiber`树所有节点都会有`Placement effectTag`。那么`commit阶段`在执行`DOM`操作时每个节点都会执行一次插入操作，这样大量的`DOM`操作是极低效的。
 
-为了解决这个问题，在`mount`时只有根`Fiber`节点会赋值`Placement effectTag`，在`Renderer`中只会执行一次插入操作。
+为了解决这个问题，在`mount`时只有根`Fiber`节点会赋值`Placement effectTag`，在`commit阶段`只会执行一次插入操作。
 
 ::: details 根Fiber节点 Demo
 借用上一节的Demo，第一个进入`beginWork`方法的`Fiber`节点就是根`Fiber`节点，你会发现他存在`current`。
+
+> 如果不理解为什么根`Fiber`节点存在`current`，在[双缓存机制](./doubleBuffer.html)小节会有详细解释
 
 所以在`reconcileChildren`时他会走`reconcileChildFibers`逻辑。
 
@@ -231,3 +233,4 @@ export const Deletion = /*                 */ 0b00000000001000;
 
 [Demo](https://code.h5jun.com/kexev/edit?html,js,console,output)
 :::
+

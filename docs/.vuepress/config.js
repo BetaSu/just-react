@@ -79,6 +79,10 @@ module.exports = {
 					[
 						"/process/completeWork",
 						"completeWork"
+					],
+					[
+						"/process/doubleBuffer",
+						"双缓存机制"
 					]
 				]
 			},
@@ -107,9 +111,7 @@ module.exports = {
 			{
 				"title": "第四章 Diff算法",
 				"collapsable": false,
-				"children": [
-					
-				]
+				"children": []
 			}
 		]
 	},
