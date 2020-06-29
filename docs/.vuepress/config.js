@@ -69,6 +69,10 @@ module.exports = {
 						"Fiber架构"
 					],
 					[
+						"/process/doubleBuffer",
+						"双缓存机制"
+					],
+					[
 						"/process/reconciler",
 						"流程概览"
 					],
@@ -79,10 +83,6 @@ module.exports = {
 					[
 						"/process/completeWork",
 						"completeWork"
-					],
-					[
-						"/process/doubleBuffer",
-						"双缓存机制"
 					]
 				]
 			},

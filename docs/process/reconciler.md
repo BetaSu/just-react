@@ -1,27 +1,42 @@
-我们知道`Fiber Reconciler`是从`Stack Reconciler`重构而来，通过遍历的方式实现可中断的递归，所以`render阶段`的工作可以分为两部分：“递”和“归”。
+在本章剩下部分我们会讲解`Fiber节点`是如何被创建并构建`Fiber树`的。
+
+`render阶段`开始于`workLoopConcurrent`方法的调用。
+
+```js
+function workLoopConcurrent() {
+  while (workInProgress !== null && !shouldYield()) {
+    performUnitOfWork(workInProgress);
+  }
+}
+```
+
+其中`workInProgress`代表当前已创建的`workInProgress fiber`。
+
+`performUnitOfWork`方法会创建下一个`Fiber节点`并赋值给`workInProgress`，并将`workInProgress`与已创建的`Fiber节点`连接起来构成`Fiber树`。
+
+如果当前浏览器帧没有剩余时间，`shouldYield`会中止循环，直到浏览器有空闲时间后再继续遍历。
+
+> 你可以从[这里](https://github.com/facebook/react/blob/master/packages/react-reconciler/src/ReactFiberWorkLoop.new.js#L1534)看到`workLoopConcurrent`的源码
+
+我们知道`Fiber Reconciler`是从`Stack Reconciler`重构而来，通过遍历的方式实现可中断的递归，所以`performUnitOfWork`的工作可以分为两部分：“递”和“归”。
 
 ## “递”阶段
 
-`Reconciler`向下深度优先遍历组件，遍历到的每个组件调用[beginWork方法](https://github.com/facebook/react/blob/master/packages/react-reconciler/src/ReactFiberBeginWork.new.js#L3040)为组件的**子组件**生成对应的`Fiber`节点，并将其与已生成的`Fiber`节点连接形成`Fiber`树。
+首先从`rootFiber`开始向下深度优先遍历。为遍历到的每个`Fiber节点`调用[beginWork方法](https://github.com/facebook/react/blob/master/packages/react-reconciler/src/ReactFiberBeginWork.new.js#L3040)。
+
+该方法会根据传入的`Fiber节点`创建`子Fiber节点`，并将这两个`Fiber节点`连接起来。
 
 当遍历到叶子节点（即没有子组件的组件）时就会进入“归”阶段。
 
-::: warning 注意
-`beginWork`方法是为组件的**子组件**，而不是组件本身创建`Fiber`节点。原因是当调用`ReactDOM.render`，在进入`render阶段`之前会生成一个`rootFiber`，所以接下来需要生成的`Fiber`其实是`rootFiber`的子`Fiber`
-
-`rootFiber`及`Fiber树`的构建相关知识在[本章双缓存机制小节](./doubleBuffer.html)介绍
-:::
-
-
 ## “归”阶段
 
-在“归”阶段会调用[completeWork](https://github.com/facebook/react/blob/master/packages/react-reconciler/src/ReactFiberCompleteWork.new.js#L652)处理`Fiber`。
+在“归”阶段会调用[completeWork](https://github.com/facebook/react/blob/master/packages/react-reconciler/src/ReactFiberCompleteWork.new.js#L652)处理`Fiber节点`。
 
-当某个`Fiber`执行完`completeWork`，如果其存在兄弟`Fiber`（即`fiber.sibling !== null`），会进入其兄弟`Fiber`的“递”阶段。
+当某个`Fiber节点`执行完`completeWork`，如果其存在`兄弟Fiber节点`（即`fiber.sibling !== null`），会进入其`兄弟Fiber`的“递”阶段。
 
-如果不存在兄弟`Fiber`，会进入父级`Fiber`的“归”阶段。
+如果不存在`兄弟Fiber`，会进入`父级Fiber`的“归”阶段。
 
-组件的“递”和“归”阶段会交错执行直到“归”到`rootFiber`。如此，`render阶段`的工作就结束了。
+“递”和“归”阶段会交错执行直到“归”到`rootFiber`。至此，`render阶段`的工作就结束了。
 
 ## 例子
 
@@ -39,7 +54,7 @@ function App() {
 
 ReactDOM.render(<App/>, document.getElementById('root'));
 ```
-对应的`Fiber`树结构：
+对应的`Fiber树`结构：
 <img :src="$withBase('/img/fiber.png')" alt="Fiber架构">
 
 `render阶段`会依次执行：
@@ -64,7 +79,7 @@ ReactDOM.render(<App/>, document.getElementById('root'));
 ::: details 自己试一试 Demo
 我在`beginWork`和`completeWork`调用时打印`fiber.tag`和`fiber.type`。
 
-你可以从[ReactWorkTags.js](https://github.com/facebook/react/blob/master/packages/react-reconciler/src/ReactWorkTags.js)看到`Fiber`节点的所有`tag`定义。
+你可以从[ReactWorkTags.js](https://github.com/facebook/react/blob/master/packages/react-reconciler/src/ReactWorkTags.js)看到`Fiber节点`的所有`tag`定义。
 
 相信多调试几次，你一定能明白方法的调用顺序
 
@@ -74,3 +89,6 @@ ReactDOM.render(<App/>, document.getElementById('root'));
 ## 总结
 
 本节我们介绍了`render阶段`会调用的方法。在接下来两节中，我们会讲解`beginWork`和`completeWork`做的具体工作。
+
+## 参考资料
+[The how and why on React’s usage of linked list in Fiber to walk the component’s tree](https://indepth.dev/the-how-and-why-on-reacts-usage-of-linked-list-in-fiber-to-walk-the-components-tree/)

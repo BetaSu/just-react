@@ -96,7 +96,7 @@ function commitMutationEffects(root: FiberRoot, renderPriorityLevel) {
 }
 ```
 
-`commitMutationEffects`会遍历`effectList`，对每个`Fiber`节点执行如下三个操作：
+`commitMutationEffects`会遍历`effectList`，对每个`Fiber节点`执行如下三个操作：
 
 1. 根据`ContentReset effectTag`重置文字节点
 2. 更新`ref`
@@ -106,7 +106,7 @@ function commitMutationEffects(root: FiberRoot, renderPriorityLevel) {
 
 ## Placement effect
 
-当`Fiber`节点含有`Placement effectTag`，意味着该`Fiber`节点对应的`DOM`节点需要插入到页面中。
+当`Fiber节点`含有`Placement effectTag`，意味着该`Fiber节点`对应的`DOM节点`需要插入到页面中。
 
 调用的方法为`commitPlacement`。
 
@@ -114,7 +114,7 @@ function commitMutationEffects(root: FiberRoot, renderPriorityLevel) {
 
 该方法所做的工作分为三步：
 
-1. 获取父级`DOM`节点。其中`finishedWork`为传入的`Fiber`节点。
+1. 获取父级`DOM节点`。其中`finishedWork`为传入的`Fiber节点`。
 
 ```js
 const parentFiber = getHostParentFiber(finishedWork);
@@ -122,7 +122,7 @@ const parentFiber = getHostParentFiber(finishedWork);
 const parentStateNode = parentFiber.stateNode;
 ```
 
-2. 获取`Fiber`节点的`DOM`兄弟节点
+2. 获取`Fiber节点`的`DOM`兄弟节点
 
 ```js
 const before = getHostSibling(finishedWork);
@@ -139,9 +139,9 @@ if (isContainer) {
 }
 ```
 
-值得注意的是，`getHostSibling`（获取兄弟`DOM`节点）的执行很耗时，当在同一个父`Fiber`节点下依次执行多个插入操作，`getHostSibling`算法的复杂度为指数级。
+值得注意的是，`getHostSibling`（获取兄弟`DOM节点`）的执行很耗时，当在同一个父`Fiber节点`下依次执行多个插入操作，`getHostSibling`算法的复杂度为指数级。
 
-这是由于`Fiber`节点不只包括`HostComponent`，所以`Fiber`树和渲染的`DOM`树节点并不是一一对应的。要从`Fiber`节点找到`DOM`节点很可能跨层级遍历。
+这是由于`Fiber节点`不只包括`HostComponent`，所以`Fiber树`和渲染的`DOM树`节点并不是一一对应的。要从`Fiber节点`找到`DOM节点`很可能跨层级遍历。
 
 考虑如下例子：
 
@@ -162,7 +162,7 @@ function App() {
 ReactDOM.render(<App/>, document.getElementById('root'));
 ```
 
-对应的`Fiber`树和`DOM`树结构为：
+对应的`Fiber树`和`DOM树`结构为：
 
 ```js
 // Fiber树
@@ -186,7 +186,7 @@ function App() {
 }
 ```
 
-对应的`Fiber`树和`DOM`树结构为：
+对应的`Fiber树`和`DOM树`结构为：
 
 ```js
 // Fiber树
@@ -200,7 +200,7 @@ rootFiber -----> App -----> div -----> p
                ---> li
 ```
 
-此时`DOM`节点`p`的兄弟节点为`li`，而`Fiber`节点`p`对应的兄弟`DOM`节点为：
+此时`DOM节点``p`的兄弟节点为`li`，而`Fiber节点``p`对应的兄弟`DOM节点`为：
 
 ```js
 fiberP.sibling.child
@@ -209,7 +209,7 @@ fiberP.sibling.child
 
 ## Update effect
 
-当`Fiber`节点含有`Update effectTag`，意味着该`Fiber`节点需要更新。调用的方法为`commitPlacement`，他会根据`Fiber.tag`分别处理。
+当`Fiber节点`含有`Update effectTag`，意味着该`Fiber节点`需要更新。调用的方法为`commitPlacement`，他会根据`Fiber.tag`分别处理。
 
 > 你可以在[这里](https://github.com/facebook/react/blob/master/packages/react-reconciler/src/ReactFiberCommitWork.new.js#L1451)看到`commitPlacement`源码
 
@@ -241,7 +241,7 @@ useLayoutEffect(() => {
 
 > 你可以在[这里](https://github.com/facebook/react/blob/master/packages/react-dom/src/client/ReactDOMHostConfig.js#L427)看到`commitUpdate`源码
 
-最终会将`render阶段 completeWork`中为`Fiber`节点赋值的`updateQueue`对应的内容渲染在页面上。
+最终会将`render阶段 completeWork`中为`Fiber节点`赋值的`updateQueue`对应的内容渲染在页面上。
 
 ```js
 for (let i = 0; i < updatePayload.length; i += 2) {
@@ -266,13 +266,13 @@ for (let i = 0; i < updatePayload.length; i += 2) {
 
 ## Deletion effect
 
-当`Fiber`节点含有`Deletion effectTag`，意味着该`Fiber`节点对应的`DOM`节点需要从页面中删除。调用的方法为`commitDeletion`。
+当`Fiber节点`含有`Deletion effectTag`，意味着该`Fiber节点`对应的`DOM节点`需要从页面中删除。调用的方法为`commitDeletion`。
 
 > 你可以在[这里](https://github.com/facebook/react/blob/master/packages/react-reconciler/src/ReactFiberCommitWork.new.js#L1431)看到`commitDeletion`源码
 
 该方法会执行如下操作：
 
-1. 递归调用`Fiber`节点及其子孙`Fiber`节点的`componentWillUnmount`生命周期钩子，从页面移除`Fiber`节点对应`DOM`节点
+1. 递归调用`Fiber节点`及其子孙`Fiber节点`的`componentWillUnmount`生命周期钩子，从页面移除`Fiber节点`对应`DOM节点`
 2. 解绑`ref`
 3. 调度`useEffect`的销毁函数
 

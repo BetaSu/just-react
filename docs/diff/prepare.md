@@ -8,15 +8,15 @@
 
 ::: warning 为了防止概念混淆，这里再强调下
 
-一个`DOM`节点在某一时刻最多会有4个节点和他相关。
+一个`DOM节点`在某一时刻最多会有4个节点和他相关。
 
-1. `current Fiber`。如果该`DOM`节点已在页面中，`current Fiber`代表该`DOM`节点对应的`Fiber`节点。
+1. `current Fiber`。如果该`DOM节点`已在页面中，`current Fiber`代表该`DOM节点`对应的`Fiber节点`。
 
-2. `workInProgress Fiber`。如果该`DOM`节点将在本次更新中渲染到页面中，`workInProgress Fiber`代表该`DOM`节点对应的`Fiber`节点。
+2. `workInProgress Fiber`。如果该`DOM节点`将在本次更新中渲染到页面中，`workInProgress Fiber`代表该`DOM节点`对应的`Fiber节点`。
 
-3. `DOM`节点本身。
+3. `DOM节点`本身。
 
-4. `JSX`对象。即`ClassComponent`的`render`方法的返回结果，或`FunctionComponent`的调用结果。`JSX`对象中包含描述`DOM`节点的信息。
+4. `JSX`对象。即`ClassComponent`的`render`方法的返回结果，或`FunctionComponent`的调用结果。`JSX`对象中包含描述`DOM节点`的信息。
 
 `Diff算法`的本质是对比1和4，生成2。
 
@@ -31,7 +31,7 @@
 
 为了降低算法复杂度，`React`的`diff`会预设三个限制：
 
-1. 只对同级元素进行`Diff`。如果一个`DOM`节点在前后两次更新中跨越了层级，那么`React`不会尝试复用他。
+1. 只对同级元素进行`Diff`。如果一个`DOM节点`在前后两次更新中跨越了层级，那么`React`不会尝试复用他。
 
 2. 两个不同类型的元素会产生出不同的树。如果元素由`div`变为`p`，React会销毁`div`及其子孙节点，并新建`p`及其子孙节点。
 
@@ -53,7 +53,7 @@
 ```
 如果没有`key`，`React`会认为`div`的第一个子节点由`p`变为`h3`，第二个子节点由`h3`变为`p`。这符合限制2的设定，会销毁并新建。
 
-但是当我们用`key`指明了节点前后对应关系后，`React`知道`key === "ka"`的`p`在更新后还存在，所以`DOM`节点可以复用，只是需要交换下顺序。
+但是当我们用`key`指明了节点前后对应关系后，`React`知道`key === "ka"`的`p`在更新后还存在，所以`DOM节点`可以复用，只是需要交换下顺序。
 
 这就是`React`为了应对算法性能瓶颈做出的三条限制。
 

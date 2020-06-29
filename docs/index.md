@@ -34,13 +34,13 @@
 
 ✅ Fiber架构
 
+✅ 双缓存机制
+
 ✅ 流程概览
 
 ✅ beginWork
 
 ✅ completeWork
-
-✅ 双缓存机制
 
 ### 第三章 commit阶段
 

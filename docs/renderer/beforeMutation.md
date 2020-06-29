@@ -76,7 +76,7 @@ function commitBeforeMutationEffects() {
 
 整体可以分为三部分：
 
-1. 处理`DOM`节点渲染/删除后的 `autoFocus`、`blur` 逻辑。
+1. 处理`DOM节点`渲染/删除后的 `autoFocus`、`blur` 逻辑。
 
 2. 调用`getSnapshotBeforeUpdate`生命周期钩子。
 
@@ -121,13 +121,13 @@ if ((effectTag & Passive) !== NoEffect) {
 
 在`flushPassiveEffects`方法内部会从全局变量`rootWithPendingPassiveEffects`获取`effectList`。
 
-在[completeWork一节](../process/completeWork.html#effectlist)我们讲到，`effectList`中保存了需要执行副作用的`Fiber`节点。其中副作用包括
+在[completeWork一节](../process/completeWork.html#effectlist)我们讲到，`effectList`中保存了需要执行副作用的`Fiber节点`。其中副作用包括
 
-- 插入`DOM`节点（Placement）
-- 更新`DOM`节点（Update）
-- 删除`DOM`节点（Deletion）
+- 插入`DOM节点`（Placement）
+- 更新`DOM节点`（Update）
+- 删除`DOM节点`（Deletion）
 
-除此外，当一个`FunctionComponent`含有`useEffect`或`useLayoutEffect`，他对应的`Fiber`节点也会被赋值`effectTag`。
+除此外，当一个`FunctionComponent`含有`useEffect`或`useLayoutEffect`，他对应的`Fiber节点`也会被赋值`effectTag`。
 
 > 你可以从[这里](https://github.com/facebook/react/blob/master/packages/react-reconciler/src/ReactHookEffectTags.js)看到`hook`相关的`effectTag`
 
@@ -164,7 +164,7 @@ if (rootDoesHavePassiveEffects) {
 
 经过本节学习，我们知道了在`before mutation阶段`，会遍历`effectList`，依次执行：
 
-1. 处理`DOM`节点渲染/删除后的 `autoFocus`、`blur`逻辑
+1. 处理`DOM节点`渲染/删除后的 `autoFocus`、`blur`逻辑
 
 2. 调用`getSnapshotBeforeUpdate`生命周期钩子
 

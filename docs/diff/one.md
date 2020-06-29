@@ -69,7 +69,7 @@ function reconcileSingleElement(
 
 还记得我们刚才提到的，React预设的限制么，
 
-从代码可以看出，React通过先判断`key`是否相同，如果`key`相同则判断`type`是否相同，只有都相同时一个`DOM`节点才能复用。
+从代码可以看出，React通过先判断`key`是否相同，如果`key`相同则判断`type`是否相同，只有都相同时一个`DOM节点`才能复用。
 
 这里有个细节需要关注下：
 

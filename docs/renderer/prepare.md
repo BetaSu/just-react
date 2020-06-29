@@ -4,7 +4,7 @@
 commitRoot(root);
 ```
 
-在`rootFiber.firstEffect`上保存了一条需要执行副作用的`Fiber`节点的单向链表`effectList`，这些`Fiber`节点的`updateQueue`中保存了变化的`props`。这些都需要在`commit`阶段被渲染在页面上。
+在`rootFiber.firstEffect`上保存了一条需要执行副作用的`Fiber节点`的单向链表`effectList`，这些`Fiber节点`的`updateQueue`中保存了变化的`props`。这些都需要在`commit`阶段被渲染在页面上。
 
 除此之外，还有些生命周期钩子（比如`componentDidXXX`）、`hook`（比如`useEffect`）需要在`commit`阶段执行。
 
