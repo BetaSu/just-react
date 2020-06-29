@@ -118,7 +118,11 @@ module.exports = {
 					],
 					[
 						"/diff/one",
-						"单一节点Diff"
+						"单节点Diff"
+					],
+					[
+						"/diff/multi",
+						"多节点Diff"
 					]
 				]
 			}

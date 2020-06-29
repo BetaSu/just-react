@@ -56,9 +56,9 @@
 
 ✅ 概览
 
-✅ 单一节点Diff
+✅ 单节点Diff
 
-:black_square_button: 多个节点Diff
+✅ 多节点Diff
 
 ### 第五章 状态更新
 

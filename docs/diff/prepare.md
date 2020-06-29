@@ -16,7 +16,7 @@
 
 3. `DOM节点`本身。
 
-4. `JSX`对象。即`ClassComponent`的`render`方法的返回结果，或`FunctionComponent`的调用结果。`JSX`对象中包含描述`DOM节点`的信息。
+4. `JSX对象`。即`ClassComponent`的`render`方法的返回结果，或`FunctionComponent`的调用结果。`JSX对象`中包含描述`DOM节点`的信息。
 
 `Diff算法`的本质是对比1和4，生成2。
 
@@ -59,7 +59,7 @@
 
 ## Diff是如何实现的
 
-我们从`Diff`的入口函数`reconcileChildFibers`出发，该函数会根据`newChild`（即`JSX`对象）类型调用不同的处理函数。
+我们从`Diff`的入口函数`reconcileChildFibers`出发，该函数会根据`newChild`（即`JSX对象`）类型调用不同的处理函数。
 
 > 你可以从[这里](https://github.com/facebook/react/blob/master/packages/react-reconciler/src/ReactChildFiber.new.js#L1272)看到`reconcileChildFibers`的源码。
 
