@@ -209,9 +209,9 @@ fiberP.sibling.child
 
 ## Update effect
 
-当`Fiber节点`含有`Update effectTag`，意味着该`Fiber节点`需要更新。调用的方法为`commitPlacement`，他会根据`Fiber.tag`分别处理。
+当`Fiber节点`含有`Update effectTag`，意味着该`Fiber节点`需要更新。调用的方法为`commitWork`，他会根据`Fiber.tag`分别处理。
 
-> 你可以在[这里](https://github.com/facebook/react/blob/master/packages/react-reconciler/src/ReactFiberCommitWork.new.js#L1451)看到`commitPlacement`源码
+> 你可以在[这里](https://github.com/facebook/react/blob/master/packages/react-reconciler/src/ReactFiberCommitWork.new.js#L1451)看到`commitWork`源码
 
 这里我们主要关注`FunctionComponent`和`HostComponent`。
 
