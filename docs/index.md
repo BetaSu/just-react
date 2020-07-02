@@ -14,7 +14,7 @@
 
 我们并没有从如`ReactDOM.render`、`this.setState`或`hooks`等这样日常开发耳熟能详的`API`入手，而是从**理念**这样比较高的抽象层次开始学习，这是有意为之的。
 
-由理念推导出架构，再讲解架构的每个部分是如何互相配合完成UI渲染，最后讲解具体的`API`是如何接入这套架构。
+从理念到架构，从架构到实现，从实现到具体`API`设计。
 
 这是一个自顶向下、抽象程度递减，符合认知的过程。如果直接讲解API，那么很容易陷入源码的汪洋大海。
 
@@ -68,17 +68,17 @@
 
 ### 第五章 状态更新
 
+✅ 流程概览
+
 :black_square_button: Update对象
 
 :black_square_button: ReactDOM.render
 
-:black_square_button: this.setState
+:black_square_button: this.setState与this.forceUpdate
 
-:black_square_button: this.forceUpdate
+:black_square_button: useState与useReducer
 
-:black_square_button: useState
-
-### 第六章 hook
+### 第六章 hooks
 
 ### 第七章 异步调度
 

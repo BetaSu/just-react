@@ -4,6 +4,12 @@
 
 这一章我们讲解`Diff算法`的实现。
 
+::: warning 该章节为选读章节
+
+不学习该章对后续章节的学习没有影响。
+
+:::
+
 > 你可以从[这里](https://zh-hans.reactjs.org/docs/reconciliation.html#the-diffing-algorithm)看到`Diff算法`的介绍。
 
 ::: warning 为了防止概念混淆，这里再强调下

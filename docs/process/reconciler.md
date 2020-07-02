@@ -1,8 +1,18 @@
 在本章剩下部分我们会讲解`Fiber节点`是如何被创建并构建`Fiber树`的。
 
-`render阶段`开始于`workLoopConcurrent`方法的调用。
+`render阶段`开始于`performSyncWorkOnRoot`或`performConcurrentWorkOnRoot`方法的调用。这取决于本次更新是同步更新还是异步更新。
+
+我们现在还不需要学习这两个方法，只需要知道在这两个方法中会调用如下两个方法：
 
 ```js
+// performSyncWorkOnRoot会调用该方法
+function workLoopSync() {
+  while (workInProgress !== null) {
+    performUnitOfWork(workInProgress);
+  }
+}
+
+// performConcurrentWorkOnRoot会调用该方法
 function workLoopConcurrent() {
   while (workInProgress !== null && !shouldYield()) {
     performUnitOfWork(workInProgress);
@@ -10,11 +20,11 @@ function workLoopConcurrent() {
 }
 ```
 
-其中`workInProgress`代表当前已创建的`workInProgress fiber`。
+可以看到，他们唯一的区别是是否调用`shouldYield`。如果当前浏览器帧没有剩余时间，`shouldYield`会中止循环，直到浏览器有空闲时间后再继续遍历。
+
+`workInProgress`代表当前已创建的`workInProgress fiber`。
 
 `performUnitOfWork`方法会创建下一个`Fiber节点`并赋值给`workInProgress`，并将`workInProgress`与已创建的`Fiber节点`连接起来构成`Fiber树`。
-
-如果当前浏览器帧没有剩余时间，`shouldYield`会中止循环，直到浏览器有空闲时间后再继续遍历。
 
 > 你可以从[这里](https://github.com/facebook/react/blob/master/packages/react-reconciler/src/ReactFiberWorkLoop.new.js#L1534)看到`workLoopConcurrent`的源码
 

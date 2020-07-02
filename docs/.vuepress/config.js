@@ -28,7 +28,7 @@ module.exports = {
 			],
 			{
 				"title": "第一章 前置知识",
-				"collapsable": false,
+				"collapsable": true,
 				"children": [
 					[
 						"/preparation/idea",
@@ -62,7 +62,7 @@ module.exports = {
 			},
 			{
 				"title": "第二章 render阶段",
-				"collapsable": false,
+				"collapsable": true,
 				"children": [
 					[
 						"/process/fiber",
@@ -88,7 +88,7 @@ module.exports = {
 			},
 			{
 				"title": "第三章 commit阶段",
-				"collapsable": false,
+				"collapsable": true,
 				"children": [
 					[
 						"/renderer/prepare",
@@ -110,7 +110,7 @@ module.exports = {
 			},
 			{
 				"title": "第四章 Diff算法",
-				"collapsable": false,
+				"collapsable": true,
 				"children": [
 					[
 						"/diff/prepare",
@@ -123,6 +123,16 @@ module.exports = {
 					[
 						"/diff/multi",
 						"多节点Diff"
+					]
+				]
+			},
+			{
+				"title": "第五章 状态更新",
+				"collapsable": true,
+				"children": [
+					[
+						"/state/prepare",
+						"流程概览"
 					]
 				]
 			}
