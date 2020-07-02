@@ -78,7 +78,7 @@ export const Deletion = /*              */ 0b0000000001000;
 - 有其他更高优任务需要先更新
 - 当前帧没有剩余时间
 
-由于红框中的工作都在内存中进行，不会更新页面上的DOM，即使反复中断用户也不会看见更新不完全的DOM。
+由于红框中的工作都在内存中进行，不会更新页面上的DOM，所以即使反复中断，React15中的问题 (用户看见更新不完全的DOM) 也不会出现。
 
 > 实时上，由于**Scheduler**和**Reconciler**都是平台无关的，所以`React`为他们单独发了一个包[react-Reconciler](https://www.npmjs.com/package/react-Reconciler)。你可以用这个包自己实现一个`ReactDOM`，具体见**参考资料**
  
