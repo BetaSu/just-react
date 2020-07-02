@@ -7,3 +7,4 @@ React从理念到源码，这一本就够了。
 加我微信（iamkasong）拉你进源码交流群和其他小伙伴一起交流`React`。
 
 
+<img src="https://p1.ssl.qhimg.com/t010ad214e154c33763.png" style="width: 300px" />
