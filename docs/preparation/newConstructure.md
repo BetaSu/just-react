@@ -38,7 +38,7 @@ function workLoopConcurrent() {
 }
 ```
 
-那么React16是如何解决中断更新时渲染不完全DOM的问题呢？
+那么React16是如何解决中断更新时DOM渲染不完全的问题呢？
 
 在React16中，**Reconciler**与**Renderer**不再是交替工作。当**Scheduler**将任务交给**Reconciler**后，**Reconciler**会为变化的虚拟DOM打上代表增/删/更新的标记，类似这样：
 
