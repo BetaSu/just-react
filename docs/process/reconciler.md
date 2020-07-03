@@ -62,8 +62,9 @@ function App() {
   )
 }
 
-ReactDOM.render(<App/>, document.getElementById('root'));
+ReactDOM.render(<App />, document.getElementById("root"));
 ```
+
 对应的`Fiber树`结构：
 <img :src="$withBase('/img/fiber.png')" alt="Fiber架构">
 
@@ -96,9 +97,32 @@ ReactDOM.render(<App/>, document.getElementById('root'));
 [Demo](https://code.h5jun.com/kexev/edit?html,js,console,output)
 :::
 
+::: details performUnitOfWork 的递归版本
+
+如果将`performUnitOfWork`转化为递归版本，大体代码如下：
+
+```js
+function performUnitOfWork(fiber) {
+  // 执行beginWork
+
+  if (fiber.child) {
+    performUnitOfWork(fiber.child);
+  }
+
+  // 执行completeWork
+
+  if (fiber.sibling) {
+    performUnitOfWork(fiber.sibling);
+  }
+}
+```
+
+:::
+
 ## 总结
 
 本节我们介绍了`render阶段`会调用的方法。在接下来两节中，我们会讲解`beginWork`和`completeWork`做的具体工作。
 
 ## 参考资料
+
 [The how and why on React’s usage of linked list in Fiber to walk the component’s tree](https://indepth.dev/the-how-and-why-on-reacts-usage-of-linked-list-in-fiber-to-walk-the-components-tree/)

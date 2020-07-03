@@ -2,7 +2,6 @@
 
 该阶段触发的生命周期钩子和`hook`可以直接访问到已经改变后的`DOM`，即该阶段是可以参与`DOM layout`的阶段。
 
-
 ## 概览
 
 与前两个阶段类似，`layout阶段`也是遍历`effectList`，执行函数。这里执行的是`commitLayoutEffects`。
@@ -15,7 +14,7 @@ do {
   try {
     commitLayoutEffects(root, lanes);
   } catch (error) {
-    invariant(nextEffect !== null, 'Should be working on an effect.');
+    invariant(nextEffect !== null, "Should be working on an effect.");
     captureCommitPhaseError(nextEffect, error);
     nextEffect = nextEffect.nextEffect;
   }
@@ -33,7 +32,6 @@ nextEffect = null;
 ```js
 function commitLayoutEffects(root: FiberRoot, committedLanes: Lanes) {
   while (nextEffect !== null) {
-
     const effectTag = nextEffect.effectTag;
 
     // 调用生命周期钩子和hook
@@ -54,8 +52,9 @@ function commitLayoutEffects(root: FiberRoot, committedLanes: Lanes) {
 
 `commitLayoutEffects`一共做了两件事：
 
-1. commitLayoutEffectOnFiber（调用生命周期钩子和hook）
-2. commitAttachRef（赋值ref）
+1. commitLayoutEffectOnFiber（调用生命周期钩子和 hook）
+
+2. commitAttachRef（赋值 ref）
 
 ## commitLayoutEffectOnFiber
 
@@ -65,11 +64,27 @@ function commitLayoutEffects(root: FiberRoot, committedLanes: Lanes) {
 
 - 对于`ClassComponent`，他会通过`current === null?`区分是`mount`还是`update`，调用`componentDidMount`或`componentDidUpdate`。
 
+触发`状态更新`的`this.setState`如果赋值了第二个参数`回调函数`，也会在此时调用。
+
+```js
+this.setState({ xxx: 1 }, () => {
+  console.log("i am update~");
+});
+```
+
 - 对于`FunctionComponent`，他会调用`useLayoutEffect hook`的回调函数。
 
 在上一节介绍[Update effect](./mutation.html#update-effect)时介绍过，`mutation阶段`会执行`useLayoutEffect hook`的消耗函数。结合这里我们可以发现，`useLayoutEffect hook`从上一次更新的销毁函数调用到本次更新的回调函数调用是同步执行的。
 
 而`useEffect`则需要先调度，在`commit阶段`完成后再异步执行。这就是`useLayoutEffect`与`useEffect`的区别。
+
+- 对于`HostRoot`，即`rootFiber`，如果赋值了第三个参数`回调函数`，也会在此时调用。
+
+```js
+ReactDOM.render(<App />, document.querySelector("#root"), function() {
+  console.log("i am mount~");
+});
+```
 
 ## commitAttachRef
 
@@ -93,7 +108,7 @@ function commitAttachRef(finishedWork: Fiber) {
         instanceToUse = instance;
     }
 
-    if (typeof ref === 'function') {
+    if (typeof ref === "function") {
       // 如果ref是函数形式，调用回调函数
       ref(instanceToUse);
     } else {
@@ -106,7 +121,6 @@ function commitAttachRef(finishedWork: Fiber) {
 
 代码逻辑很简单：获取`DOM`实例，更新`ref`。
 
-
 ## current Fiber树切换
 
 至此，整个`layout阶段`就结束了。
@@ -116,6 +130,7 @@ function commitAttachRef(finishedWork: Fiber) {
 ```js
 root.current = finishedWork;
 ```
+
 > 你可以在[这里](https://github.com/facebook/react/blob/master/packages/react-reconciler/src/ReactFiberWorkLoop.new.js#L1954)看到这行代码
 
 在[双缓存机制一节](../process/doubleBuffer.html#什么是-双缓存)我们介绍过，`workInProgress Fiber树`在`commit阶段`完成渲染后会变为`current Fiber树`。这行代码的作用就是切换`rootFiberNode`指向的`current Fiber树`。

@@ -64,9 +64,7 @@ commit阶段（`commitRoot`）
 
 我们会在下一节详细讲解`Update`。
 
-<!-- beginWork getStateFromUpdate -->
-
-### 从fiber到root
+### 从iber到root
 
 现在`触发状态更新的fiber`上已经包含`Update`对象。
 
@@ -91,14 +89,21 @@ commit阶段（`commitRoot`）
 以下是`ensureRootIsScheduled`最核心的一段代码：
 
 ```js
-  if (newCallbackPriority === SyncLanePriority) {
-    // 任务已经过期，需要同步执行render阶段
-    newCallbackNode = scheduleSyncCallback(performSyncWorkOnRoot.bind(null, root));
-  } else {
-    // 根据任务优先级异步执行render阶段
-    var schedulerPriorityLevel = lanePriorityToSchedulerPriority(newCallbackPriority);
-    newCallbackNode = scheduleCallback(schedulerPriorityLevel, performConcurrentWorkOnRoot.bind(null, root));
-  }
+if (newCallbackPriority === SyncLanePriority) {
+  // 任务已经过期，需要同步执行render阶段
+  newCallbackNode = scheduleSyncCallback(
+    performSyncWorkOnRoot.bind(null, root)
+  );
+} else {
+  // 根据任务优先级异步执行render阶段
+  var schedulerPriorityLevel = lanePriorityToSchedulerPriority(
+    newCallbackPriority
+  );
+  newCallbackNode = scheduleCallback(
+    schedulerPriorityLevel,
+    performConcurrentWorkOnRoot.bind(null, root)
+  );
+}
 ```
 
 > 你可以从[这里](https://github.com/facebook/react/blob/b6df4417c79c11cfb44f965fab55b573882b1d54/packages/react-reconciler/src/ReactFiberWorkLoop.new.js#L602)看到`ensureRootIsScheduled`的源码
@@ -108,8 +113,8 @@ commit阶段（`commitRoot`）
 可以看到，这里调度的回调函数为：
 
 ```js
-performSyncWorkOnRoot.bind(null, root)
-performConcurrentWorkOnRoot.bind(null, root)
+performSyncWorkOnRoot.bind(null, root);
+performConcurrentWorkOnRoot.bind(null, root);
 ```
 
 即`render阶段`的入口函数。
@@ -150,6 +155,6 @@ render阶段（`performSyncWorkOnRoot` 或 `performConcurrentWorkOnRoot`）
     |
     |
     v
-    
+
 commit阶段（`commitRoot`）
 ```

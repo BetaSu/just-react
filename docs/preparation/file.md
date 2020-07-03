@@ -1,4 +1,4 @@
-经过之前的学习，我们已经知道React16的架构分为三层：
+经过之前的学习，我们已经知道`React16`的架构分为三层：
 
 - Scheduler（调度器）—— 调度任务的优先级，高优任务优先进入**Reconciler**
 - Reconciler（协调器）—— 负责找出变化的组件
@@ -9,11 +9,12 @@
 ## 顶层目录
 
 克隆代码到本地
+
 ```sh
 git clone https://github.com/facebook/react.git
 ```
 
-除去配置文件和隐藏文件夹，根目录的文件夹包括3个：
+除去配置文件和隐藏文件夹，根目录的文件夹包括三个：
 
 ```
 根目录
@@ -21,7 +22,6 @@ git clone https://github.com/facebook/react.git
 ├── packages        # 包含元数据（比如 package.json）和 React 仓库中所有 package 的源码（子目录 src）
 ├── scripts         # 各种工具链的脚本，比如git、jest、eslint等
 ```
-
 
 这里我们关注**packages**目录
 
@@ -32,11 +32,12 @@ git clone https://github.com/facebook/react.git
 ### [react](https://github.com/facebook/react/tree/master/packages/react)文件夹
 
 React的核心，包含所有全局 React API，如：
+
 - React.createElement
 - React.Component
 - React.Children
 
-这些API是全平台通用的，它不包含`ReactDOM`、`ReactNative`等平台特定的代码。在NPM上作为[单独的一个包](https://www.npmjs.com/package/react)发布。
+这些 API 是全平台通用的，它不包含`ReactDOM`、`ReactNative`等平台特定的代码。在 NPM 上作为[单独的一个包](https://www.npmjs.com/package/react)发布。
 
 ### [scheduler](https://github.com/facebook/react/tree/master/packages/scheduler)文件夹
 
@@ -54,16 +55,12 @@ export let REACT_FRAGMENT_TYPE = 0xeacb;
 // ...
 ```
 
-### [legacy-events](https://github.com/facebook/react/tree/master/packages/legacy-events)文件夹
-
-`React`的合成事件机制。
-
 ### Renderer相关的文件夹
 
 如下几个文件夹为对应的**Renderer**
 
 ```
-- react-art 
+- react-art
 - react-dom                 # 注意这同时是DOM和SSR（服务端渲染）的入口
 - react-native-renderer
 - react-noop-renderer       # 用于debug fiber（后面会介绍fiber）
@@ -95,6 +92,6 @@ export let REACT_FRAGMENT_TYPE = 0xeacb;
 
 ### [react-reconciler](https://github.com/facebook/react/tree/master/packages/react-reconciler)文件夹
 
-我们需要重点关注**react-reconciler**，在接下来源码学习中80%的代码量都来自这个包。
+我们需要重点关注**react-reconciler**，在接下来源码学习中 80%的代码量都来自这个包。
 
-虽然他是一个实验性的包，内部的很多功能在正式版本中还未开放。但是他一边对接**Scheduler**，一边对接不同平台的**Renderer**，构成了整个React16的架构体系。
+虽然他是一个实验性的包，内部的很多功能在正式版本中还未开放。但是他一边对接**Scheduler**，一边对接不同平台的**Renderer**，构成了整个 React16 的架构体系。
