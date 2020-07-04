@@ -1,4 +1,4 @@
-软件的设计是为了服务理念，我们只有懂了设计理念，才能明白为了实现这样的理念需要如何架构。所以，在我们深入源码架构之前，先来聊聊`React`理念。
+软件的设计是为了服务理念。只有懂了设计理念，才能明白为了实现这样的理念需要如何架构。所以，在我们深入源码架构之前，先来聊聊`React`理念。
 
 ## React理念
 我们可以从[官网](https://zh-hans.reactjs.org/docs/thinking-in-react.html)看到`React`的理念：
@@ -53,7 +53,7 @@
 
 由开发者来显式的告诉`React`哪些组件不需要重复计算、可以复用。
 
-在后面源码的学习中，我们会看到这些优化手段是如何起作用的。比如经过优化后，`React`会通过[这个方法](https://github.com/facebook/react/blob/master/packages/react-reconciler/src/ReactFiberBeginWork.new.js#L2937)跳过一些本次更新不需要处理的任务。
+在后面源码的学习中，我们会看到这些优化手段是如何起作用的。比如经过优化后，`React`会通过[bailoutOnAlreadyFinishedWork方法](https://github.com/facebook/react/blob/master/packages/react-reconciler/src/ReactFiberBeginWork.new.js#L2964)跳过一些本次更新不需要处理的任务。
 
 
 ## 理解“响应自然”
@@ -71,7 +71,7 @@
 
 但这只是治标不治本。只要组件的更新操作是同步的，那么当更新开始直到渲染完毕前，组件中总会有一定数量的工作占用线程，浏览器没有空闲时间绘制UI，造成卡顿。
 
->React核心团队成员Dan在介绍React为什么会并发（[Concurrent Mode](https://zh-hans.reactjs.org/docs/concurrent-mode-intro.html)）更新组件时说：
+> React核心团队成员Dan在介绍React为什么会异步（[Concurrent Mode](https://zh-hans.reactjs.org/docs/concurrent-mode-intro.html)）更新组件时说：
 <img :src="$withBase('/img/update.png')" alt="Dan关于用户体验的思考">
 <!-- ![Dan关于用户体验的思考](/img/update.png) -->
 
@@ -81,7 +81,9 @@
 
 如果我们能稍稍延迟下拉框更新的时间，为浏览器留出时间渲染UI，让输入不卡顿。这样的体验是更**自然**的。
 
-为了实现这个目标，需要将同步的更新变为可中断的异步更新。在浏览器每一帧的时间中，预留一些时间给JS线程，`React`利用这部分时间更新组件（可以看到，在[源码](https://github.com/facebook/react/blob/4c7036e807fa18a3e21a5182983c7c0f05c5936e/packages/scheduler/src/forks/SchedulerHostConfig.default.js#L119)中，预留的初始时间是5ms）。
+为了实现这个目标，需要将**同步的更新**变为**可中断的异步更新**。
+
+在浏览器每一帧的时间中，预留一些时间给JS线程，`React`利用这部分时间更新组件（可以看到，在[源码](https://github.com/facebook/react/blob/4c7036e807fa18a3e21a5182983c7c0f05c5936e/packages/scheduler/src/forks/SchedulerHostConfig.default.js#L119)中，预留的初始时间是5ms）。
 
 当预留的时间不够用时，`React`将线程控制权交还给浏览器使其有时间渲染UI，`React`则等待下一帧时间到来继续被中断的工作。
 
@@ -99,19 +101,18 @@
 
 ## 总结
 
-通过以上内容，我们可以看到，`React`为了践行“构建**快速响应**的大型 Web 应用程序”理念做出的努力。这其中有些优化手段可以在现有架构上增加，而有些（如：异步可中断更新）只能重构整个架构实现。
+通过以上内容，我们可以看到，`React`为了践行“构建**快速响应**的大型 Web 应用程序”理念做出的努力。
 
-即使版本经历了很大更迭，从13年第一次Commit到如今2020年，`React`的主要API却很少变化。`this.setState`风采依旧，日复一日出色的完成着开发者交代的工作。
-> React 13年第一次 commit
-<!-- ![第一次commit](/img/firstCommit.png) -->
-<img :src="$withBase('/img/firstCommit.png')" alt="第一次commit">
-最后再让我们看看，Dan回答网友关于`React`发展方向的提问
+这其中有些优化手段可以在现有架构上增加，而有些（如：异步可中断更新）只能重构整个架构实现。
+
+最后再让我们看看，Dan回答网友关于`React`发展方向的提问：
+
 <img :src="$withBase('/img/ques1.png')" alt="用户向Dan提问">
 <img :src="$withBase('/img/ans1.png')" alt="Dan回答">
 <!-- ![用户向Dan提问](/img/ques1.png)
 ![Dan回答](/img/ans1.png) -->
 
-相比于新增feature，React更在意底层抽象的表现力。结合理念，相信你已经明白这意味着什么了。
+相比于新增feature，`React`更在意底层抽象的表现力。结合理念，相信你已经明白这意味着什么了。
 
 ## 参考资料
 

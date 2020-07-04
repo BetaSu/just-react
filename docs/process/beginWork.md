@@ -235,3 +235,8 @@ export const Deletion = /*                 */ 0b00000000001000;
 [Demo](https://code.h5jun.com/kexev/edit?html,js,console,output)
 :::
 
+## 参考资料
+
+`beginWork`流程图
+
+<img :src="$withBase('/img/beginwork.jpg')" alt="beginWork流程图">
