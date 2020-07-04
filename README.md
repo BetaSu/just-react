@@ -15,6 +15,4 @@ React从理念到源码，这一本就够了。
 
 [`外网` `英文`  React会保持更新顺序么](https://stackoverflow.com/questions/48563650/does-react-keep-the-order-for-state-updates/48610973#48610973)
 
-[`外网` `英文`  异步更新流程简介](https://twitter.com/acdlite/status/978412930973687808)
-
 

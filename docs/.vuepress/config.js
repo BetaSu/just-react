@@ -133,6 +133,10 @@ module.exports = {
 					[
 						"/state/prepare",
 						"流程概览"
+					],
+					[
+						"/state/update",
+						"Update"
 					]
 				]
 			}

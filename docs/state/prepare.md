@@ -64,7 +64,7 @@ commit阶段（`commitRoot`）
 
 我们会在下一节详细讲解`Update`。
 
-### 从iber到root
+### 从fiber到root
 
 现在`触发状态更新的fiber`上已经包含`Update`对象。
 

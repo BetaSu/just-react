@@ -78,7 +78,7 @@
 
 :black_square_button: useState与useReducer
 
-### 第六章 hooks
+### 第六章 Hooks
 
 ### 第七章 异步调度
 

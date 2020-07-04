@@ -8,10 +8,14 @@
 
 ## 顶层目录
 
-克隆代码到本地
+拉取代码到本地
 
 ```sh
+# 拉取代码
 git clone https://github.com/facebook/react.git
+
+# 如果拉取速度很慢，可以考虑使用cnpm代理
+git clone https://github.com.cnpmjs.org/facebook/react
 ```
 
 除去配置文件和隐藏文件夹，根目录的文件夹包括三个：

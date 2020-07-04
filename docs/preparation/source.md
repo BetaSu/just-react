@@ -16,7 +16,11 @@
 
 ```sh
 # 拉取代码
-git clone git@github.com:facebook/react.git;
+git clone https://github.com/facebook/react.git
+
+# 如果拉取速度很慢，可以考虑使用cnpm代理
+git clone https://github.com.cnpmjs.org/facebook/react
+
 # 安装依赖
 yarn;
 ```
