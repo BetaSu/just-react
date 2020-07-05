@@ -137,6 +137,10 @@ module.exports = {
 					[
 						"/state/update",
 						"Update"
+					],
+					[
+						"/state/priority",
+						"更新的优先级"
 					]
 				]
 			}

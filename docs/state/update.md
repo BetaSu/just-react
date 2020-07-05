@@ -73,17 +73,13 @@ const update: Update<*> = {
 
 - 代表正在`render阶段`的`workInProgress Fiber树`
 
-类似`Fiber节点`组成`Fiber树`，`Fiber节点`上的多个`Update`会组成`updateQueue`。`Fiber节点`最多同时存在两个`updateQueue`：
-
-- `current fiber`保存的`updateQueue`即`current updateQueue`
-
-- `workInProgress fiber`保存的`updateQueue`即`workInProgress updateQueue`
+类似`Fiber节点`组成`Fiber树`，`Fiber节点`上的多个`Update`会组成链表并被包含在`fiber.updateQueue`中。
 
 ::: warning 什么情况下一个Fiber节点会存在多个Update？
 
 你可能疑惑为什么一个`Fiber节点`会存在多个`Update`。这其实是很常见的情况。
 
-在这里我介绍一种最简单的情况：
+在这里介绍一种最简单的情况：
 
 ```js
 onClick() {
@@ -100,6 +96,12 @@ onClick() {
 在一个`ClassComponent`中触发`this.onClick`方法，方法内部调用了两次`this.setState`。这会在该`fiber`中产生两个`Update`。
 
 :::
+
+`Fiber节点`最多同时存在两个`updateQueue`：
+
+- `current fiber`保存的`updateQueue`即`current updateQueue`
+
+- `workInProgress fiber`保存的`updateQueue`即`workInProgress updateQueue`
 
 在`commit阶段`完成页面渲染后，`workInProgress Fiber树`变为`current Fiber树`，`workInProgress Fiber树`内`Fiber节点`的`updateQueue`就变成`current updateQueue`。
 
@@ -135,11 +137,13 @@ const queue: UpdateQueue<State> = {
 
 
 
-## updateQueue工作流程例子
+## 例子
 
-`updateQueue`相关代码逻辑涉及到大量链表操作，比较难懂。我们举个例子对`shared.pending`、`firstBaseUpdate`与`lastBaseUpdate`的工作详细讲解下。
+`updateQueue`相关代码逻辑涉及到大量链表操作，比较难懂。在此我们举例对`updateQueue`的工作流程讲解下。
 
-假设有一个`fiber`刚经历`commit阶段`完成渲染。该`fiber`上有两个由于优先级过低所以在上次的`render阶段`并没有处理的`Update`。
+假设有一个`fiber`刚经历`commit阶段`完成渲染。
+
+该`fiber`上有两个由于优先级过低所以在上次的`render阶段`并没有处理的`Update`。他们会成为下次更新的`baseUpdate`。
 
 我们称其为`u1`和`u2`，其中`u1.next === u2`。
 
@@ -155,7 +159,7 @@ u1.next === u2;
 fiber.updateQueue.baseUpdate: u1 --> u2
 ```
 
-我们在`fiber`上触发两次状态更新，这会产生两个新`Update`。
+现在我们在`fiber`上触发两次状态更新，这会产生两个新`Update`。
 
 我们称其为`u3`和`u4`。
 
@@ -183,6 +187,8 @@ fiber.updateQueue.baseUpdate: u1 --> u2 --> u3 --> u4
 
 接下来遍历`updateQueue.baseUpdate`链表，以`fiber.updateQueue.baseState`为`初始state`，依次与遍历到的每个`Update`计算并产生新的`state`（该操作类比`Array.prototype.reduce`）。
 
+在遍历时如果有优先级低的`Update`会被跳过。
+
 当遍历完成后获得的`state`，就是该`Fiber节点`在本次更新的`state`（源码中叫做`memoizedState`）。
 
 > `render阶段`的`Update操作`由`processUpdateQueue`完成，你可以从[这里](https://github.com/facebook/react/blob/master/packages/react-reconciler/src/ReactUpdateQueue.new.js#L405)看到`processUpdateQueue`的源码
@@ -190,11 +196,3 @@ fiber.updateQueue.baseUpdate: u1 --> u2 --> u3 --> u4
 `state`的变化在`render阶段`产生与上次更新不同的`JSX`对象，通过`Diff算法`产生`effectTag`，在`commit阶段`渲染在页面上。
 
 渲染完成后`workInProgress Fiber树`变为`current Fiber树`，整个更新流程结束。
-
-## 参考资料
-
-[React源码中讲解Update工作流程及优先级的注释](https://github.com/facebook/react/blob/master/packages/react-reconciler/src/ReactUpdateQueue.new.js#L10)
-
-[React Core Team Andrew向网友讲解Update工作流程的推文](https://twitter.com/acdlite/status/978412930973687808)
-
-<!-- beginWork getStateFromUpdate -->

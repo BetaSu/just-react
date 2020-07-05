@@ -200,4 +200,6 @@ commitRoot(root);
 
 ## 参考资料
 
-[Inside Fiber: in-depth overview of the new reconciliation algorithm in React](https://indepth.dev/inside-fiber-in-depth-overview-of-the-new-reconciliation-algorithm-in-react/)
+`completeWork`流程图
+
+<img :src="$withBase('/img/completeWork.png')" alt="completeWork流程图">

@@ -72,7 +72,7 @@
 
 ✅ Update
 
-:black_square_button: Update的优先级
+✅ 更新的优先级
 
 :black_square_button: ReactDOM.render
 
