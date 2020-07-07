@@ -106,7 +106,7 @@ export function isValidElement(object) {
 
 可以看到，`$$typeof === REACT_ELEMENT_TYPE`的非`null`对象就是一个合法的`React Element`。换言之，在`React`中，所有`JSX`在运行时的返回结果（即`React.createElement()`的返回值）都是`React Element`。
 
-那么`JSX`和`React Component`的关系呢。
+那么`JSX`和`React Component`的关系呢?
 
 ## React Component
 
@@ -178,6 +178,7 @@ ClassComponent.prototype.isReactComponent = {};
 
 ## 参考资料
 
-通过这篇文章在运行时修改`React.createElement`达到消除页面所有`div`元素的效果
+- 通过这篇文章在运行时修改`React.createElement`达到消除页面所有`div`元素的效果 
+  - [如何干掉知乎的全部DIV](https://juejin.im/post/5ecb2af06fb9a047da362f0f)
 
-[如何干掉知乎的全部DIV](https://juejin.im/post/5ecb2af06fb9a047da362f0f)
+- [React官网Blog，关于React Component, Element, Instance, Reconciliation的简介](https://reactjs.org/blog/2015/12/18/react-components-elements-and-instances.html)
