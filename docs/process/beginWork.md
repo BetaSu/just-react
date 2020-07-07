@@ -224,7 +224,7 @@ export const Deletion = /*                 */ 0b00000000001000;
 为了解决这个问题，在`mount`时只有`rootFiber`会赋值`Placement effectTag`，在`commit阶段`只会执行一次插入操作。
 
 ::: details 根Fiber节点 Demo
-借用上一节的Demo，第一个进入`beginWork`方法的`Fiber节点`就是`rootFiber`，你会发现他存在`current`。
+借用上一节的Demo，第一个进入`beginWork`方法的`Fiber节点`就是`rootFiber`，他的`alternate`指向`current rootFiber`（即他存在`current`）。
 
 > 为什么`rootFiber`节点存在`current`（即`rootFiber.alternate`），我们在[双缓存机制一节](./doubleBuffer.html)已经讲过
 
