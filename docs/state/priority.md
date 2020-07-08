@@ -75,7 +75,9 @@ u1.next === u2;
 
 接下来进入`u2`产生的`render阶段`。
 
-在`processUpdateQueue`方法中会遍历`shared.pending`链表，处理更高优的`u2`。未被处理的`u1`会保存在`baseUpdate`中。
+在`processUpdateQueue`方法中，`shared.pending`环状链表会被剪开并拼接在`baseUpdate`后面。
+
+接下来遍历`baseUpdate`，处理优先级合适的`Update`（这一次处理的是更高优的`u2`）。未被处理的`u1`成为下次更新的`baseUpdate`。
 
 最终`u2`完成`render - commit阶段`。
 
@@ -96,7 +98,7 @@ fiber.updateQueue = {
 };
 ```
 
-接下来基于`baseState`与`firstBaseUpdate`保存的`u1`，开启一次新的`render阶段`。
+在`commit`阶段结尾会再调度一次更新。在该次更新中会基于`baseState`中`firstBaseUpdate`保存的`u1`，开启一次新的`render阶段`。
 
 最终两次`Update`都完成后的结果如下：
 

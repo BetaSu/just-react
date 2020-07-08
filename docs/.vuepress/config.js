@@ -141,6 +141,10 @@ module.exports = {
 					[
 						"/state/priority",
 						"更新的优先级"
+					],
+					[
+						"/state/reactdom",
+						"ReactDOM.render"
 					]
 				]
 			}
