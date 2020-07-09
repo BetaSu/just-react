@@ -239,4 +239,4 @@ export const Deletion = /*                 */ 0b00000000001000;
 
 `beginWork`流程图
 
-<img :src="$withBase('/img/beginwork.jpg')" alt="beginWork流程图">
+<img :src="$withBase('/img/beginWork.png')" alt="beginWork流程图">

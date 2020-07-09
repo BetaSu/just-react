@@ -132,7 +132,7 @@ performConcurrentWorkOnRoot.bind(null, root);
     |
     v
 
-创建Update对象（下一节详解）
+创建Update对象（接下来三节详解）
 
     |
     |
@@ -163,4 +163,4 @@ commit阶段（`commitRoot`）
 
 本节我们了解了**状态更新**的整个流程。
 
-在接下来两节中，我们会花大量篇幅讲解`Update`的工作机制，因为他是构成`React concurrent mode`的核心机制之一。
+在接下来三节中，我们会花大量篇幅讲解`Update`的工作机制，因为他是构成`React concurrent mode`的核心机制之一。

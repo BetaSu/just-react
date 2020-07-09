@@ -70,11 +70,13 @@
 
 ✅ 流程概览
 
+✅ 心智模型
+
 ✅ Update
 
-✅ 更新的优先级
+✅ 深入理解优先级
 
-:black_square_button: ReactDOM.render
+✅ ReactDOM.render
 
 :black_square_button: this.setState
 

@@ -1,6 +1,8 @@
-通过上一节学习，我们知道`状态更新`流程开始后首先会`创建Update对象`。
+通过本章第一节学习，我们知道`状态更新`流程开始后首先会`创建Update对象`。
 
 本节我们学习`Update`的结构与工作流程。
+
+> 你可以将`Update`类比`心智模型`中的一次`commit`。
 
 ## Update的分类
 
@@ -50,6 +52,8 @@ const update: Update<*> = {
 - eventTime：任务时间，通过`performance.now()`获取的毫秒数。由于该字段在未来会重构，当前我们不需要理解他。
 
 - lane：优先级相关字段。当前还不需要掌握他，只需要知道不同`Update`优先级可能是不同的。
+
+> 你可以将`lane`类比`心智模型`中`需求的紧急程度`。
 
 - suspenseConfig：`Suspense`相关，暂不关注。
 
@@ -129,9 +133,15 @@ const queue: UpdateQueue<State> = {
 
 - baseState：本次更新前该`Fiber节点`的`state`，`Update`基于该`state`计算更新后的`state`。
 
+> 你可以将`baseState`类比`心智模型`中的`master分支`。
+
 - `firstBaseUpdate`与`lastBaseUpdate`：本次更新前该`Fiber节点`已保存的`Update`。以链表形式存在，链表头为`firstBaseUpdate`，链表尾为`lastBaseUpdate`。之所以在更新产生前该`Fiber节点`内就存在`Update`，是由于某些`Update`优先级较低所以在上次`render阶段`由`Update`计算`state`时被跳过。
 
+> 你可以将`baseUpdate`类比`心智模型`中执行`git rebase`基于的`commit`（节点D）。
+
 - `shared.pending`：触发更新时，产生的`Update`会保存在`shared.pending`中形成单向环状链表。当由`Update`计算`state`时这个环会被剪开并连接在`lastBaseUpdate`后面。
+
+> 你可以将`shared.pending`类比`心智模型`中本次需要提交的`commit`（节点ABC）。
 
 - effects：数组。保存`update.calback !== null`的`Update`。
 

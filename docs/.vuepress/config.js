@@ -135,12 +135,16 @@ module.exports = {
 						"流程概览"
 					],
 					[
+						"/state/mental",
+						"心智模型"
+					],
+					[
 						"/state/update",
 						"Update"
 					],
 					[
 						"/state/priority",
-						"更新的优先级"
+						"深入理解优先级"
 					],
 					[
 						"/state/reactdom",
