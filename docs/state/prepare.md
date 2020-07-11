@@ -72,7 +72,7 @@ commit阶段（`commitRoot`）
 
 答案是：调用`markUpdateLaneFromFiberToRoot`方法。
 
-> 你可以从[这里](https://github.com/facebook/react/blob/master/packages/react-reconciler/src/ReactFiberWorkLoop.new.js#L518)看到`markUpdateLaneFromFiberToRoot`的源码
+> 你可以从[这里](https://github.com/facebook/react/blob/970fa122d8188bafa600e9b5214833487fbf1092/packages/react-reconciler/src/ReactFiberWorkLoop.new.js#L577)看到`markUpdateLaneFromFiberToRoot`的源码
 
 该方法做的工作可以概括为：从`触发状态更新的fiber`一直向上遍历到`rootFiber`，并返回`rootFiber`。
 

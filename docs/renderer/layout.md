@@ -27,7 +27,7 @@ nextEffect = null;
 
 代码如下：
 
-> 你可以在[这里](https://github.com/facebook/react/blob/master/packages/react-reconciler/src/ReactFiberWorkLoop.new.js#L2224)看到`commitLayoutEffects`源码
+> 你可以在[这里](https://github.com/facebook/react/blob/970fa122d8188bafa600e9b5214833487fbf1092/packages/react-reconciler/src/ReactFiberWorkLoop.new.js#L2302)看到`commitLayoutEffects`源码
 
 ```js
 function commitLayoutEffects(root: FiberRoot, committedLanes: Lanes) {
@@ -60,7 +60,7 @@ function commitLayoutEffects(root: FiberRoot, committedLanes: Lanes) {
 
 `commitLayoutEffectOnFiber`方法会根据`fiber.tag`对不同类型的节点分别处理。
 
-> 你可以在[这里](https://github.com/facebook/react/blob/master/packages/react-reconciler/src/ReactFiberCommitWork.new.js#L462)看到`commitLayoutEffectOnFiber`源码
+> 你可以在[这里](https://github.com/facebook/react/blob/970fa122d8188bafa600e9b5214833487fbf1092/packages/react-reconciler/src/ReactFiberCommitWork.new.js#L459)看到`commitLayoutEffectOnFiber`源码（`commitLayoutEffectOnFiber`为别名，方法原名为`commitLifeCycles`）
 
 - 对于`ClassComponent`，他会通过`current === null?`区分是`mount`还是`update`，调用`componentDidMount`或`componentDidUpdate`。
 
@@ -90,7 +90,7 @@ ReactDOM.render(<App />, document.querySelector("#root"), function() {
 
 `commitLayoutEffects`会做的第二件事是`commitAttachRef`。
 
-> 你可以在[这里](https://github.com/facebook/react/blob/master/packages/react-reconciler/src/ReactFiberCommitWork.new.js#L826)看到`commitAttachRef`源码
+> 你可以在[这里](https://github.com/facebook/react/blob/970fa122d8188bafa600e9b5214833487fbf1092/packages/react-reconciler/src/ReactFiberCommitWork.new.js#L823)看到`commitAttachRef`源码
 
 ```js
 function commitAttachRef(finishedWork: Fiber) {
@@ -131,7 +131,7 @@ function commitAttachRef(finishedWork: Fiber) {
 root.current = finishedWork;
 ```
 
-> 你可以在[这里](https://github.com/facebook/react/blob/master/packages/react-reconciler/src/ReactFiberWorkLoop.new.js#L1954)看到这行代码
+> 你可以在[这里](https://github.com/facebook/react/blob/970fa122d8188bafa600e9b5214833487fbf1092/packages/react-reconciler/src/ReactFiberWorkLoop.new.js#L2022)看到这行代码
 
 在[双缓存机制一节](../process/doubleBuffer.html#什么是-双缓存)我们介绍过，`workInProgress Fiber树`在`commit阶段`完成渲染后会变为`current Fiber树`。这行代码的作用就是切换`rootFiberNode`指向的`current Fiber树`。
 

@@ -14,7 +14,7 @@
 
 `before mutation阶段`的代码很短，整个过程就是遍历`effectList`并调用`commitBeforeMutationEffects`函数处理。
 
-> 这部分[源码在这里](https://github.com/facebook/react/blob/master/packages/react-reconciler/src/ReactFiberWorkLoop.new.js#L2104)。为了增加可读性，示例代码中删除了不相关的逻辑
+> 这部分[源码在这里](https://github.com/facebook/react/blob/970fa122d8188bafa600e9b5214833487fbf1092/packages/react-reconciler/src/ReactFiberWorkLoop.new.js#L1956)。为了增加可读性，示例代码中删除了不相关的逻辑
 
 ```js
 nextEffect = firstEffect;
@@ -129,7 +129,7 @@ if ((effectTag & Passive) !== NoEffect) {
 
 除此外，当一个`FunctionComponent`含有`useEffect`或`useLayoutEffect`，他对应的`Fiber节点`也会被赋值`effectTag`。
 
-> 你可以从[这里](https://github.com/facebook/react/blob/master/packages/react-reconciler/src/ReactHookEffectTags.js)看到`hook`相关的`effectTag`
+> 你可以从[这里](https://github.com/facebook/react/blob/970fa122d8188bafa600e9b5214833487fbf1092/packages/react-reconciler/src/ReactHookEffectTags.js)看到`hook`相关的`effectTag`
 
 
 所以在`flushPassiveEffects`方法内部会遍历`rootWithPendingPassiveEffects`（即`effectList`）执行`effect`回调函数。而此时`rootWithPendingPassiveEffects === null`。

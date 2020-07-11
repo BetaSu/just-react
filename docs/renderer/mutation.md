@@ -21,7 +21,7 @@ do {
 
 代码如下：
 
-> 你可以在[这里](https://github.com/facebook/react/blob/master/packages/react-reconciler/src/ReactFiberWorkLoop.new.js#L2150)看到`commitMutationEffects`源码
+> 你可以在[这里](https://github.com/facebook/react/blob/970fa122d8188bafa600e9b5214833487fbf1092/packages/react-reconciler/src/ReactFiberWorkLoop.new.js#L2221)看到`commitMutationEffects`源码
 
 ```js
 function commitMutationEffects(root: FiberRoot, renderPriorityLevel) {
@@ -110,7 +110,7 @@ function commitMutationEffects(root: FiberRoot, renderPriorityLevel) {
 
 调用的方法为`commitPlacement`。
 
-> 你可以在[这里](https://github.com/facebook/react/blob/master/packages/react-reconciler/src/ReactFiberCommitWork.new.js#L1166)看到`commitPlacement`源码
+> 你可以在[这里](https://github.com/facebook/react/blob/970fa122d8188bafa600e9b5214833487fbf1092/packages/react-reconciler/src/ReactFiberCommitWork.new.js#L1156)看到`commitPlacement`源码
 
 该方法所做的工作分为三步：
 
@@ -211,7 +211,7 @@ fiberP.sibling.child
 
 当`Fiber节点`含有`Update effectTag`，意味着该`Fiber节点`需要更新。调用的方法为`commitWork`，他会根据`Fiber.tag`分别处理。
 
-> 你可以在[这里](https://github.com/facebook/react/blob/master/packages/react-reconciler/src/ReactFiberCommitWork.new.js#L1451)看到`commitWork`源码
+> 你可以在[这里](https://github.com/facebook/react/blob/970fa122d8188bafa600e9b5214833487fbf1092/packages/react-reconciler/src/ReactFiberCommitWork.new.js#L1441)看到`commitWork`源码
 
 这里我们主要关注`FunctionComponent`和`HostComponent`。
 
@@ -219,7 +219,7 @@ fiberP.sibling.child
 
 当`fiber.tag`为`FunctionComponent`，会调用`commitHookEffectListUnmount`。该方法会遍历`effectList`，执行所有`useLayoutEffect hook`的销毁函数。
 
-> 你可以在[这里](https://github.com/facebook/react/blob/master/packages/react-reconciler/src/ReactFiberCommitWork.new.js#L317)看到`commitHookEffectListUnmount`源码
+> 你可以在[这里](https://github.com/facebook/react/blob/970fa122d8188bafa600e9b5214833487fbf1092/packages/react-reconciler/src/ReactFiberCommitWork.new.js#L314)看到`commitHookEffectListUnmount`源码
 
 所谓“销毁函数”，见如下例子：
 
@@ -239,7 +239,7 @@ useLayoutEffect(() => {
 
 当`fiber.tag`为`HostComponent`，会调用`commitUpdate`。
 
-> 你可以在[这里](https://github.com/facebook/react/blob/master/packages/react-dom/src/client/ReactDOMHostConfig.js#L427)看到`commitUpdate`源码
+> 你可以在[这里](https://github.com/facebook/react/blob/970fa122d8188bafa600e9b5214833487fbf1092/packages/react-dom/src/client/ReactDOMHostConfig.js#L423)看到`commitUpdate`源码
 
 最终会将`render阶段 completeWork`中为`Fiber节点`赋值的`updateQueue`对应的内容渲染在页面上。
 
@@ -268,7 +268,7 @@ for (let i = 0; i < updatePayload.length; i += 2) {
 
 当`Fiber节点`含有`Deletion effectTag`，意味着该`Fiber节点`对应的`DOM节点`需要从页面中删除。调用的方法为`commitDeletion`。
 
-> 你可以在[这里](https://github.com/facebook/react/blob/master/packages/react-reconciler/src/ReactFiberCommitWork.new.js#L1431)看到`commitDeletion`源码
+> 你可以在[这里](https://github.com/facebook/react/blob/970fa122d8188bafa600e9b5214833487fbf1092/packages/react-reconciler/src/ReactFiberCommitWork.new.js#L1421)看到`commitDeletion`源码
 
 该方法会执行如下操作：
 

@@ -3,7 +3,7 @@
 
 ## 方法概览
 
-可以从[源码这里](https://github.com/facebook/react/blob/master/packages/react-reconciler/src/ReactFiberBeginWork.new.js#L3040)看到`beginWork`的定义。整个方法大概有500行代码。
+可以从[源码这里](https://github.com/facebook/react/blob/970fa122d8188bafa600e9b5214833487fbf1092/packages/react-reconciler/src/ReactFiberBeginWork.new.js#L3058)看到`beginWork`的定义。整个方法大概有500行代码。
 
 从上一节我们已经知道，`beginWork`的工作是传入`当前Fiber节点`，创建`子Fiber节点`，我们从传参来看看具体是如何做的。
 
@@ -118,7 +118,7 @@ if (current !== null) {
 
 我们可以看到，根据`fiber.tag`不同，进入不同类型`Fiber`的创建逻辑。
 
-> 可以从[这里](https://github.com/facebook/react/blob/master/packages/react-reconciler/src/ReactWorkTags.js)看到`tag`对应的组件类型
+> 可以从[这里](https://github.com/facebook/react/blob/970fa122d8188bafa600e9b5214833487fbf1092/packages/react-reconciler/src/ReactWorkTags.js)看到`tag`对应的组件类型
 
 ```js
 // mount时：根据tag不同，创建不同的Fiber节点
@@ -141,7 +141,7 @@ switch (workInProgress.tag) {
 }
 ```
 
-对于我们常见的组件类型，如（`FunctionComponent`/`ClassComponent`/`HostComponent`），最终会进入[reconcileChildren](https://github.com/facebook/react/blob/master/packages/react-reconciler/src/ReactFiberBeginWork.new.js#L232)方法。
+对于我们常见的组件类型，如（`FunctionComponent`/`ClassComponent`/`HostComponent`），最终会进入[reconcileChildren](https://github.com/facebook/react/blob/970fa122d8188bafa600e9b5214833487fbf1092/packages/react-reconciler/src/ReactFiberBeginWork.new.js#L233)方法。
 
 ## reconcileChildren
 
@@ -192,7 +192,7 @@ export function reconcileChildren(
 
 我们知道，`render阶段`的工作是在内存中进行，当工作结束后会通知`Renderer`需要执行的`DOM`操作。要执行`DOM`操作的具体类型就保存在`fiber.effectTag`中。
 
-> 你可以从[这里](https://github.com/facebook/react/blob/master/packages/react-reconciler/src/ReactSideEffectTags.js)看到`effectTag`对应的`DOM`操作
+> 你可以从[这里](https://github.com/facebook/react/blob/970fa122d8188bafa600e9b5214833487fbf1092/packages/react-reconciler/src/ReactSideEffectTags.js)看到`effectTag`对应的`DOM`操作
 
 比如：
 

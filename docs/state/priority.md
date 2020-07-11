@@ -30,7 +30,7 @@
 
 对于更新来讲，传递的`回调函数`一般为[状态更新流程概览一节](./prepare.html#render阶段的开始)讲到的`render阶段的入口函数`。
 
-> 你可以在[这里](https://github.com/facebook/react/blob/master/packages/scheduler/src/Scheduler.js#L217)看到`runWithPriority`方法的定义。在[这里](https://github.com/facebook/react/blob/master/packages/scheduler/src/SchedulerPriorities.js)看到`Scheduler`对优先级常量的定义。
+> 你可以在[==unstable_runWithPriority== 这里](https://github.com/facebook/react/blob/970fa122d8188bafa600e9b5214833487fbf1092/packages/scheduler/src/Scheduler.js#L217)看到`runWithPriority`方法的定义。在[这里](https://github.com/facebook/react/blob/970fa122d8188bafa600e9b5214833487fbf1092/packages/scheduler/src/SchedulerPriorities.js)看到`Scheduler`对优先级常量的定义。
 
 ## 例子
 
@@ -135,7 +135,7 @@ fiber.updateQueue = {
 
 实际上`shared.pending`会被同时连接在`workInProgress updateQueue.lastBaseUpdate`与`current updateQueue.lastBaseUpdate`后面。
 
-> 具体代码见[这里](https://github.com/facebook/react/blob/master/packages/react-reconciler/src/ReactUpdateQueue.new.js#L424)
+> 具体代码见[这里](https://github.com/facebook/react/blob/970fa122d8188bafa600e9b5214833487fbf1092/packages/react-reconciler/src/ReactUpdateQueue.new.js#L424)
 
 当`render阶段`被中断后重新开始时，会基于`current updateQueue`克隆出`workInProgress updateQueue`。由于`current updateQueue.lastBaseUpdate`已经保存了上一次的`Update`，所以不会丢失。
 
@@ -180,14 +180,14 @@ memoizedState: 'ABCD'
 
 即当有`Update`被跳过时，`下次更新的baseState !== 上次更新的memoizedState`。
 
-> 跳过`B2`的逻辑见[这里](https://github.com/facebook/react/blob/master/packages/react-reconciler/src/ReactUpdateQueue.new.js#L479)
+> 跳过`B2`的逻辑见[这里](https://github.com/facebook/react/blob/970fa122d8188bafa600e9b5214833487fbf1092/packages/react-reconciler/src/ReactUpdateQueue.new.js#L479)
 
 通过以上例子我们可以发现，`React`保证最终的状态一定和用户触发的`交互`一致，但是中间过程`状态`可能由于设备不同而不同。
 
 
 ## 参考资料
 
-[React源码中讲解Update工作流程及优先级的注释](https://github.com/facebook/react/blob/master/packages/react-reconciler/src/ReactUpdateQueue.new.js#L10)
+[React源码中讲解Update工作流程及优先级的注释](https://github.com/facebook/react/blob/970fa122d8188bafa600e9b5214833487fbf1092/packages/react-reconciler/src/ReactUpdateQueue.new.js#L10)
 
 [React Core Team Andrew向网友讲解Update工作流程的推文](https://twitter.com/acdlite/status/978412930973687808)
 

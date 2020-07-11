@@ -4,7 +4,7 @@
 
 这一节让我们看看`completeWork`会做什么工作。
 
-你可以从[这里](https://github.com/facebook/react/blob/master/packages/react-reconciler/src/ReactFiberCompleteWork.new.js#L652)看到`completeWork`方法定义。
+你可以从[这里](https://github.com/facebook/react/blob/970fa122d8188bafa600e9b5214833487fbf1092/packages/react-reconciler/src/ReactFiberCompleteWork.new.js#L652)看到`completeWork`方法定义。
 
 ## 流程概览
 
@@ -95,7 +95,7 @@ if (current !== null && workInProgress.stateNode != null) {
 }
 ```
 
-你可以从[这里](https://github.com/facebook/react/blob/master/packages/react-reconciler/src/ReactFiberCompleteWork.new.js#L204)看到`updateHostComponent`方法定义。
+你可以从[这里](https://github.com/facebook/react/blob/970fa122d8188bafa600e9b5214833487fbf1092/packages/react-reconciler/src/ReactFiberCompleteWork.new.js#L204)看到`updateHostComponent`方法定义。
 
 在`updateHostComponent`内部，被处理完的`props`会被赋值给`workInProgress.updateQueue`，并最终会在`commit阶段`被渲染在页面上。
 
@@ -184,7 +184,7 @@ rootFiber.firstEffect -----------> fiber -----------> fiber
 
 这样，在`commit阶段`只需要遍历`effectList`就能执行所有`effect`了。
 
-你可以在[这里](https://github.com/facebook/react/blob/master/packages/react-reconciler/src/ReactFiberWorkLoop.new.js#L1605)看到这段代码逻辑。
+你可以在[这里](https://github.com/facebook/react/blob/970fa122d8188bafa600e9b5214833487fbf1092/packages/react-reconciler/src/ReactFiberWorkLoop.new.js#L1670)看到这段代码逻辑。
 
 借用`React`团队成员**Dan Abramov**的话：`effectList`相较于`Fiber树`，就像圣诞树上挂的那一串彩灯。
 
@@ -196,7 +196,7 @@ rootFiber.firstEffect -----------> fiber -----------> fiber
 commitRoot(root);
 ```
 
-代码见[这里](https://github.com/facebook/react/blob/master/packages/react-reconciler/src/ReactFiberWorkLoop.new.js#L1020)。
+代码见[这里](https://github.com/facebook/react/blob/970fa122d8188bafa600e9b5214833487fbf1092/packages/react-reconciler/src/ReactFiberWorkLoop.new.js#L1070)。
 
 ## 参考资料
 

@@ -1,5 +1,6 @@
 {
   "devDependencies": {
+    "markdown-it-mark": "^3.0.0",
     "vuepress": "^1.5.0"
   },
   "name": "just-react",
@@ -12,6 +13,7 @@
   "scripts": {
     "start": "vuepress dev docs",
     "build": "vuepress build docs",
+    "deadlink": "node ./.bin/deadLink",
     "deploy": "sh deploy.sh"
   },
   "repository": {

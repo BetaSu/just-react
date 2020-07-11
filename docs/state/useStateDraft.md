@@ -17,7 +17,7 @@ const update: Update<S, A> = {
 };
 ```
 
-> `Update`在`dispatchAction`方法内创建，你可以从[这里](https://github.com/facebook/react/blob/master/packages/react-reconciler/src/ReactFiberHooks.new.js#L1661)看到`Update`创建的逻辑
+> `Update`在`dispatchAction`方法内创建，你可以从[这里](https://github.com/facebook/react/blob/970fa122d8188bafa600e9b5214833487fbf1092/packages/react-reconciler/src/ReactFiberHooks.new.js#L1656)看到`Update`创建的逻辑
 
 可以看到，大部分字段与`ClassComponent Update`相同。不同的字段意义如下：
 
@@ -37,4 +37,4 @@ const queue = (hook.queue = {
 });
 ```
 
-> `useState`的`queue`在`mountState`方法内创建，你可以从[这里](https://github.com/facebook/react/blob/master/packages/react-reconciler/src/ReactFiberHooks.new.js#L1141)看到`queue`创建的逻辑
+> `useState`的`queue`在`mountState`方法内创建，你可以从[这里](https://github.com/facebook/react/blob/970fa122d8188bafa600e9b5214833487fbf1092/packages/react-reconciler/src/ReactFiberHooks.new.js#L1137)看到`queue`创建的逻辑

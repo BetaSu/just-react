@@ -49,7 +49,7 @@ Scheduler（调度器）的实现。
 
 ### [shared](https://github.com/facebook/react/tree/master/packages/shared)文件夹
 
-源码中其他模块公用的**方法**和**全局变量**，比如在[shared/ReactSymbols.js](https://github.com/facebook/react/blob/master/packages/shared/ReactSymbols.js)中保存`React`不同组件类型的定义。
+源码中其他模块公用的**方法**和**全局变量**，比如在[shared/ReactSymbols.js](https://github.com/facebook/react/blob/970fa122d8188bafa600e9b5214833487fbf1092/packages/shared/ReactSymbols.js)中保存`React`不同组件类型的定义。
 
 ```js
 // ...

@@ -34,7 +34,7 @@ function List () {
 
 这种情况下，`reconcileChildFibers`的`newChild`参数类型为`Array`，在`reconcileChildFibers`函数内部对应如下情况：
 
-> 你可以在[这里](https://github.com/facebook/react/blob/master/packages/react-reconciler/src/ReactChildFiber.new.js#L1344)看到这段源码逻辑
+> 你可以在[这里](https://github.com/facebook/react/blob/970fa122d8188bafa600e9b5214833487fbf1092/packages/react-reconciler/src/ReactChildFiber.new.js#L1344)看到这段源码逻辑
 
 ```js
   if (isArray(newChild)) {

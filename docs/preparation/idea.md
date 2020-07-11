@@ -53,7 +53,7 @@
 
 由开发者来显式的告诉`React`哪些组件不需要重复计算、可以复用。
 
-在后面源码的学习中，我们会看到这些优化手段是如何起作用的。比如经过优化后，`React`会通过[bailoutOnAlreadyFinishedWork方法](https://github.com/facebook/react/blob/master/packages/react-reconciler/src/ReactFiberBeginWork.new.js#L2964)跳过一些本次更新不需要处理的任务。
+在后面源码的学习中，我们会看到这些优化手段是如何起作用的。比如经过优化后，`React`会通过[bailoutOnAlreadyFinishedWork方法](https://github.com/facebook/react/blob/970fa122d8188bafa600e9b5214833487fbf1092/packages/react-reconciler/src/ReactFiberBeginWork.new.js#L2964)跳过一些本次更新不需要处理的任务。
 
 
 ## 理解“响应自然”

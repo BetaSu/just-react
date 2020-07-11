@@ -67,7 +67,7 @@
 
 我们从`Diff`的入口函数`reconcileChildFibers`出发，该函数会根据`newChild`（即`JSX对象`）类型调用不同的处理函数。
 
-> 你可以从[这里](https://github.com/facebook/react/blob/master/packages/react-reconciler/src/ReactChildFiber.new.js#L1272)看到`reconcileChildFibers`的源码。
+> 你可以从[这里](https://github.com/facebook/react/blob/970fa122d8188bafa600e9b5214833487fbf1092/packages/react-reconciler/src/ReactChildFiber.new.js#L1272)看到`reconcileChildFibers`的源码。
 
 ```js
 // 根据newChild类型选择不同diff函数处理

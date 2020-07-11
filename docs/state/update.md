@@ -45,7 +45,7 @@ const update: Update<*> = {
 };
 ```
 
-> `Update`由`createUpdate`方法返回，你可以从[这里](https://github.com/facebook/react/blob/master/packages/react-reconciler/src/ReactUpdateQueue.old.js#L189)看到`createUpdate`的源码
+> `Update`由`createUpdate`方法返回，你可以从[这里](https://github.com/facebook/react/blob/970fa122d8188bafa600e9b5214833487fbf1092/packages/react-reconciler/src/ReactUpdateQueue.old.js#L189)看到`createUpdate`的源码
 
 字段意义如下：
 
@@ -129,7 +129,7 @@ const queue: UpdateQueue<State> = {
   };
 ```
 
-> `UpdateQueue`由`initializeUpdateQueue`方法返回，你可以从[这里](https://github.com/facebook/react/blob/master/packages/react-reconciler/src/ReactUpdateQueue.new.js#L157)看到`initializeUpdateQueue`的源码
+> `UpdateQueue`由`initializeUpdateQueue`方法返回，你可以从[这里](https://github.com/facebook/react/blob/970fa122d8188bafa600e9b5214833487fbf1092/packages/react-reconciler/src/ReactUpdateQueue.new.js#L157)看到`initializeUpdateQueue`的源码
 
 字段说明如下：
 
@@ -203,7 +203,7 @@ fiber.updateQueue.baseUpdate: u1 --> u2 --> u3 --> u4
 
 当遍历完成后获得的`state`，就是该`Fiber节点`在本次更新的`state`（源码中叫做`memoizedState`）。
 
-> `render阶段`的`Update操作`由`processUpdateQueue`完成，你可以从[这里](https://github.com/facebook/react/blob/master/packages/react-reconciler/src/ReactUpdateQueue.new.js#L405)看到`processUpdateQueue`的源码
+> `render阶段`的`Update操作`由`processUpdateQueue`完成，你可以从[这里](https://github.com/facebook/react/blob/970fa122d8188bafa600e9b5214833487fbf1092/packages/react-reconciler/src/ReactUpdateQueue.new.js#L405)看到`processUpdateQueue`的源码
 
 `state`的变化在`render阶段`产生与上次更新不同的`JSX`对象，通过`Diff算法`产生`effectTag`，在`commit阶段`渲染在页面上。
 
