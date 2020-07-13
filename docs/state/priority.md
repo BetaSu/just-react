@@ -187,6 +187,8 @@ memoizedState: 'ABCD'
 
 ## 参考资料
 
+[深入源码剖析componentWillXXX为什么UNSAFE](https://juejin.im/post/5f05a3e25188252e5c576cdb)
+
 [React源码中讲解Update工作流程及优先级的注释](https://github.com/facebook/react/blob/970fa122d8188bafa600e9b5214833487fbf1092/packages/react-reconciler/src/ReactUpdateQueue.new.js#L10)
 
 [React Core Team Andrew向网友讲解Update工作流程的推文](https://twitter.com/acdlite/status/978412930973687808)

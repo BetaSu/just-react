@@ -156,6 +156,10 @@ module.exports = {
 					[
 						"/state/reactdom",
 						"ReactDOM.render"
+					],
+					[
+						"/state/setstate",
+						"this.setState"
 					]
 				]
 			}

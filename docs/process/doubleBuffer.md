@@ -6,7 +6,9 @@
 
 ## 什么是“双缓存”
 
-当我们用`canvas`绘制动画，每一帧绘制前都会调用`ctx.clearRect`清除上一帧的画面。如果当前帧画面计算量比较大，导致清除上一帧画面到绘制当前帧画面之间有较长间隙，就会出现白屏闪烁。
+当我们用`canvas`绘制动画，每一帧绘制前都会调用`ctx.clearRect`清除上一帧的画面。
+
+如果当前帧画面计算量比较大，导致清除上一帧画面到绘制当前帧画面之间有较长间隙，就会出现白屏。
 
 为了解决这个问题，我们可以在内存中绘制当前帧动画，绘制完毕后直接用当前帧替换上一帧画面，由于省去了两帧替换间的计算时间，不会出现从白屏到出现画面的闪烁情况。
 
@@ -52,31 +54,36 @@ ReactDOM.render(<App/>, document.getElementById('root'));
 
 之所以要区分`rootFiberNode`与`rootFiber`，是因为在应用中我们可以多次调用`ReactDOM.render`渲染不同的组件树，他们会拥有不同的`rootFiber`。但是整个应用的根节点只有一个，那就是`rootFiberNode`。
 
+`rootFiberNode`的`current`会指向当前页面上已渲染内容对应对`Fiber树`，被称为`current Fiber树`。
+
 <img :src="$withBase('/img/rootfiber.png')" alt="rootFiber">
 
 ```js
-// current指向当前fiber树的根fiber
 rootFiberNode.current = rootFiber;
 ```
 
-由于是首屏渲染，页面中还没有任何`DOM`。所以`rootFiber.child === null`，即`current Fiber树`为空。
+由于是首屏渲染，页面中还没有挂载任何`DOM`，所以`rootFiberNode.current`指向的`rootFiber`没有任何`子Fiber节点`（即`current Fiber树`为空）。
 
 
-2. 接下来进入`render阶段`在内存中依次创建`workInProgress fiber`并连接在一起构建`workInProgress Fiber树`。（图中右侧为内存中构建的树，左侧为页面显示的树）
+2. 接下来进入`render阶段`，根据组件返回的`JSX`在内存中依次创建`Fiber节点`并连接在一起构建`Fiber树`，被称为`workInProgress Fiber树`。（下图中右侧为内存中构建的树，左侧为页面显示的树）
+
+在构建`workInProgress Fiber树`时会尝试复用`current Fiber树`中已有的`Fiber节点`内的属性，在`首屏渲染`时只有`rootFiber`存在对应的`current fiber`（即`rootFiber.alternate`）。
 
 <img :src="$withBase('/img/workInProgressFiber.png')" alt="workInProgressFiber">
 
-3. 图中右侧已构建完的`workInProgress Fiber树`在`commit阶段`渲染到页面。此时`DOM`更新为右侧树对应的样子。`rootFiberNode`的`current`指针指向`workInProgress Fiber树`使其变为`current Fiber 树`。
+3. 图中右侧已构建完的`workInProgress Fiber树`在`commit阶段`渲染到页面。
+
+此时`DOM`更新为右侧树对应的样子。`rootFiberNode`的`current`指针指向`workInProgress Fiber树`使其变为`current Fiber 树`。
 
 <img :src="$withBase('/img/wipTreeFinish.png')" alt="workInProgressFiberFinish">
 
 ## update时
 
-1. 接下来我们点击`p节点`触发状态改变，这会开启一次新的`render阶段`并构建一棵`workInProgress Fiber 树`。
+1. 接下来我们点击`p节点`触发状态改变，这会开启一次新的`render阶段`并构建一棵新的`workInProgress Fiber 树`。
 
 <img :src="$withBase('/img/wipTreeUpdate.png')" alt="wipTreeUpdate">
 
-其中很多`workInProgress fiber`的创建可以复用`current Fiber树`对应的节点数据。
+和`mount`时一样，`workInProgress fiber`的创建可以复用`current Fiber树`对应的节点数据。
 
 > 这个决定是否复用的过程就是Diff算法，后面章节会详细讲解
 

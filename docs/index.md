@@ -78,13 +78,16 @@
 
 ✅ ReactDOM.render
 
-:black_square_button: this.setState
-
-:black_square_button: this.forceUpdate
+✅ this.setState
 
 ### 第六章 Hooks
 
+:black_square_button: Hooks理念
+
 ### 第七章 性能优化
 
+:black_square_button: batchedUpdates
+
+:black_square_button: bailout
 
 

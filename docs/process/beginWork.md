@@ -226,7 +226,7 @@ export const Deletion = /*                 */ 0b00000000001000;
 ::: details 根Fiber节点 Demo
 借用上一节的Demo，第一个进入`beginWork`方法的`Fiber节点`就是`rootFiber`，他的`alternate`指向`current rootFiber`（即他存在`current`）。
 
-> 为什么`rootFiber`节点存在`current`（即`rootFiber.alternate`），我们在[双缓存机制一节](./doubleBuffer.html)已经讲过
+> 为什么`rootFiber`节点存在`current`（即`rootFiber.alternate`），我们在[双缓存机制一节mount时的第二步](./doubleBuffer.html)已经讲过
 
 由于存在`current`，`rootFiber`在`reconcileChildren`时会走`reconcileChildFibers`逻辑。
 

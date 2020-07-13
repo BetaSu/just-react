@@ -1,14 +1,14 @@
+::: warning 本章为选读章节
+
+是否学习该章对后续章节的学习没有影响。
+
+:::
+
 在[beginWork一节](../process/beginWork.html#reconcilechildren)我们提到
 
 > 对于`update`的组件，他会将当前组件与该组件在上次更新时对应的Fiber节点比较（也就是俗称的Diff算法），将比较的结果生成新Fiber节点。
 
 这一章我们讲解`Diff算法`的实现。
-
-::: warning 该章节为选读章节
-
-是否学习该章对后续章节的学习没有影响。
-
-:::
 
 > 你可以从[这里](https://zh-hans.reactjs.org/docs/reconciliation.html#the-diffing-algorithm)看到`Diff算法`的介绍。
 
