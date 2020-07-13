@@ -21,8 +21,11 @@ git clone https://github.com/facebook/react.git
 # 如果拉取速度很慢，可以考虑使用cnpm代理
 git clone https://github.com.cnpmjs.org/facebook/react
 
+# 切入到react源码所在文件夹
+cd react
+
 # 安装依赖
-yarn;
+yarn
 ```
 
 打包`react`、`scheduler`、`react-dom`三个包为dev环境可以使用的`cjs`包。
