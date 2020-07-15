@@ -23,7 +23,7 @@ function beginWork(
 - workInProgress：当前组件对应的`Fiber节点`
 - renderLanes：优先级相关，在讲解`Scheduler`时再讲解
 
-从[双缓存机制一节](./doubleBuffer.html)我们知道，除[`rootFiberNode`](./doublebuffer.html#mount%E6%97%B6)以外， 组件`mount`时，由于是首次渲染，是不存在当前组件对应的`Fiber节点`在上一次更新时的`Fiber节点`，即`mount`时`current === null`。
+从[双缓存机制一节](./doubleBuffer.html)我们知道，除[`rootFiberNode`](./doubleBuffer.html#mount%E6%97%B6)以外， 组件`mount`时，由于是首次渲染，是不存在当前组件对应的`Fiber节点`在上一次更新时的`Fiber节点`，即`mount`时`current === null`。
 
 组件`update`时，由于之前已经`mount`过，所以`current !== null`。
 
