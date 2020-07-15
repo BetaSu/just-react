@@ -23,17 +23,17 @@ function beginWork(
 - workInProgress：当前组件对应的`Fiber节点`
 - renderLanes：优先级相关，在讲解`Scheduler`时再讲解
 
-从[双缓存机制一节](./doubleBuffer.html)我们知道，组件`mount`时，由于是首次渲染，是不存在当前组件对应的`Fiber节点`在上一次更新时的`Fiber节点`。所以`mount`时`current === null`。
+从[双缓存机制一节](./doubleBuffer.html)我们知道，除[`rootFiberNode`](./doubleBuffer.md#mount%E6%97%B6)以外， 组件`mount`时，由于是首次渲染，是不存在当前组件对应的`Fiber节点`在上一次更新时的`Fiber节点`，即`mount`时`current === null`。
 
 组件`update`时，由于之前已经`mount`过，所以`current !== null`。
 
-所以我们可以通过`current === null ?`来区分组件是`mount`还是`update`。
+所以我们可以通过`current === null ?`来区分组件是处于`mount`还是`update`。
 
 基于此原因，`beginWork`的工作可以分为两部分：
 
 - `update`时：如果`current`存在，在满足一定条件时可以复用`current`节点，这样就能克隆`current.child`作为`workInProgress.child`，而不需要新建`workInProgress.child`。
 
-- `mount`时：`current === null`。会根据`fiber.tag`不同，创建不同类型的`子Fiber节点`
+- `mount`时：除`rootFiberNode`以外，`current === null`。会根据`fiber.tag`不同，创建不同类型的`子Fiber节点`
 
 ```js
 function beginWork(
@@ -180,7 +180,7 @@ export function reconcileChildren(
 
 从代码可以看出，和`beginWork`一样，他也是通过`current === null ?`区分`mount`与`update`。
 
-不论走哪个逻辑，最终他会生成新的子`Fiber节点`并赋值给`workInProgress.child`，作为下次`beginWork`执行时`workInProgress`的传参。
+不论走哪个逻辑，最终他会生成新的子`Fiber节点`并赋值给`workInProgress.child`，作为本次`beginWork`[返回值](https://github.com/facebook/react/blob/147179ae82039f38fa1a9a72402f578af8fb3ea3/packages/react-reconciler/src/ReactFiberBeginWork.new.js#L1158)，并作为下次`performUnitOfWork`执行时`workInProgress`的[传参](https://github.com/facebook/react/blob/970fa122d8188bafa600e9b5214833487fbf1092/packages/react-reconciler/src/ReactFiberWorkLoop.new.js#L1628)。
 
 ::: warning 注意
 值得一提的是，`mountChildFibers`与`reconcileChildFibers`这两个方法的逻辑基本一致。唯一的区别是：`reconcileChildFibers`会为生成的`Fiber节点`带上`effectTag`属性，而`mountChildFibers`不会。
