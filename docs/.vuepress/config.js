@@ -1,5 +1,3 @@
-const mim = require('markdown-it-mark');
-
 module.exports = {
 	"title": "React 技术揭秘",
 	"description": "React源码解析",
@@ -10,11 +8,7 @@ module.exports = {
 			"alias": {}
 		}
 	},
-	"markdown": {
-    "extendMarkdown": md => {
-      md.use(mim)
-    }
-  },
+	"markdown": {},
 	"themeConfig": {
 		"repo": "BetaSu/just-react",
 		"repoLabel": "点亮⭐不迷路",
@@ -160,6 +154,16 @@ module.exports = {
 					[
 						"/state/setstate",
 						"this.setState"
+					]
+				]
+			},
+			{
+				"title": "第六章 Hooks",
+				"collapsable": true,
+				"children": [
+					[
+						"/hooks/prepare",
+						"Hooks理念"
 					]
 				]
 			}

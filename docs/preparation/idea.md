@@ -35,11 +35,16 @@
 
 而在`React`中，以上代码可以写成如下`JSX`：
 
-```jsx
-<ul>{
-    data.map((name, i) => <li>{i !== 1 ? i : name}</li>)
-}</ul>
+```js
+function App({name}) {
+    const children = [];
+    for (let i = 0; i < 4; i++) {
+        children.push(<li>{i === 1 ? name : i}</li>)
+    }
+    return <ul>{children}</ul>
+}
 ```
+
 由于语法的灵活，在编译时无法区分可能变化的部分。所以在运行时，`React`需要遍历每个`li`，判断其数据是否更新。
 
 基于以上原因，相比于`Vue`、`Angular`，缺少编译时优化手段的`React`为了**速度快**需要在运行时做出更多努力。

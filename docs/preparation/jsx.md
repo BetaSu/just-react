@@ -166,15 +166,19 @@ ClassComponent.prototype.isReactComponent = {};
 
 ## JSX与虚拟DOM
 
-从上面的内容我们可以发现，`JSX`是一种描述当前组件内容的数据结构，他并不能描述组件**schedule**、**reconcile**、**render**相关的信息。比如如下信息就不包括在`JSX`中：
+从上面的内容我们可以发现，`JSX`是一种描述当前组件内容的数据结构，他不包含组件**schedule**、**reconcile**、**render**所需的相关信息。
 
-- 组件在更新中的优先级
+比如如下信息就不包括在`JSX`中：
+
+- 组件在更新中的`优先级`
 - 组件的`state`
-- 组件被打上的用于**Renderer**的标记
+- 组件被打上的用于**Renderer**的`标记`
 
-这些内容都是包含在虚拟DOM中的。
+这些内容都包含在`虚拟DOM`中。
 
-所以，在组件`mount`时，`Reconciler`根据`JSX`描述的组件内容生成组件对应的虚拟DOM。在`update`时，`Reconciler`将`JSX`与虚拟DOM保存的数据对比，为对比后状态有变化的虚拟DOM打上标记。
+所以，在组件`mount`时，`Reconciler`根据`JSX`描述的组件内容生成组件对应的`虚拟DOM`。
+
+在`update`时，`Reconciler`将`JSX`与`虚拟DOM`保存的数据对比，生成组件对应的`虚拟DOM`，并根据对比结果为`虚拟DOM`打上`标记`。
 
 ## 参考资料
 
