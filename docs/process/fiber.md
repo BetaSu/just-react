@@ -114,7 +114,7 @@ this.tag = tag;
 this.key = key;
 // 大部分情况同type，某些情况不同，比如FunctionComponent使用React.memo包裹
 this.elementType = null;
-// 对于 FunctionComponent，指函数本身，对于ClassCompoent，指class，对于HostComponent，指DOM节点tagName
+// 对于 FunctionComponent，指函数本身，对于ClassComponent，指class，对于HostComponent，指DOM节点tagName
 this.type = null;
 // Fiber对应的真实DOM节点
 this.stateNode = null;
