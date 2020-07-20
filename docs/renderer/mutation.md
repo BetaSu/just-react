@@ -241,7 +241,7 @@ useLayoutEffect(() => {
 
 > 你可以在[这里](https://github.com/facebook/react/blob/970fa122d8188bafa600e9b5214833487fbf1092/packages/react-dom/src/client/ReactDOMHostConfig.js#L423)看到`commitUpdate`源码
 
-最终会将`render阶段 completeWork`中为`Fiber节点`赋值的`updateQueue`对应的内容渲染在页面上。
+最终会在[`updateDOMProperties`](https://github.com/facebook/react/blob/970fa122d8188bafa600e9b5214833487fbf1092/packages/react-dom/src/client/ReactDOMComponent.js#L378)中将[`render阶段 completeWork`](https://github.com/facebook/react/blob/970fa122d8188bafa600e9b5214833487fbf1092/packages/react-reconciler/src/ReactFiberCompleteWork.new.js#L229)中为`Fiber节点`赋值的`updateQueue`对应的内容渲染在页面上。
 
 ```js
 for (let i = 0; i < updatePayload.length; i += 2) {
@@ -272,7 +272,7 @@ for (let i = 0; i < updatePayload.length; i += 2) {
 
 该方法会执行如下操作：
 
-1. 递归调用`Fiber节点`及其子孙`Fiber节点`的`componentWillUnmount`生命周期钩子，从页面移除`Fiber节点`对应`DOM节点`
+1. 递归调用`Fiber节点`及其子孙`Fiber节点`中`fiber.tag`为`ClassComponent`的[`componentWillUnmount`](https://github.com/facebook/react/blob/970fa122d8188bafa600e9b5214833487fbf1092/packages/react-reconciler/src/ReactFiberCommitWork.new.js#L920)生命周期钩子，从页面移除`Fiber节点`对应`DOM节点`
 2. 解绑`ref`
 3. 调度`useEffect`的销毁函数
 
