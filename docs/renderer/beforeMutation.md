@@ -84,7 +84,7 @@ function commitBeforeMutationEffects() {
 
 我们讲解下2、3两点。
 
-## 调用`getSnapshotBeforeUpdate`
+## 调用[`getSnapshotBeforeUpdate`](https://github.com/facebook/react/blob/970fa122d8188bafa600e9b5214833487fbf1092/packages/react-reconciler/src/ReactFiberCommitWork.new.js#L269)
 
 从`React`v16开始，`componentWillXXX`钩子前增加了`UNSAFE_`前缀。
 
