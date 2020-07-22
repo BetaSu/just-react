@@ -72,7 +72,8 @@ do {
   // 将effectList赋值给firstEffect
   // 由于每个fiber的effectList只包含他的子孙节点
   // 所以根节点如果有effectTag则不会被包含进来
-  // 所以这里将有effectTag的根节点纳入effectList
+  // 所以这里将有effectTag的根节点插入到effectList尾部
+  // 这样才能保证有effect的fiber都在effectList中
   let firstEffect;
   if (finishedWork.effectTag > PerformedWork) {
     if (finishedWork.lastEffect !== null) {

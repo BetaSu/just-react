@@ -84,11 +84,11 @@ function commitBeforeMutationEffects() {
 
 我们讲解下2、3两点。
 
-## 调用`getSnapshotBeforeUpdate`
+## 调用[`getSnapshotBeforeUpdate`](https://github.com/facebook/react/blob/970fa122d8188bafa600e9b5214833487fbf1092/packages/react-reconciler/src/ReactFiberCommitWork.new.js#L269)
 
-从`React`v17开始，`componentWillXXX`钩子前增加了`UNSAFE_`前缀。
+从`React`v16开始，`componentWillXXX`钩子前增加了`UNSAFE_`前缀。
 
-究其原因，是因为`Stack Reconciler`重构为`Fiber Reconciler`后，`render阶段`的任务可能中断/重新开始，对应的组件在`render阶段`的生命周期钩子（即`componentWillXXX`）可能触发多次。这种行为和`React`v16不一致，所以标记为`UNSAFE_`。
+究其原因，是因为`Stack Reconciler`重构为`Fiber Reconciler`后，`render阶段`的任务可能中断/重新开始，对应的组件在`render阶段`的生命周期钩子（即`componentWillXXX`）可能触发多次。这种行为和`React`v15不一致，所以标记为`UNSAFE_`。
 
 为此，`React`提供了替代的生命周期钩子`getSnapshotBeforeUpdate`。
 
