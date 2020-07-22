@@ -171,7 +171,8 @@ if ((executionContext & LegacyUnbatchedContext) !== NoContext) {
   return null;
 }
 
-// 在layout阶段有同步任务被调度，在这里执行他们
+// 在commit阶段有同步任务被调度，在这里率先执行他们，不需要等到浏览器下一个macroTask
+// 比如在 componentDidMount 中执行 setState 创建的更新会在这里被同步执行
 flushSyncCallbackQueue();
 
 return null;
@@ -191,7 +192,7 @@ return null;
 
 3. 在`commit`阶段会触发一些生命周期钩子（如 `componentDidXXX`）和`hook`（如`useLayoutEffect`、`useEffect`）。
 
-这些回调方法里有可能触发新的更新，新的更新会开启新的`render-commit`流程。所以`render`阶段和`commit`阶段并不是线性执行的。考虑如下Demo：
+在这些回调方法中可能触发新的更新，新的更新会开启新的`render-commit`流程。考虑如下Demo：
 
 ::: details useLayoutEffect Demo
 
@@ -204,6 +205,8 @@ return null;
 ```js
 flushSyncCallbackQueue();
 ```
+
+所以我们看不到页面中元素先变为0。
 
 [Demo](https://code.h5jun.com/vazos/edit?html,js,output)
 
