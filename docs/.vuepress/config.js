@@ -164,6 +164,10 @@ module.exports = {
 					[
 						"/hooks/prepare",
 						"Hooks理念"
+					],
+					[
+						"/hooks/create",
+						"极简Hooks实现"
 					]
 				]
 			}

@@ -20,13 +20,15 @@
 
 讽刺的是，`原子`在希腊语中的意思为`不可分割的`（`indivisible`），但随后科学家在原子中发现了更小的粒子 —— 电子（`electron`）。电子可以很好的解释`原子`是如何工作的。
 
-在`React`中，与其说`Hooks`是另一种类型的`原子`，不如说他是更贴近事物运行规律的`电子`。
+在`React`中，我们可以说`ClassComponent`是一类`原子`。
 
-我们知道，`React`的架构遵循`schedule - render - commit`的运行流程，这个流程是`React`世界最底层的运行规律。
+但对于`Hooks`来说，与其说是一类`原子`，不如说他是更贴近事物`运行规律`的`电子`。
+
+我们知道，`React`的架构遵循`schedule - render - commit`的运行流程，这个流程是`React`世界最底层的`运行规律`。
 
 `ClassComponent`作为`React`世界的`原子`，他的`生命周期`（`componentWillXXX`/`componentDidXXX`）是为了介入`React`的运行流程而实现的更上层抽象，这么做是为了方便`框架使用者`更容易上手。
 
-而`Hooks`相比于`ClassComponent`的更上层抽象，则更贴近`React`的本质（`state` | `context` | `life-cycle`）。
+相比于`ClassComponent`的更上层抽象，`Hooks`则更贴近`React`内部运行的各种概念（`state` | `context` | `life-cycle`）。
 
 作为使用`React`技术栈的开发者，当我们初次学习`Hooks`时，不管是官方文档还是身边有经验的同事，总会拿`ClassComponent`的生命周期来类比`Hooks API`的执行时机。
 
@@ -42,7 +44,7 @@
   }, [props.something])
 ```
 
-但是`componentWillReceiveProps`是在`render阶段`同步执行，而`useEffect`是在`commit阶段`完成渲染后异步执行。
+但是`componentWillReceiveProps`是在`render阶段`执行，而`useEffect`是在`commit阶段`完成渲染后异步执行。
 
 > 这篇文章可以帮你更好理解`componentWillReceiveProps`：[深入源码剖析componentWillXXX为什么UNSAFE](https://juejin.im/post/5f05a3e25188252e5c576cdb)
 
@@ -50,7 +52,7 @@
 
 > 以上见解参考自[React Core Team Dan在 React Conf2018的演讲](https://www.youtube.com/watch?v=dpw9EHDh2bM&feature=youtu.be)
 
-## Hooks设计动机
+<!-- ## Hooks设计动机
 
 那么真的有`Hooks`能做而`ClassComponent`无法实现的`feature`么？
 
@@ -84,10 +86,10 @@
 
 [Demo](https://codesandbox.io/s/friendly-bush-hk5co)
 
-:::
+::: -->
 
 ## 总结
 
 `Concurrent Mode`是`React`未来的发展方向，而`Hooks`是能够最大限度发挥`Concurrent Mode`潜力的`Component`构建方式。
 
-正如Dan在`React Conf 2018`演讲结尾所说：你可以从`React`的`LOGO`中看到这些围绕着核心的电子飞行轨道，`Hooks`可能一直就在其中。
+正如Dan在`React Conf 2018`演讲结尾所说：你可以从`React`的`LOGO`中看到这些围绕着`核心`的`电子飞行轨道`，`Hooks`可能一直就在其中。
