@@ -379,7 +379,7 @@ function App() {
 
 ::: details 精简Hooks的在线Demo
 
-调用`window.click()`模拟组件点击事件。
+调用`window.app.click()`模拟组件点击事件。
 
 你也可以使用多个`useState`。
 
