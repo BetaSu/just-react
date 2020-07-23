@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>React 技术揭秘</title>
+    <meta name="generator" content="VuePress 1.5.0">
+    
+    <meta name="description" content="React源码解析">
+    <link rel="preload" href="/just-react/assets/css/0.styles.4300949d.css" as="style"><link rel="preload" href="/just-react/assets/js/app.3ca5235f.js" as="script"><link rel="preload" href="/just-react/assets/js/2.ceab786f.js" as="script"><link rel="preload" href="/just-react/assets/js/6.bb2347f8.js" as="script"><link rel="prefetch" href="/just-react/assets/js/10.85a9a20d.js"><link rel="prefetch" href="/just-react/assets/js/11.932b412d.js"><link rel="prefetch" href="/just-react/assets/js/12.f242cd2d.js"><link rel="prefetch" href="/just-react/assets/js/13.03453b62.js"><link rel="prefetch" href="/just-react/assets/js/14.1eca8eb4.js"><link rel="prefetch" href="/just-react/assets/js/15.dc2f6e5e.js"><link rel="prefetch" href="/just-react/assets/js/16.a18f2ae6.js"><link rel="prefetch" href="/just-react/assets/js/17.faab250d.js"><link rel="prefetch" href="/just-react/assets/js/18.5fbf02a3.js"><link rel="prefetch" href="/just-react/assets/js/19.f49e92b5.js"><link rel="prefetch" href="/just-react/assets/js/20.d286fee0.js"><link rel="prefetch" href="/just-react/assets/js/21.048ef0cd.js"><link rel="prefetch" href="/just-react/assets/js/22.6266ec24.js"><link rel="prefetch" href="/just-react/assets/js/23.499ba392.js"><link rel="prefetch" href="/just-react/assets/js/24.bf405dce.js"><link rel="prefetch" href="/just-react/assets/js/25.ce9b9c12.js"><link rel="prefetch" href="/just-react/assets/js/26.b9eeed1a.js"><link rel="prefetch" href="/just-react/assets/js/27.bb7812ac.js"><link rel="prefetch" href="/just-react/assets/js/28.7cf508b5.js"><link rel="prefetch" href="/just-react/assets/js/29.874fb249.js"><link rel="prefetch" href="/just-react/assets/js/3.540ccf28.js"><link rel="prefetch" href="/just-react/assets/js/30.16070aa2.js"><link rel="prefetch" href="/just-react/assets/js/31.f0fa4d21.js"><link rel="prefetch" href="/just-react/assets/js/32.64085e73.js"><link rel="prefetch" href="/just-react/assets/js/33.3aedd51d.js"><link rel="prefetch" href="/just-react/assets/js/34.701196c0.js"><link rel="prefetch" href="/just-react/assets/js/35.c834d299.js"><link rel="prefetch" href="/just-react/assets/js/4.10c8f825.js"><link rel="prefetch" href="/just-react/assets/js/5.e9b9f33b.js"><link rel="prefetch" href="/just-react/assets/js/7.35de3e13.js"><link rel="prefetch" href="/just-react/assets/js/8.fb63fdcd.js"><link rel="prefetch" href="/just-react/assets/js/9.833803a9.js">
+    <link rel="stylesheet" href="/just-react/assets/css/0.styles.4300949d.css">
+  </head>
+  <body>
+    <div id="app" data-server-rendered="true"><div class="theme-container"><header class="navbar"><div class="sidebar-button"><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img" viewBox="0 0 448 512" class="icon"><path fill="currentColor" d="M436 124H12c-6.627 0-12-5.373-12-12V80c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12z"></path></svg></div> <a href="/just-react/" class="home-link router-link-active"><!----> <span class="site-name">React 技术揭秘</span></a> <div class="links"><div class="search-box"><input aria-label="Search" autocomplete="off" spellcheck="false" value=""> <!----></div> <nav class="nav-links can-hide"><div class="nav-item"><a href="/just-react/me.html" class="nav-link">
+  🙋‍♂️ 一起学习
+</a></div> <a href="https://github.com/BetaSu/just-react" target="_blank" rel="noopener noreferrer" class="repo-link">
+    点亮⭐不迷路
+    <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a></nav></div></header> <div class="sidebar-mask"></div> <aside class="sidebar"><nav class="nav-links"><div class="nav-item"><a href="/just-react/me.html" class="nav-link">
+  🙋‍♂️ 一起学习
+</a></div> <a href="https://github.com/BetaSu/just-react" target="_blank" rel="noopener noreferrer" class="repo-link">
+    点亮⭐不迷路
+    <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a></nav>  <ul class="sidebar-links"><li><a href="/just-react/" aria-current="page" class="sidebar-link">前言</a></li><li><section class="sidebar-group collapsable depth-0"><p class="sidebar-heading"><span>第一章 前置知识</span> <span class="arrow right"></span></p> <!----></section></li><li><section class="sidebar-group collapsable depth-0"><p class="sidebar-heading"><span>第二章 render阶段</span> <span class="arrow right"></span></p> <!----></section></li><li><section class="sidebar-group collapsable depth-0"><p class="sidebar-heading"><span>第三章 commit阶段</span> <span class="arrow right"></span></p> <!----></section></li><li><section class="sidebar-group collapsable depth-0"><p class="sidebar-heading open"><span>第四章 Diff算法</span> <span class="arrow down"></span></p> <ul class="sidebar-links sidebar-group-items"><li><a href="/just-react/diff/prepare.html" class="sidebar-link">概览</a></li><li><a href="/just-react/diff/one.html" aria-current="page" class="active sidebar-link">单节点Diff</a><ul class="sidebar-sub-headers"><li class="sidebar-sub-header"><a href="/just-react/diff/one.html#练习题" class="sidebar-link">练习题</a></li></ul></li><li><a href="/just-react/diff/multi.html" class="sidebar-link">多节点Diff</a></li></ul></section></li><li><section class="sidebar-group collapsable depth-0"><p class="sidebar-heading"><span>第五章 状态更新</span> <span class="arrow right"></span></p> <!----></section></li><li><section class="sidebar-group collapsable depth-0"><p class="sidebar-heading"><span>第六章 Hooks</span> <span class="arrow right"></span></p> <!----></section></li></ul> </aside> <main class="page"> <div class="theme-default-content content__default"><p>对于单个节点，我们以类型<code>object</code>为例，会进入<code>reconcileSingleElement</code></p> <blockquote><p>你可以从<a href="https://github.com/facebook/react/blob/970fa122d8188bafa600e9b5214833487fbf1092/packages/react-reconciler/src/ReactChildFiber.new.js#L1133" target="_blank" rel="noopener noreferrer">这里<svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a>看到<code>reconcileSingleElement</code>源码</p></blockquote> <div class="language-javascript extra-class"><pre class="language-javascript"><code>  <span class="token keyword">const</span> isObject <span class="token operator">=</span> <span class="token keyword">typeof</span> newChild <span class="token operator">===</span> <span class="token string">'object'</span> <span class="token operator">&amp;&amp;</span> newChild <span class="token operator">!==</span> <span class="token keyword">null</span><span class="token punctuation">;</span>
+
+  <span class="token keyword">if</span> <span class="token punctuation">(</span>isObject<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token comment">// 对象类型，可能是 REACT_ELEMENT_TYPE 或 REACT_PORTAL_TYPE</span>
+    <span class="token keyword">switch</span> <span class="token punctuation">(</span>newChild<span class="token punctuation">.</span>$$<span class="token keyword">typeof</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+      <span class="token keyword">case</span> <span class="token constant">REACT_ELEMENT_TYPE</span><span class="token operator">:</span>
+        <span class="token comment">// 调用 reconcileSingleElement 处理</span>
+      <span class="token comment">// ...其他case</span>
+    <span class="token punctuation">}</span>
+  <span class="token punctuation">}</span>
+</code></pre></div><p>这个函数会做如下事情：</p> <img src="/just-react/img/diff.png" alt="diff"> <p>让我们看看第二步<strong>判断DOM节点是否可以复用</strong>是如何实现的。</p> <div class="language-javascript extra-class"><pre class="language-javascript"><code><span class="token keyword">function</span> <span class="token function">reconcileSingleElement</span><span class="token punctuation">(</span>
+  <span class="token parameter">returnFiber<span class="token operator">:</span> Fiber<span class="token punctuation">,</span>
+  currentFirstChild<span class="token operator">:</span> Fiber <span class="token operator">|</span> <span class="token keyword">null</span><span class="token punctuation">,</span>
+  element<span class="token operator">:</span> ReactElement</span>
+<span class="token punctuation">)</span><span class="token operator">:</span> Fiber <span class="token punctuation">{</span>
+  <span class="token keyword">const</span> key <span class="token operator">=</span> element<span class="token punctuation">.</span>key<span class="token punctuation">;</span>
+  <span class="token keyword">let</span> child <span class="token operator">=</span> currentFirstChild<span class="token punctuation">;</span>
+  
+  <span class="token comment">// 首先判断是否存在对应DOM节点</span>
+  <span class="token keyword">while</span> <span class="token punctuation">(</span>child <span class="token operator">!==</span> <span class="token keyword">null</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token comment">// 上一次更新存在DOM节点，接下来判断是否可复用</span>
+
+    <span class="token comment">// 首先比较key是否相同</span>
+    <span class="token keyword">if</span> <span class="token punctuation">(</span>child<span class="token punctuation">.</span>key <span class="token operator">===</span> key<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+
+      <span class="token comment">// key相同，接下来比较type是否相同</span>
+
+      <span class="token keyword">switch</span> <span class="token punctuation">(</span>child<span class="token punctuation">.</span>tag<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token comment">// ...省略case</span>
+        
+        <span class="token keyword">default</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+          <span class="token keyword">if</span> <span class="token punctuation">(</span>child<span class="token punctuation">.</span>elementType <span class="token operator">===</span> element<span class="token punctuation">.</span>type<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            <span class="token comment">// type相同则表示可以复用</span>
+            <span class="token comment">// 返回复用的fiber</span>
+            <span class="token keyword">return</span> existing<span class="token punctuation">;</span>
+          <span class="token punctuation">}</span>
+          
+          <span class="token comment">// type不同则跳出循环</span>
+          <span class="token keyword">break</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+      <span class="token punctuation">}</span>
+      <span class="token comment">// 代码执行到这里代表：key相同但是type不同</span>
+      <span class="token comment">// 将该fiber及其兄弟fiber标记为删除</span>
+      <span class="token function">deleteRemainingChildren</span><span class="token punctuation">(</span>returnFiber<span class="token punctuation">,</span> child<span class="token punctuation">)</span><span class="token punctuation">;</span>
+      <span class="token keyword">break</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span> <span class="token keyword">else</span> <span class="token punctuation">{</span>
+      <span class="token comment">// key不同，将该fiber标记为删除</span>
+      <span class="token function">deleteChild</span><span class="token punctuation">(</span>returnFiber<span class="token punctuation">,</span> child<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+    child <span class="token operator">=</span> child<span class="token punctuation">.</span>sibling<span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+
+  <span class="token comment">// 创建新Fiber，并返回 ...省略</span>
+<span class="token punctuation">}</span>
+</code></pre></div><p>还记得我们刚才提到的，React预设的限制么，</p> <p>从代码可以看出，React通过先判断<code>key</code>是否相同，如果<code>key</code>相同则判断<code>type</code>是否相同，只有都相同时一个<code>DOM节点</code>才能复用。</p> <p>这里有个细节需要关注下：</p> <ul><li><p>当<code>child !== null</code>且<code>key相同</code>且<code>type不同</code>时执行<code>deleteRemainingChildren</code>将<code>child</code>及其兄弟<code>fiber</code>都标记删除。</p></li> <li><p>当<code>child !== null</code>且<code>key不同</code>时仅将<code>child</code>标记删除。</p></li></ul> <p>考虑如下例子：</p> <p>当前页面有3个<code>li</code>，我们要全部删除，再插入一个<code>p</code>。</p> <div class="language-js extra-class"><pre class="language-js"><code><span class="token comment">// 当前页面显示的</span>
+ul <span class="token operator">&gt;</span> li <span class="token operator">*</span> <span class="token number">3</span>
+
+<span class="token comment">// 这次需要更新的</span>
+ul <span class="token operator">&gt;</span> p
+</code></pre></div><p>由于本次更新时只有一个<code>p</code>，属于单一节点的<code>Diff</code>，会走上面介绍的代码逻辑。</p> <p>在<code>reconcileSingleElement</code>中遍历之前的3个<code>fiber</code>（对应的<code>DOM</code>为3个<code>li</code>），寻找本次更新的<code>p</code>是否可以复用之前的3个<code>fiber</code>中某个的<code>DOM</code>。</p> <p>当<code>key相同</code>且<code>type不同</code>时，代表我们已经找到本次更新的<code>p</code>对应的上次的<code>fiber</code>，但是<code>p</code>与<code>li</code> <code>type</code>不同，不能复用。既然唯一的可能性已经不能复用，则剩下的<code>fiber</code>都没有机会了，所以都需要标记删除。</p> <p>当<code>key不同</code>时只代表遍历到的该<code>fiber</code>不能被<code>p</code>复用，后面还有兄弟<code>fiber</code>还没有遍历到。所以仅仅标记该<code>fiber</code>删除。</p> <h2 id="练习题"><a href="#练习题" class="header-anchor">#</a> 练习题</h2> <p>让我们来做几道习题巩固下吧：</p> <p>请判断如下<code>JSX对象</code>对应的<code>DOM</code>元素是否可以复用：</p> <div class="language-jsx extra-class"><pre class="language-jsx"><code><span class="token comment">// 习题1 更新前</span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span><span class="token punctuation">&gt;</span></span><span class="token plain-text">ka song</span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">&gt;</span></span>
+<span class="token comment">// 更新后</span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>p</span><span class="token punctuation">&gt;</span></span><span class="token plain-text">ka song</span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>p</span><span class="token punctuation">&gt;</span></span>
+
+<span class="token comment">// 习题2 更新前</span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">key</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>xxx<span class="token punctuation">&quot;</span></span><span class="token punctuation">&gt;</span></span><span class="token plain-text">ka song</span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">&gt;</span></span>
+<span class="token comment">// 更新后</span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">key</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>ooo<span class="token punctuation">&quot;</span></span><span class="token punctuation">&gt;</span></span><span class="token plain-text">ka song</span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">&gt;</span></span>
+
+<span class="token comment">// 习题3 更新前</span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">key</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>xxx<span class="token punctuation">&quot;</span></span><span class="token punctuation">&gt;</span></span><span class="token plain-text">ka song</span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">&gt;</span></span>
+<span class="token comment">// 更新后</span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>p</span> <span class="token attr-name">key</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>ooo<span class="token punctuation">&quot;</span></span><span class="token punctuation">&gt;</span></span><span class="token plain-text">ka song</span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>p</span><span class="token punctuation">&gt;</span></span>
+
+<span class="token comment">// 习题4 更新前</span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">key</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>xxx<span class="token punctuation">&quot;</span></span><span class="token punctuation">&gt;</span></span><span class="token plain-text">ka song</span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">&gt;</span></span>
+<span class="token comment">// 更新后</span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">key</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>xxx<span class="token punctuation">&quot;</span></span><span class="token punctuation">&gt;</span></span><span class="token plain-text">xiao bei</span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">&gt;</span></span>
+
+</code></pre></div><p>。</p> <p>。</p> <p>。</p> <p>。</p> <p>公布答案：</p> <p>习题1: 未设置<code>key prop</code>默认 <code>key = null;</code>，所以更新前后key相同，都为<code>null</code>，但是更新前<code>type</code>为<code>div</code>，更新后为<code>p</code>，<code>type</code>改变则不能复用。</p> <p>习题2: 更新前后<code>key</code>改变，不需要再判断<code>type</code>，不能复用。</p> <p>习题3: 更新前后<code>key</code>改变，不需要再判断<code>type</code>，不能复用。</p> <p>习题4: 更新前后<code>key</code>与<code>type</code>都未改变，可以复用。<code>children</code>变化，<code>DOM</code>的子元素需要更新。</p> <p>你是不是都答对了呢。</p></div> <footer class="page-edit"><div class="edit-link"><a href="https://github.com/BetaSu/just-react/edit/master/docs/diff/one.md" target="_blank" rel="noopener noreferrer">为该章节纠错</a> <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></div> <div class="last-updated"><span class="prefix">上次更新:</span> <span class="time">7/11/2020, 11:28:31 AM</span></div></footer> <div class="page-nav"><p class="inner"><span class="prev">
+      ←
+      <a href="/just-react/diff/prepare.html" class="prev">
+        概览
+      </a></span> <span class="next"><a href="/just-react/diff/multi.html">
+        多节点Diff
+      </a>
+      →
+    </span></p></div> </main></div><div class="global-ui"></div></div>
+    <script src="/just-react/assets/js/app.3ca5235f.js" defer></script><script src="/just-react/assets/js/2.ceab786f.js" defer></script><script src="/just-react/assets/js/6.bb2347f8.js" defer></script>
+  </body>
+</html>

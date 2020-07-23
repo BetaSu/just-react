@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>React 技术揭秘</title>
+    <meta name="generator" content="VuePress 1.5.0">
+    
+    <meta name="description" content="React源码解析">
+    <link rel="preload" href="/just-react/assets/css/0.styles.4300949d.css" as="style"><link rel="preload" href="/just-react/assets/js/app.3ca5235f.js" as="script"><link rel="preload" href="/just-react/assets/js/2.ceab786f.js" as="script"><link rel="preload" href="/just-react/assets/js/30.16070aa2.js" as="script"><link rel="prefetch" href="/just-react/assets/js/10.85a9a20d.js"><link rel="prefetch" href="/just-react/assets/js/11.932b412d.js"><link rel="prefetch" href="/just-react/assets/js/12.f242cd2d.js"><link rel="prefetch" href="/just-react/assets/js/13.03453b62.js"><link rel="prefetch" href="/just-react/assets/js/14.1eca8eb4.js"><link rel="prefetch" href="/just-react/assets/js/15.dc2f6e5e.js"><link rel="prefetch" href="/just-react/assets/js/16.a18f2ae6.js"><link rel="prefetch" href="/just-react/assets/js/17.faab250d.js"><link rel="prefetch" href="/just-react/assets/js/18.5fbf02a3.js"><link rel="prefetch" href="/just-react/assets/js/19.f49e92b5.js"><link rel="prefetch" href="/just-react/assets/js/20.d286fee0.js"><link rel="prefetch" href="/just-react/assets/js/21.048ef0cd.js"><link rel="prefetch" href="/just-react/assets/js/22.6266ec24.js"><link rel="prefetch" href="/just-react/assets/js/23.499ba392.js"><link rel="prefetch" href="/just-react/assets/js/24.bf405dce.js"><link rel="prefetch" href="/just-react/assets/js/25.ce9b9c12.js"><link rel="prefetch" href="/just-react/assets/js/26.b9eeed1a.js"><link rel="prefetch" href="/just-react/assets/js/27.bb7812ac.js"><link rel="prefetch" href="/just-react/assets/js/28.7cf508b5.js"><link rel="prefetch" href="/just-react/assets/js/29.874fb249.js"><link rel="prefetch" href="/just-react/assets/js/3.540ccf28.js"><link rel="prefetch" href="/just-react/assets/js/31.f0fa4d21.js"><link rel="prefetch" href="/just-react/assets/js/32.64085e73.js"><link rel="prefetch" href="/just-react/assets/js/33.3aedd51d.js"><link rel="prefetch" href="/just-react/assets/js/34.701196c0.js"><link rel="prefetch" href="/just-react/assets/js/35.c834d299.js"><link rel="prefetch" href="/just-react/assets/js/4.10c8f825.js"><link rel="prefetch" href="/just-react/assets/js/5.e9b9f33b.js"><link rel="prefetch" href="/just-react/assets/js/6.bb2347f8.js"><link rel="prefetch" href="/just-react/assets/js/7.35de3e13.js"><link rel="prefetch" href="/just-react/assets/js/8.fb63fdcd.js"><link rel="prefetch" href="/just-react/assets/js/9.833803a9.js">
+    <link rel="stylesheet" href="/just-react/assets/css/0.styles.4300949d.css">
+  </head>
+  <body>
+    <div id="app" data-server-rendered="true"><div class="theme-container"><header class="navbar"><div class="sidebar-button"><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img" viewBox="0 0 448 512" class="icon"><path fill="currentColor" d="M436 124H12c-6.627 0-12-5.373-12-12V80c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12z"></path></svg></div> <a href="/just-react/" class="home-link router-link-active"><!----> <span class="site-name">React 技术揭秘</span></a> <div class="links"><div class="search-box"><input aria-label="Search" autocomplete="off" spellcheck="false" value=""> <!----></div> <nav class="nav-links can-hide"><div class="nav-item"><a href="/just-react/me.html" class="nav-link">
+  🙋‍♂️ 一起学习
+</a></div> <a href="https://github.com/BetaSu/just-react" target="_blank" rel="noopener noreferrer" class="repo-link">
+    点亮⭐不迷路
+    <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a></nav></div></header> <div class="sidebar-mask"></div> <aside class="sidebar"><nav class="nav-links"><div class="nav-item"><a href="/just-react/me.html" class="nav-link">
+  🙋‍♂️ 一起学习
+</a></div> <a href="https://github.com/BetaSu/just-react" target="_blank" rel="noopener noreferrer" class="repo-link">
+    点亮⭐不迷路
+    <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a></nav>  <ul class="sidebar-links"><li><a href="/just-react/" aria-current="page" class="sidebar-link">前言</a></li><li><section class="sidebar-group collapsable depth-0"><p class="sidebar-heading"><span>第一章 前置知识</span> <span class="arrow right"></span></p> <!----></section></li><li><section class="sidebar-group collapsable depth-0"><p class="sidebar-heading"><span>第二章 render阶段</span> <span class="arrow right"></span></p> <!----></section></li><li><section class="sidebar-group collapsable depth-0"><p class="sidebar-heading"><span>第三章 commit阶段</span> <span class="arrow right"></span></p> <!----></section></li><li><section class="sidebar-group collapsable depth-0"><p class="sidebar-heading"><span>第四章 Diff算法</span> <span class="arrow right"></span></p> <!----></section></li><li><section class="sidebar-group collapsable depth-0"><p class="sidebar-heading open"><span>第五章 状态更新</span> <span class="arrow down"></span></p> <ul class="sidebar-links sidebar-group-items"><li><a href="/just-react/state/prepare.html" aria-current="page" class="active sidebar-link">流程概览</a><ul class="sidebar-sub-headers"><li class="sidebar-sub-header"><a href="/just-react/state/prepare.html#几个关键节点" class="sidebar-link">几个关键节点</a></li><li class="sidebar-sub-header"><a href="/just-react/state/prepare.html#总结" class="sidebar-link">总结</a></li><li class="sidebar-sub-header"><a href="/just-react/state/prepare.html#总结-2" class="sidebar-link">总结</a></li></ul></li><li><a href="/just-react/state/mental.html" class="sidebar-link">心智模型</a></li><li><a href="/just-react/state/update.html" class="sidebar-link">Update</a></li><li><a href="/just-react/state/priority.html" class="sidebar-link">深入理解优先级</a></li><li><a href="/just-react/state/reactdom.html" class="sidebar-link">ReactDOM.render</a></li><li><a href="/just-react/state/setstate.html" class="sidebar-link">this.setState</a></li></ul></section></li><li><section class="sidebar-group collapsable depth-0"><p class="sidebar-heading"><span>第六章 Hooks</span> <span class="arrow right"></span></p> <!----></section></li></ul> </aside> <main class="page"> <div class="theme-default-content content__default"><p>经过前几章的学习，我们终于有足够的前置知识理解<strong>状态更新</strong>的整个流程。</p> <p>这一章我们看看几种常见的触发<strong>状态更新</strong>的方法是如何完成工作的。</p> <h2 id="几个关键节点"><a href="#几个关键节点" class="header-anchor">#</a> 几个关键节点</h2> <p>在开始学习前，我们先了解源码中几个关键节点（即几个关键函数的调用）。通过这章的学习，我们会将这些关键节点的调用路径串起来。</p> <p>先从我们所熟知的概念开始。</p> <h3 id="render阶段的开始"><a href="#render阶段的开始" class="header-anchor">#</a> render阶段的开始</h3> <p>我们在<a href="/just-react/process/reconciler.html">render阶段流程概览一节</a>讲到，</p> <p><code>render阶段</code>开始于<code>performSyncWorkOnRoot</code>或<code>performConcurrentWorkOnRoot</code>方法的调用。这取决于本次更新是同步更新还是异步更新。</p> <h3 id="commit阶段的开始"><a href="#commit阶段的开始" class="header-anchor">#</a> commit阶段的开始</h3> <p>我们在<a href="/just-react/renderer/prepare.html">commit阶段流程概览一节</a>讲到，</p> <p><code>commit阶段</code>开始于<code>commitRoot</code>方法的调用。其中<code>rootFiber</code>会作为传参。</p> <p>我们已经知道，<code>render阶段</code>完成后会进入<code>commit阶段</code>。让我们继续补全从<code>触发状态更新</code>到<code>render阶段</code>的路径。</p> <div class="language-sh extra-class"><pre class="language-sh"><code>触发状态更新（根据场景调用不同方法）
+
+    <span class="token operator">|</span>
+    <span class="token operator">|</span>
+    <span class="token function">v</span>
+
+    ？
+
+    <span class="token operator">|</span>
+    <span class="token operator">|</span>
+    <span class="token function">v</span>
+
+render阶段（<span class="token variable"><span class="token variable">`</span>performSyncWorkOnRoot<span class="token variable">`</span></span> 或 <span class="token variable"><span class="token variable">`</span>performConcurrentWorkOnRoot<span class="token variable">`</span></span>）
+
+    <span class="token operator">|</span>
+    <span class="token operator">|</span>
+    <span class="token function">v</span>
+
+commit阶段（<span class="token variable"><span class="token variable">`</span>commitRoot<span class="token variable">`</span></span>）
+</code></pre></div><h3 id="创建update对象"><a href="#创建update对象" class="header-anchor">#</a> 创建Update对象</h3> <p>在<code>React</code>中，有如下方法可以触发状态更新（排除<code>SSR</code>相关）：</p> <ul><li><p>ReactDOM.render</p></li> <li><p>this.setState</p></li> <li><p>this.forceUpdate</p></li> <li><p>useState</p></li> <li><p>useReducer</p></li></ul> <p>这些方法调用的场景各不相同，他们是如何接入同一套<strong>状态更新机制</strong>呢？</p> <p>答案是：每次<code>状态更新</code>都会创建一个保存<strong>更新状态相关内容</strong>的对象，我们叫他<code>Update</code>。在<code>render阶段</code>的<code>beginWork</code>中会根据<code>Update</code>计算新的<code>state</code>。</p> <p>我们会在下一节详细讲解<code>Update</code>。</p> <h3 id="从fiber到root"><a href="#从fiber到root" class="header-anchor">#</a> 从fiber到root</h3> <p>现在<code>触发状态更新的fiber</code>上已经包含<code>Update</code>对象。</p> <p>我们知道，<code>render阶段</code>是从<code>rootFiber</code>开始向下遍历。那么如何从<code>触发状态更新的fiber</code>得到<code>rootFiber</code>呢？</p> <p>答案是：调用<code>markUpdateLaneFromFiberToRoot</code>方法。</p> <blockquote><p>你可以从<a href="https://github.com/facebook/react/blob/970fa122d8188bafa600e9b5214833487fbf1092/packages/react-reconciler/src/ReactFiberWorkLoop.new.js#L577" target="_blank" rel="noopener noreferrer">这里<svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a>看到<code>markUpdateLaneFromFiberToRoot</code>的源码</p></blockquote> <p>该方法做的工作可以概括为：从<code>触发状态更新的fiber</code>一直向上遍历到<code>rootFiber</code>，并返回<code>rootFiber</code>。</p> <p>由于不同更新优先级不尽相同，所以过程中还会更新遍历到的<code>fiber</code>的优先级。这对于我们当前属于超纲内容。</p> <h3 id="调度更新"><a href="#调度更新" class="header-anchor">#</a> 调度更新</h3> <p>现在我们拥有一个<code>rootFiber</code>，该<code>rootFiber</code>对应的<code>Fiber树</code>中某个<code>Fiber节点</code>包含一个<code>Update</code>。</p> <p>接下来通知<code>Scheduler</code>根据<strong>更新</strong>的优先级，决定以<strong>同步</strong>还是<strong>异步</strong>的方式调度本次更新。</p> <p>这里调用的方法是<code>ensureRootIsScheduled</code>。</p> <p>以下是<code>ensureRootIsScheduled</code>最核心的一段代码：</p> <div class="language-js extra-class"><pre class="language-js"><code><span class="token keyword">if</span> <span class="token punctuation">(</span>newCallbackPriority <span class="token operator">===</span> SyncLanePriority<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token comment">// 任务已经过期，需要同步执行render阶段</span>
+  newCallbackNode <span class="token operator">=</span> <span class="token function">scheduleSyncCallback</span><span class="token punctuation">(</span>
+    <span class="token function">performSyncWorkOnRoot</span><span class="token punctuation">.</span><span class="token function">bind</span><span class="token punctuation">(</span><span class="token keyword">null</span><span class="token punctuation">,</span> root<span class="token punctuation">)</span>
+  <span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span> <span class="token keyword">else</span> <span class="token punctuation">{</span>
+  <span class="token comment">// 根据任务优先级异步执行render阶段</span>
+  <span class="token keyword">var</span> schedulerPriorityLevel <span class="token operator">=</span> <span class="token function">lanePriorityToSchedulerPriority</span><span class="token punctuation">(</span>
+    newCallbackPriority
+  <span class="token punctuation">)</span><span class="token punctuation">;</span>
+  newCallbackNode <span class="token operator">=</span> <span class="token function">scheduleCallback</span><span class="token punctuation">(</span>
+    schedulerPriorityLevel<span class="token punctuation">,</span>
+    <span class="token function">performConcurrentWorkOnRoot</span><span class="token punctuation">.</span><span class="token function">bind</span><span class="token punctuation">(</span><span class="token keyword">null</span><span class="token punctuation">,</span> root<span class="token punctuation">)</span>
+  <span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</code></pre></div><blockquote><p>你可以从<a href="https://github.com/facebook/react/blob/b6df4417c79c11cfb44f965fab55b573882b1d54/packages/react-reconciler/src/ReactFiberWorkLoop.new.js#L602" target="_blank" rel="noopener noreferrer">这里<svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a>看到<code>ensureRootIsScheduled</code>的源码</p></blockquote> <p>其中，<code>scheduleCallback</code>和<code>scheduleSyncCallback</code>会调用<code>Scheduler</code>提供的调度方法根据<code>优先级</code>调度回调函数执行。</p> <p>可以看到，这里调度的回调函数为：</p> <div class="language-js extra-class"><pre class="language-js"><code><span class="token function">performSyncWorkOnRoot</span><span class="token punctuation">.</span><span class="token function">bind</span><span class="token punctuation">(</span><span class="token keyword">null</span><span class="token punctuation">,</span> root<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token function">performConcurrentWorkOnRoot</span><span class="token punctuation">.</span><span class="token function">bind</span><span class="token punctuation">(</span><span class="token keyword">null</span><span class="token punctuation">,</span> root<span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre></div><p>即<code>render阶段</code>的入口函数。</p> <p>至此，<code>状态更新</code>就和我们所熟知的<code>render阶段</code>连接上了。</p> <h2 id="总结"><a href="#总结" class="header-anchor">#</a> 总结</h2> <p>让我们梳理下<code>状态更新</code>的整个调用路径的关键节点：</p> <div class="language-sh extra-class"><pre class="language-sh"><code>触发状态更新（根据场景调用不同方法）
+
+    <span class="token operator">|</span>
+    <span class="token operator">|</span>
+    <span class="token function">v</span>
+
+创建Update对象（接下来三节详解）
+
+    <span class="token operator">|</span>
+    <span class="token operator">|</span>
+    <span class="token function">v</span>
+
+从fiber到root（<span class="token variable"><span class="token variable">`</span>markUpdateLaneFromFiberToRoot<span class="token variable">`</span></span>）
+
+    <span class="token operator">|</span>
+    <span class="token operator">|</span>
+    <span class="token function">v</span>
+
+调度更新（<span class="token variable"><span class="token variable">`</span>ensureRootIsScheduled<span class="token variable">`</span></span>）
+
+    <span class="token operator">|</span>
+    <span class="token operator">|</span>
+    <span class="token function">v</span>
+
+render阶段（<span class="token variable"><span class="token variable">`</span>performSyncWorkOnRoot<span class="token variable">`</span></span> 或 <span class="token variable"><span class="token variable">`</span>performConcurrentWorkOnRoot<span class="token variable">`</span></span>）
+
+    <span class="token operator">|</span>
+    <span class="token operator">|</span>
+    <span class="token function">v</span>
+
+commit阶段（<span class="token variable"><span class="token variable">`</span>commitRoot<span class="token variable">`</span></span>）
+</code></pre></div><h2 id="总结-2"><a href="#总结-2" class="header-anchor">#</a> 总结</h2> <p>本节我们了解了<strong>状态更新</strong>的整个流程。</p> <p>在接下来三节中，我们会花大量篇幅讲解<code>Update</code>的工作机制，因为他是构成<code>React concurrent mode</code>的核心机制之一。</p></div> <footer class="page-edit"><div class="edit-link"><a href="https://github.com/BetaSu/just-react/edit/master/docs/state/prepare.md" target="_blank" rel="noopener noreferrer">为该章节纠错</a> <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></div> <div class="last-updated"><span class="prefix">上次更新:</span> <span class="time">7/11/2020, 11:28:31 AM</span></div></footer> <div class="page-nav"><p class="inner"><span class="prev">
+      ←
+      <a href="/just-react/diff/multi.html" class="prev">
+        多节点Diff
+      </a></span> <span class="next"><a href="/just-react/state/mental.html">
+        心智模型
+      </a>
+      →
+    </span></p></div> </main></div><div class="global-ui"></div></div>
+    <script src="/just-react/assets/js/app.3ca5235f.js" defer></script><script src="/just-react/assets/js/2.ceab786f.js" defer></script><script src="/just-react/assets/js/30.16070aa2.js" defer></script>
+  </body>
+</html>
