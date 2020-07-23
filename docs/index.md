@@ -84,10 +84,15 @@
 
 ✅ Hooks理念
 
-### 第七章 性能优化
+✅ 极简Hooks实现
 
-:black_square_button: batchedUpdates
+:black_square_button: useState与useReducer
 
-:black_square_button: bailout
+:black_square_button: useEffect与useLayoutEffect
 
+:black_square_button: useRef
+
+:black_square_button: useContext
+
+### 第七章 优先级调度
 
