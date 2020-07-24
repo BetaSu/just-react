@@ -7,9 +7,8 @@
   - name: build
     image: node
     commands:
-      # - npm install 
-      # - npm run build
-      - touch 1.txt
+      - npm install 
+      - npm run build
 
   - name: deploy
     image: appleboy/drone-scp
@@ -23,7 +22,7 @@
       port: 
         from_secret: port
       source: 
-        - ./
+        - ./dist
       rm: true
       key:
         from_secret: ssh_key
