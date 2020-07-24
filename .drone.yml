@@ -1,0 +1,29 @@
+---
+  kind: pipeline
+  type: docker
+  name: default
+  
+  steps:
+  - name: build
+    image: node
+    commands:
+      # - npm install 
+      # - npm run build
+      - touch 1.txt
+
+  - name: deploy
+    image: appleboy/drone-scp
+    settings:
+      host: 
+        from_secret: ip
+      target: 
+        from_secret: target
+      user: 
+        from_secret: user
+      port: 
+        from_secret: port
+      source: 
+        - ./
+      rm: true
+      key:
+        from_secret: ssh_key
