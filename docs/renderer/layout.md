@@ -74,7 +74,7 @@ this.setState({ xxx: 1 }, () => {
 
 - 对于`FunctionComponent`，他会调用`useLayoutEffect hook`的回调函数。
 
-在上一节介绍[Update effect](./mutation.html#update-effect)时介绍过，`mutation阶段`会执行`useLayoutEffect hook`的消耗函数。结合这里我们可以发现，`useLayoutEffect hook`从上一次更新的销毁函数调用到本次更新的回调函数调用是同步执行的。
+在上一节介绍[Update effect](./mutation.html#update-effect)时介绍过，`mutation阶段`会执行`useLayoutEffect hook`的销毁函数。结合这里我们可以发现，`useLayoutEffect hook`从上一次更新的销毁函数调用到本次更新的回调函数调用是同步执行的。
 
 而`useEffect`则需要先调度，在`commit阶段`完成后再异步执行。这就是`useLayoutEffect`与`useEffect`的区别。
 
