@@ -4,7 +4,7 @@
 
 ## 创建fiber
 
-从[双缓存机制一节](../process/doubleBuffer.html#mount时)我们知道，首次执行`ReactDOM.render`会创建`rootFiberNode`和`rootFiber`。其中`rootFiberNode`是整个应用的根节点，`rootFiber`是要渲染组件所在组件树的`根节点`。
+从[双缓存机制一节](../process/doubleBuffer.html#mount时)我们知道，首次执行`ReactDOM.render`会创建`fiberRootNode`和`rootFiber`。其中`fiberRootNode`是整个应用的根节点，`rootFiber`是要渲染组件所在组件树的`根节点`。
 
 这一步发生在调用`ReactDOM.render`后进入的`legacyRenderSubtreeIntoContainer`方法中。
 
@@ -19,7 +19,7 @@ fiberRoot = root._internalRoot;
 
 > 你可以从[这里](https://github.com/facebook/react/blob/970fa122d8188bafa600e9b5214833487fbf1092/packages/react-dom/src/client/ReactDOMLegacy.js#L193)看到这一步的代码
 
-`legacyCreateRootFromDOMContainer`方法内部会调用`createFiberRoot`方法完成`rootFiberNode`和`rootFiber`的创建以及关联。并初始化`updateQueue`。
+`legacyCreateRootFromDOMContainer`方法内部会调用`createFiberRoot`方法完成`fiberRootNode`和`rootFiber`的创建以及关联。并初始化`updateQueue`。
 
 ```js
 export function createFiberRoot(
@@ -28,13 +28,13 @@ export function createFiberRoot(
   hydrate: boolean,
   hydrationCallbacks: null | SuspenseHydrationCallbacks,
 ): FiberRoot {
-  // 创建rootFiberNode
+  // 创建fiberRootNode
   const root: FiberRoot = (new FiberRootNode(containerInfo, tag, hydrate): any);
   
   // 创建rootFiber
   const uninitializedFiber = createHostRootFiber(tag);
 
-  // 连接rootFiber与rootFiberNode
+  // 连接rootFiber与fiberRootNode
   root.current = uninitializedFiber;
   uninitializedFiber.stateNode = root;
 
@@ -45,7 +45,7 @@ export function createFiberRoot(
 }
 ```
 
-根据以上代码，现在我们可以在[双缓存机制一节](../process/doubleBuffer.html#mount时)基础上补充上`rootFiber`到`rootFiberNode`的引用。
+根据以上代码，现在我们可以在[双缓存机制一节](../process/doubleBuffer.html#mount时)基础上补充上`rootFiber`到`fiberRootNode`的引用。
 
 <img :src="$withBase('/img/fiberroot.png')" alt="fiberRoot">
 
@@ -100,7 +100,7 @@ export function updateContainer(
 整个流程如下：
 
 ```sh
-创建rootFiberNode、rootFiber、updateQueue（`legacyCreateRootFromDOMContainer`）
+创建fiberRootNode、rootFiber、updateQueue（`legacyCreateRootFromDOMContainer`）
 
     |
     |
