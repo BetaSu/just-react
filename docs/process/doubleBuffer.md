@@ -50,19 +50,19 @@ function App() {
 ReactDOM.render(<App/>, document.getElementById('root'));
 ```
 
-1. 首次执行`ReactDOM.render`会创建`rootFiberNode`和`rootFiber`。其中`rootFiberNode`是整个应用的根节点，`rootFiber`是`<App/>`所在组件树的根节点。
+1. 首次执行`ReactDOM.render`会创建`fiberRootNode`（源码中叫`fiberRoot`）和`rootFiber`。其中`fiberRootNode`是整个应用的根节点，`rootFiber`是`<App/>`所在组件树的根节点。
 
-之所以要区分`rootFiberNode`与`rootFiber`，是因为在应用中我们可以多次调用`ReactDOM.render`渲染不同的组件树，他们会拥有不同的`rootFiber`。但是整个应用的根节点只有一个，那就是`rootFiberNode`。
+之所以要区分`fiberRootNode`与`rootFiber`，是因为在应用中我们可以多次调用`ReactDOM.render`渲染不同的组件树，他们会拥有不同的`rootFiber`。但是整个应用的根节点只有一个，那就是`fiberRootNode`。
 
-`rootFiberNode`的`current`会指向当前页面上已渲染内容对应对`Fiber树`，被称为`current Fiber树`。
+`fiberRootNode`的`current`会指向当前页面上已渲染内容对应对`Fiber树`，被称为`current Fiber树`。
 
 <img :src="$withBase('/img/rootfiber.png')" alt="rootFiber">
 
 ```js
-rootFiberNode.current = rootFiber;
+fiberRootNode.current = rootFiber;
 ```
 
-由于是首屏渲染，页面中还没有挂载任何`DOM`，所以`rootFiberNode.current`指向的`rootFiber`没有任何`子Fiber节点`（即`current Fiber树`为空）。
+由于是首屏渲染，页面中还没有挂载任何`DOM`，所以`fiberRootNode.current`指向的`rootFiber`没有任何`子Fiber节点`（即`current Fiber树`为空）。
 
 
 2. 接下来进入`render阶段`，根据组件返回的`JSX`在内存中依次创建`Fiber节点`并连接在一起构建`Fiber树`，被称为`workInProgress Fiber树`。（下图中右侧为内存中构建的树，左侧为页面显示的树）
@@ -73,7 +73,7 @@ rootFiberNode.current = rootFiber;
 
 3. 图中右侧已构建完的`workInProgress Fiber树`在`commit阶段`渲染到页面。
 
-此时`DOM`更新为右侧树对应的样子。`rootFiberNode`的`current`指针指向`workInProgress Fiber树`使其变为`current Fiber 树`。
+此时`DOM`更新为右侧树对应的样子。`fiberRootNode`的`current`指针指向`workInProgress Fiber树`使其变为`current Fiber 树`。
 
 <img :src="$withBase('/img/wipTreeFinish.png')" alt="workInProgressFiberFinish">
 
