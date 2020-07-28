@@ -74,7 +74,7 @@ this.setState({ xxx: 1 }, () => {
 
 - 对于`FunctionComponent`，他会调用`useLayoutEffect hook`的回调函数。
 
-在上一节介绍[Update effect](./mutation.html#update-effect)时介绍过，`mutation阶段`会执行`useLayoutEffect hook`的消耗函数。结合这里我们可以发现，`useLayoutEffect hook`从上一次更新的销毁函数调用到本次更新的回调函数调用是同步执行的。
+在上一节介绍[Update effect](./mutation.html#update-effect)时介绍过，`mutation阶段`会执行`useLayoutEffect hook`的销毁函数。结合这里我们可以发现，`useLayoutEffect hook`从上一次更新的销毁函数调用到本次更新的回调函数调用是同步执行的。
 
 而`useEffect`则需要先调度，在`commit阶段`完成后再异步执行。这就是`useLayoutEffect`与`useEffect`的区别。
 
@@ -133,7 +133,7 @@ root.current = finishedWork;
 
 > 你可以在[这里](https://github.com/facebook/react/blob/970fa122d8188bafa600e9b5214833487fbf1092/packages/react-reconciler/src/ReactFiberWorkLoop.new.js#L2022)看到这行代码
 
-在[双缓存机制一节](../process/doubleBuffer.html#什么是-双缓存)我们介绍过，`workInProgress Fiber树`在`commit阶段`完成渲染后会变为`current Fiber树`。这行代码的作用就是切换`rootFiberNode`指向的`current Fiber树`。
+在[双缓存机制一节](../process/doubleBuffer.html#什么是-双缓存)我们介绍过，`workInProgress Fiber树`在`commit阶段`完成渲染后会变为`current Fiber树`。这行代码的作用就是切换`fiberRootNode`指向的`current Fiber树`。
 
 那么这行代码为什么在这里呢？（在`mutation阶段`结束后，`layout阶段`开始前。）
 

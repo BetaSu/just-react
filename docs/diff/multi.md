@@ -129,7 +129,7 @@ function List () {
 ::: warning 注意
 在我们做数组相关的算法题时，经常使用**双指针**从数组头和尾同时遍历以提高效率，但是这里却不行。
 
-虽然本次更新的`JSX对象` `newChildren`为数组形式，但是和`newChildren`中每个组件进行比较的是`current fiber`，同级的`Fiber节点`是由`sibling`指针链接形成的单链表。
+虽然本次更新的`JSX对象` `newChildren`为数组形式，但是和`newChildren`中每个组件进行比较的是`current fiber`，同级的`Fiber节点`是由`sibling`指针链接形成的单链表，即不支持双指针遍历。
 
 即 `newChildren[0]`与`fiber`比较，`newChildren[1]`与`fiber.sibling`比较。
 
@@ -216,7 +216,7 @@ function List () {
 
 ### `newChildren`与`oldFiber`同时遍历完
 
-那就是最理想的情况：只有组件`更新`。此时`Diff`结束。
+那就是最理想的情况：只需在第一轮遍历进行组件[`更新`](https://github.com/facebook/react/blob/3c1a7ac87c5b4903aa0de02d11bd9ec2590ad598/packages/react-reconciler/src/ReactChildFiber.new.js#L817)。此时`Diff`结束。
 
 ### `newChildren`没遍历完，`oldFiber`遍历完
 
