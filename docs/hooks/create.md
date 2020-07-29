@@ -17,11 +17,13 @@ function App() {
 可以将工作分为两部分：
 
 1. 通过一些途径产生`更新`，`更新`会造成组件`render`。
+
 2. 组件`render`时`useState`返回的`num`为更新后的结果。
 
 其中`步骤1`的`更新`可以分为`mount`和`update`：
 
 1. 调用`ReactDOM.render`会产生`mount`的`更新`，`更新`内容为`useState`的`initialValue`（即`0`）。
+
 2. 点击`p`标签触发`updateNum`会产生一次`update`的`更新`，`更新`内容为`num => num + 1`。
 
 接下来讲解这两个步骤如何实现。

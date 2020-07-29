@@ -168,6 +168,10 @@ module.exports = {
 					[
 						"/hooks/create",
 						"极简Hooks实现"
+					],
+					[
+						"/hooks/structure",
+						"Hooks数据结构"
 					]
 				]
 			}
