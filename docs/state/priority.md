@@ -61,12 +61,15 @@ fiber.updateQueue = {
 };
 ```
 
-在`u1`完成`render阶段`前用户通过键盘输入字母“I”，产生了`u2`。`u2`属于**受控的用户输入**，需要**同步执行**，显然优先级高于`u1`，于是中断`u1`产生的`render阶段`。
+在`u1`完成`render阶段`前用户通过键盘输入字母“I”，产生了`u2`。`u2`属于**受控的用户输入**，优先级高于`u1`，于是中断`u1`产生的`render阶段`。
 
 此时：
 
 ```js
-fiber.updateQueue.shared.pending === u2;
+fiber.updateQueue.shared.pending === u2 ----> u1
+                                     ^        |
+                                     |________|
+// 即
 u2.next === u1;
 u1.next === u2;
 ```
@@ -77,7 +80,17 @@ u1.next === u2;
 
 在`processUpdateQueue`方法中，`shared.pending`环状链表会被剪开并拼接在`baseUpdate`后面。
 
-接下来遍历`baseUpdate`，处理优先级合适的`Update`（这一次处理的是更高优的`u2`）。未被处理的`u1`成为下次更新的`baseUpdate`。
+需要明确一点，`shared.pending`指向最后一个`pending`的`update`，所以实际执行时`update`的顺序为：
+
+```js
+u1 -- u2
+```
+
+接下来遍历`baseUpdate`，处理优先级合适的`Update`（这一次处理的是更高优的`u2`）。
+
+由于`u2`不是`baseUpdate`中的第一个`update`，在其之前的`u1`由于优先级不够被跳过。
+
+`update`之间可能有依赖关系，所以被跳过的`update`及其后面所有`update`会成为下次更新的`baseUpdate`。（即`u1 -- u2`）。
 
 最终`u2`完成`render - commit阶段`。
 
@@ -90,7 +103,7 @@ fiber.updateQueue = {
     text: 'HI'
   },
   firstBaseUpdate: u1,
-  lastBaseUpdate: u1
+  lastBaseUpdate: u2
   shared: {
     pending: null
   },
@@ -117,7 +130,7 @@ fiber.updateQueue = {
 };
 ```
 
-我们可以看见，`u1`对应的更新执行了两次，相应的`render阶段`的生命周期勾子`componentWillXXX`也会触发两次。这也是为什么这些勾子会被标记为`unsafe_`。
+我们可以看见，`u2`对应的更新执行了两次，相应的`render阶段`的生命周期勾子`componentWillXXX`也会触发两次。这也是为什么这些勾子会被标记为`unsafe_`。
 
 ## 如何保证状态正确
 
