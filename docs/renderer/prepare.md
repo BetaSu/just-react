@@ -1,4 +1,4 @@
-上一章[最后一节](../process/completeWork.html#流程结尾)我们介绍了，`commitRoot`方法是`commit阶段`工作的起点。`rootFiber`会作为传参。
+上一章[最后一节](../process/completeWork.html#流程结尾)我们介绍了，`commitRoot`方法是`commit阶段`工作的起点。`fiberRootNode`会作为传参。
 
 ```js
 commitRoot(root);
