@@ -200,7 +200,7 @@ rootFiber -----> App -----> div -----> p
                ---> li
 ```
 
-此时`DOM节点``p`的兄弟节点为`li`，而`Fiber节点``p`对应的兄弟`DOM节点`为：
+此时`DOM节点` `p`的兄弟节点为`li`，而`Fiber节点` `p`对应的兄弟`DOM节点`为：
 
 ```js
 fiberP.sibling.child
