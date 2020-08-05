@@ -1,5 +1,5 @@
 module.exports = {
-	"title": "React 技术揭秘",
+	"title": "React技术揭秘",
 	"description": "React源码解析",
 	"dest": "dist",
 	"serviceWorker": false,
@@ -173,10 +173,10 @@ module.exports = {
 						"/hooks/structure",
 						"Hooks数据结构"
 					],
-					// [
-					// 	"/hooks/usestate",
-					// 	"useState与useReducer"
-					// ]
+					[
+						"/hooks/usestate",
+						"useState与useReducer"
+					]
 				]
 			}
 		]
