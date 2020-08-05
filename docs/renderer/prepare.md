@@ -16,7 +16,7 @@ commitRoot(root);
 
 - layout阶段（执行`DOM`操作后）
 
-你可以从[这里](https://github.com/facebook/react/blob/970fa122d8188bafa600e9b5214833487fbf1092/packages/react-reconciler/src/ReactFiberWorkLoop.new.js#L1852)看到`commit`阶段的完整代码
+你可以从[这里](https://github.com/facebook/react/blob/1fb18e22ae66fdb1dc127347e169e73948778e5a/packages/react-reconciler/src/ReactFiberWorkLoop.new.js#L2001)看到`commit`阶段的完整代码
 
 在`before mutation阶段`之前和`layout阶段`之后还有一些额外工作，涉及到比如`useEffect`的触发，`优先级相关`的重置。对我们当前属于超纲内容，为了内容完整性，在这节中简单介绍。
 

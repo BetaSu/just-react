@@ -58,7 +58,7 @@ function App({name}) {
 
 由开发者来显式的告诉`React`哪些组件不需要重复计算、可以复用。
 
-在后面源码的学习中，我们会看到这些优化手段是如何起作用的。比如经过优化后，`React`会通过[bailoutOnAlreadyFinishedWork方法](https://github.com/facebook/react/blob/970fa122d8188bafa600e9b5214833487fbf1092/packages/react-reconciler/src/ReactFiberBeginWork.new.js#L2964)跳过一些本次更新不需要处理的任务。
+在后面源码的学习中，我们会看到这些优化手段是如何起作用的。比如经过优化后，`React`会通过[bailoutOnAlreadyFinishedWork方法](https://github.com/facebook/react/blob/1fb18e22ae66fdb1dc127347e169e73948778e5a/packages/react-reconciler/src/ReactFiberBeginWork.new.js#L2974)跳过一些本次更新不需要处理的任务。
 
 
 ## 理解“响应自然”
@@ -88,7 +88,7 @@ function App({name}) {
 
 为了实现这个目标，需要将**同步的更新**变为**可中断的异步更新**。
 
-在浏览器每一帧的时间中，预留一些时间给JS线程，`React`利用这部分时间更新组件（可以看到，在[源码](https://github.com/facebook/react/blob/4c7036e807fa18a3e21a5182983c7c0f05c5936e/packages/scheduler/src/forks/SchedulerHostConfig.default.js#L119)中，预留的初始时间是5ms）。
+在浏览器每一帧的时间中，预留一些时间给JS线程，`React`利用这部分时间更新组件（可以看到，在[源码](https://github.com/facebook/react/blob/1fb18e22ae66fdb1dc127347e169e73948778e5a/packages/scheduler/src/forks/SchedulerHostConfig.default.js#L119)中，预留的初始时间是5ms）。
 
 当预留的时间不够用时，`React`将线程控制权交还给浏览器使其有时间渲染UI，`React`则等待下一帧时间到来继续被中断的工作。
 

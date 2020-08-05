@@ -1,6 +1,6 @@
 对于单个节点，我们以类型`object`为例，会进入`reconcileSingleElement`
 
-> 你可以从[这里](https://github.com/facebook/react/blob/970fa122d8188bafa600e9b5214833487fbf1092/packages/react-reconciler/src/ReactChildFiber.new.js#L1133)看到`reconcileSingleElement`源码
+> 你可以从[这里](https://github.com/facebook/react/blob/1fb18e22ae66fdb1dc127347e169e73948778e5a/packages/react-reconciler/src/ReactChildFiber.new.js#L1141)看到`reconcileSingleElement`源码
 
 ```javascript
   const isObject = typeof newChild === 'object' && newChild !== null;

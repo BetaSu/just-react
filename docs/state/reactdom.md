@@ -17,7 +17,7 @@ root = container._reactRootContainer = legacyCreateRootFromDOMContainer(
 fiberRoot = root._internalRoot;
 ```
 
-> 你可以从[这里](https://github.com/facebook/react/blob/970fa122d8188bafa600e9b5214833487fbf1092/packages/react-dom/src/client/ReactDOMLegacy.js#L193)看到这一步的代码
+> 你可以从[这里](https://github.com/facebook/react/blob/1fb18e22ae66fdb1dc127347e169e73948778e5a/packages/react-dom/src/client/ReactDOMLegacy.js#L193)看到这一步的代码
 
 `legacyCreateRootFromDOMContainer`方法内部会调用`createFiberRoot`方法完成`fiberRootNode`和`rootFiber`的创建以及关联。并初始化`updateQueue`。
 
@@ -49,7 +49,7 @@ export function createFiberRoot(
 
 <img :src="$withBase('/img/fiberroot.png')" alt="fiberRoot">
 
-> 你可以从[这里](https://github.com/facebook/react/blob/970fa122d8188bafa600e9b5214833487fbf1092/packages/react-reconciler/src/ReactFiberRoot.new.js#L97)看到这一步的代码
+> 你可以从[这里](https://github.com/facebook/react/blob/1fb18e22ae66fdb1dc127347e169e73948778e5a/packages/react-reconciler/src/ReactFiberRoot.new.js#L97)看到这一步的代码
 
 ## 创建update
 
@@ -87,7 +87,7 @@ export function updateContainer(
 }
 ```
 
-> 你可以从[这里](https://github.com/facebook/react/blob/970fa122d8188bafa600e9b5214833487fbf1092/packages/react-reconciler/src/ReactFiberReconciler.new.js#L255)看到`updateContainer`的代码
+> 你可以从[这里](https://github.com/facebook/react/blob/1fb18e22ae66fdb1dc127347e169e73948778e5a/packages/react-reconciler/src/ReactFiberReconciler.new.js#L255)看到`updateContainer`的代码
 
 值得注意的是其中`update.payload = {element};`
 

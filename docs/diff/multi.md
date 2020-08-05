@@ -34,7 +34,7 @@ function List () {
 
 这种情况下，`reconcileChildFibers`的`newChild`参数类型为`Array`，在`reconcileChildFibers`函数内部对应如下情况：
 
-> 你可以在[这里](https://github.com/facebook/react/blob/970fa122d8188bafa600e9b5214833487fbf1092/packages/react-reconciler/src/ReactChildFiber.new.js#L1344)看到这段源码逻辑
+> 你可以在[这里](https://github.com/facebook/react/blob/1fb18e22ae66fdb1dc127347e169e73948778e5a/packages/react-reconciler/src/ReactChildFiber.new.js#L1352)看到这段源码逻辑
 
 ```js
   if (isArray(newChild)) {
@@ -154,7 +154,7 @@ function List () {
 
 4. 如果`newChildren`遍历完（即`i === newChildren.length - 1`）或者`oldFiber`遍历完（即`oldFiber.sibling === null`），跳出遍历，**第一轮遍历结束。**
 
-> 你可以从[这里](https://github.com/facebook/react/blob/3c1a7ac87c5b4903aa0de02d11bd9ec2590ad598/packages/react-reconciler/src/ReactChildFiber.new.js#L810)看到这轮遍历的源码
+> 你可以从[这里](https://github.com/facebook/react/blob/1fb18e22ae66fdb1dc127347e169e73948778e5a/packages/react-reconciler/src/ReactChildFiber.new.js#L818)看到这轮遍历的源码
 
 当遍历结束后，会有两种结果：
 
@@ -216,19 +216,19 @@ function List () {
 
 ### `newChildren`与`oldFiber`同时遍历完
 
-那就是最理想的情况：只需在第一轮遍历进行组件[`更新`](https://github.com/facebook/react/blob/3c1a7ac87c5b4903aa0de02d11bd9ec2590ad598/packages/react-reconciler/src/ReactChildFiber.new.js#L817)。此时`Diff`结束。
+那就是最理想的情况：只需在第一轮遍历进行组件[`更新`](https://github.com/facebook/react/blob/1fb18e22ae66fdb1dc127347e169e73948778e5a/packages/react-reconciler/src/ReactChildFiber.new.js#L825)。此时`Diff`结束。
 
 ### `newChildren`没遍历完，`oldFiber`遍历完
 
 已有的`DOM节点`都复用了，这时还有新加入的节点，意味着本次更新有新节点插入，我们只需要遍历剩下的`newChildren`为生成的`workInProgress fiber`依次标记`Placement`。
 
-> 你可以在[这里](https://github.com/facebook/react/blob/3c1a7ac87c5b4903aa0de02d11bd9ec2590ad598/packages/react-reconciler/src/ReactChildFiber.new.js#L861)看到这段源码逻辑
+> 你可以在[这里](https://github.com/facebook/react/blob/1fb18e22ae66fdb1dc127347e169e73948778e5a/packages/react-reconciler/src/ReactChildFiber.new.js#L869)看到这段源码逻辑
 
 ### `newChildren`遍历完，`oldFiber`没遍历完
 
 意味着本次更新比之前的节点数量少，有节点被删除了。所以需要遍历剩下的`oldFiber`，依次标记`Deletion`。
 
-> 你可以在[这里](https://github.com/facebook/react/blob/3c1a7ac87c5b4903aa0de02d11bd9ec2590ad598/packages/react-reconciler/src/ReactChildFiber.new.js#L855)看到这段源码逻辑
+> 你可以在[这里](https://github.com/facebook/react/blob/1fb18e22ae66fdb1dc127347e169e73948778e5a/packages/react-reconciler/src/ReactChildFiber.new.js#L863)看到这段源码逻辑
 
 ### `newChildren`与`oldFiber`都没遍历完
 
@@ -236,7 +236,7 @@ function List () {
 
 这是`Diff算法`最精髓也是最难懂的部分。我们接下来会重点讲解。
 
-> 你可以在[这里](https://github.com/facebook/react/blob/3c1a7ac87c5b4903aa0de02d11bd9ec2590ad598/packages/react-reconciler/src/ReactChildFiber.new.js#L885)看到这段源码逻辑
+> 你可以在[这里](https://github.com/facebook/react/blob/1fb18e22ae66fdb1dc127347e169e73948778e5a/packages/react-reconciler/src/ReactChildFiber.new.js#L893)看到这段源码逻辑
 
 ## 处理移动的节点
 
@@ -250,7 +250,7 @@ function List () {
 const existingChildren = mapRemainingChildren(returnFiber, oldFiber);
 ```
 
-> 你可以在[这里](https://github.com/facebook/react/blob/3c1a7ac87c5b4903aa0de02d11bd9ec2590ad598/packages/react-reconciler/src/ReactChildFiber.new.js#L882)看到这段源码逻辑
+> 你可以在[这里](https://github.com/facebook/react/blob/1fb18e22ae66fdb1dc127347e169e73948778e5a/packages/react-reconciler/src/ReactChildFiber.new.js#L890)看到这段源码逻辑
 
 接下来遍历剩余的`newChildren`，通过`newChildren[i].key`就能在`existingChildren`中找到`key`相同的`oldFiber`。
 

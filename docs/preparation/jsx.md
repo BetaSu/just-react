@@ -34,7 +34,7 @@ import React from 'react';
 h("p", null, "KaSong");
 ```
 
-## [React.createElement](https://github.com/facebook/react/blob/970fa122d8188bafa600e9b5214833487fbf1092/packages/react/src/ReactElement.js#L348)
+## [React.createElement](https://github.com/facebook/react/blob/1fb18e22ae66fdb1dc127347e169e73948778e5a/packages/react/src/ReactElement.js#L348)
 
 既然`JSX`会被编译为`React.createElement`，让我们看看他做了什么：
 
@@ -92,7 +92,7 @@ const ReactElement = function(type, key, ref, self, source, owner, props) {
 
 所以调用`React.createElement`返回的对象就是`React Element`么？
 
-`React`提供了验证合法`React Element`的全局API [React.isValidElement](https://github.com/facebook/react/blob/970fa122d8188bafa600e9b5214833487fbf1092/packages/react/src/ReactElement.js#L547)，我们看下他的实现：
+`React`提供了验证合法`React Element`的全局API [React.isValidElement](https://github.com/facebook/react/blob/1fb18e22ae66fdb1dc127347e169e73948778e5a/packages/react/src/ReactElement.js#L547)，我们看下他的实现：
 
 ```js
 export function isValidElement(object) {

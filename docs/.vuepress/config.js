@@ -176,7 +176,11 @@ module.exports = {
 					[
 						"/hooks/usestate",
 						"useState与useReducer"
-					]
+					],
+					// [
+					// 	"/hooks/useeffect",
+					// 	"useEffect与useLayoutEffect"
+					// ]
 				]
 			}
 		]
