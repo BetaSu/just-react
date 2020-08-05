@@ -65,13 +65,17 @@ module.exports = {
 				"title": "第二章 render阶段",
 				"collapsable": true,
 				"children": [
+					// [
+					// 	"/process/fiber-mental",
+					// 	"Fiber架构的心智模型"
+					// ],
 					[
 						"/process/fiber",
-						"Fiber架构"
+						"Fiber架构的实现原理"
 					],
 					[
 						"/process/doubleBuffer",
-						"双缓存机制"
+						"Fiber架构的工作原理"
 					],
 					[
 						"/process/reconciler",
