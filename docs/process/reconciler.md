@@ -1,4 +1,4 @@
-在本章剩下部分我们会讲解`Fiber节点`是如何被创建并构建`Fiber树`的。
+本章我们会讲解`Fiber节点`是如何被创建并构建`Fiber树`的。
 
 `render阶段`开始于`performSyncWorkOnRoot`或`performConcurrentWorkOnRoot`方法的调用。这取决于本次更新是同步更新还是异步更新。
 

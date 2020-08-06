@@ -1,6 +1,6 @@
 `JSX`作为描述组件内容的数据结构，为JS赋予了更多视觉表现力。在`React`中我们大量使用他。在深入源码之前，有些疑问我们需要先解决：
 
-- `JSX`和虚拟DOM是同一个东西么？
+- `JSX`和`Fiber节点`是同一个东西么？
 - `React Component`、`React Element`是同一个东西么，他们和`JSX`有什么关系？
 
 带着这些疑问，让我们开始这一节的学习。
@@ -164,7 +164,7 @@ AppFunc instanceof Function === true;
 ClassComponent.prototype.isReactComponent = {};
 ```
 
-## JSX与虚拟DOM
+## JSX与Fiber节点
 
 从上面的内容我们可以发现，`JSX`是一种描述当前组件内容的数据结构，他不包含组件**schedule**、**reconcile**、**render**所需的相关信息。
 
@@ -174,11 +174,11 @@ ClassComponent.prototype.isReactComponent = {};
 - 组件的`state`
 - 组件被打上的用于**Renderer**的`标记`
 
-这些内容都包含在`虚拟DOM`中。
+这些内容都包含在`Fiber节点`中。
 
-所以，在组件`mount`时，`Reconciler`根据`JSX`描述的组件内容生成组件对应的`虚拟DOM`。
+所以，在组件`mount`时，`Reconciler`根据`JSX`描述的组件内容生成组件对应的`Fiber节点`。
 
-在`update`时，`Reconciler`将`JSX`与`虚拟DOM`保存的数据对比，生成组件对应的`虚拟DOM`，并根据对比结果为`虚拟DOM`打上`标记`。
+在`update`时，`Reconciler`将`JSX`与`Fiber节点`保存的数据对比，生成组件对应的`Fiber节点`，并根据对比结果为`Fiber节点`打上`标记`。
 
 ## 参考资料
 

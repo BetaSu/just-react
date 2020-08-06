@@ -82,6 +82,14 @@ export const Deletion = /*              */ 0b0000000001000;
 
 > 实时上，由于**Scheduler**和**Reconciler**都是平台无关的，所以`React`为他们单独发了一个包[react-Reconciler](https://www.npmjs.com/package/react-reconciler)。你可以用这个包自己实现一个`ReactDOM`，具体见**参考资料**
  
+## 总结
+
+通过本节我们知道了`React16`采用新的`Reconciler`。
+
+`Reconciler`内部采用了`Fiber`的架构。
+
+`Fiber`是什么？他和`Reconciler`或者说和`React`之间是什么关系？我们会在接下来三节解答。
+
 ## 参考资料
 React前经理Sophie在React Conf 2019的演讲 
 

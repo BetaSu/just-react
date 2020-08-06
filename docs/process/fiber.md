@@ -1,4 +1,4 @@
-在[前一章讲解React16的新架构](/preparation/newConstructure)时，我们提到的**虚拟DOM**在`React`中有个正式的称呼——`Fiber`。在之后的学习中，我们会逐渐用`Fiber`来取代**React16虚拟DOM**这一称呼。
+在[新的React架构一节](/preparation/newConstructure)中，我们提到的**虚拟DOM**在`React`中有个正式的称呼——`Fiber`。在之后的学习中，我们会逐渐用`Fiber`来取代**React16虚拟DOM**这一称呼。
 
 接下来让我们了解下`Fiber`因何而来？他的作用是什么？
 
