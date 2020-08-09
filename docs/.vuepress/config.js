@@ -29,7 +29,7 @@ module.exports = {
 			],
 			{
 				"title": "理念篇",
-				"collapsable": false,
+				"collapsable": true,
 				"children": [
 					{
 						"title": "第一章 React理念",

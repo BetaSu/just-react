@@ -150,7 +150,11 @@ function List () {
 
 2. 如果可复用，`i++`，继续比较`newChildren[i]`与`oldFiber.sibling`，可以复用则继续遍历。
 
-3. 如果不可复用，立即跳出整个遍历，**第一轮遍历结束。**
+3. 如果不可复用，分两种情况：
+
+- `key`不同导致不可复用，立即跳出整个遍历，**第一轮遍历结束。**
+
+- `type`不同导致不可复用，会将`oldFiber`标记为`DELETION`，并继续遍历
 
 4. 如果`newChildren`遍历完（即`i === newChildren.length - 1`）或者`oldFiber`遍历完（即`oldFiber.sibling === null`），跳出遍历，**第一轮遍历结束。**
 
