@@ -172,14 +172,13 @@ function List () {
             
 // 之后
 <li key="0">0</li>
-<li key="1">1</li>
-<div key="2">2</div>
-<li key="3">3</li>
+<li key="2">1</li>
+<li key="1">2</li>
 ```
 
-前2个节点可复用，遍历到`key === 2`的节点发现`type`改变，不可复用，跳出遍历。
+前1个节点可复用，遍历到`key === 2`的节点发现`key`改变，不可复用，跳出遍历。
 
-此时`oldFiber`剩下`key === 2`未遍历，`newChildren`剩下`key === 2`、`key === 3`未遍历。
+此时`oldFiber`剩下`key === 2`未遍历，`newChildren`剩下`key === 1`未遍历。
 
 
 ### 步骤4跳出的遍历
