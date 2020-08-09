@@ -154,7 +154,7 @@ function List () {
 
 - `key`不同导致不可复用，立即跳出整个遍历，**第一轮遍历结束。**
 
-- `type`不同导致不可复用，会将`oldFiber`标记为`DELETION`，并继续遍历
+- `key`相同`type`不同导致不可复用，会将`oldFiber`标记为`DELETION`，并继续遍历
 
 4. 如果`newChildren`遍历完（即`i === newChildren.length - 1`）或者`oldFiber`遍历完（即`oldFiber.sibling === null`），跳出遍历，**第一轮遍历结束。**
 
