@@ -121,4 +121,4 @@ function App({name}) {
 
 ## 参考资料
 
-[「英文 计划翻译」尤雨溪论JavaScript框架设计哲学：平衡](https://www.bilibili.com/video/BV134411c7Sk?from=search&seid=17404881291635824595)
+[「英文」尤雨溪论JavaScript框架设计哲学：平衡](https://www.bilibili.com/video/BV134411c7Sk?from=search&seid=17404881291635824595)

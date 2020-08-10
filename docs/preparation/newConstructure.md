@@ -91,7 +91,11 @@ export const Deletion = /*              */ 0b0000000001000;
 `Fiber`是什么？他和`Reconciler`或者说和`React`之间是什么关系？我们会在接下来三节解答。
 
 ## 参考资料
-React前经理Sophie在React Conf 2019的演讲 
 
-[「英文 外网 计划翻译」Building a Custom React Renderer | Sophie Alpert](https://www.youtube.com/watch?v=CGpMlWVcHok&list=PLPxbbTqCLbGHPxZpw4xj_Wwg8-fdNxJRh&index=7)
+[「英文 外网」Building a Custom React Renderer | React前经理Sophie Alpert](https://www.youtube.com/watch?v=CGpMlWVcHok&list=PLPxbbTqCLbGHPxZpw4xj_Wwg8-fdNxJRh&index=7)
 
+:::details 同步/Debounce/Throttle/并发 情况下性能对比Demo
+
+[关注公众号](../me.html)，后台回复**632**获得在线Demo地址
+
+:::
