@@ -213,7 +213,7 @@ export const Deletion = /*                 */ 0b00000000001000;
 
 1. `fiber.stateNode`存在，即`Fiber节点`中保存了对应的`DOM节点`
 
-2. `fiber.effectTag &= Placement !== 0`，即`Fiber节点`存在`Placement effectTag`
+2. `(fiber.effectTag & Placement) !== 0`，即`Fiber节点`存在`Placement effectTag`
 
 我们知道，`mount`时，`fiber.stateNode === null`，且在`reconcileChildren`中调用的`mountChildFibers`不会为`Fiber节点`赋值`effectTag`。那么首屏渲染如何完成呢？
 
