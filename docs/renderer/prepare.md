@@ -4,9 +4,11 @@
 commitRoot(root);
 ```
 
-在`rootFiber.firstEffect`上保存了一条需要执行副作用的`Fiber节点`的单向链表`effectList`，这些`Fiber节点`的`updateQueue`中保存了变化的`props`。这些都需要在`commit`阶段被渲染在页面上。
+在`rootFiber.firstEffect`上保存了一条需要执行`副作用`的`Fiber节点`的单向链表`effectList`，这些`Fiber节点`的`updateQueue`中保存了变化的`props`。
 
-除此之外，还有些生命周期钩子（比如`componentDidXXX`）、`hook`（比如`useEffect`）需要在`commit`阶段执行。
+这些`副作用`对应的`DOM操作`在`commit`阶段执行。
+
+除此之外，一些生命周期钩子（比如`componentDidXXX`）、`hook`（比如`useEffect`）需要在`commit`阶段执行。
 
 `commit`阶段的主要工作（即`Renderer`的工作流程）分为三部分：
 
@@ -18,7 +20,9 @@ commitRoot(root);
 
 你可以从[这里](https://github.com/facebook/react/blob/1fb18e22ae66fdb1dc127347e169e73948778e5a/packages/react-reconciler/src/ReactFiberWorkLoop.new.js#L2001)看到`commit`阶段的完整代码
 
-在`before mutation阶段`之前和`layout阶段`之后还有一些额外工作，涉及到比如`useEffect`的触发，`优先级相关`的重置。对我们当前属于超纲内容，为了内容完整性，在这节中简单介绍。
+在`before mutation阶段`之前和`layout阶段`之后还有一些额外工作，涉及到比如`useEffect`的触发、`优先级相关`的重置、`ref`的绑定/解绑。
+
+这些对我们当前属于超纲内容，为了内容完整性，在这节简单介绍。
 
 
 
@@ -34,8 +38,10 @@ do {
     flushPassiveEffects();
   } while (rootWithPendingPassiveEffects !== null);
 
-  // 即 rootFiber
+  // root指 fiberRootNode
+  // root.finishedWork指当前应用的rootFiber
   const finishedWork = root.finishedWork;
+
   // 凡是变量名带lane的都是优先级相关
   const lanes = root.finishedLanes;
   if (finishedWork === null) {
@@ -62,6 +68,7 @@ do {
     }
   }
 
+  // 重置全局变量
   if (root === workInProgressRoot) {
     workInProgressRoot = null;
     workInProgress = null;
@@ -88,108 +95,74 @@ do {
   }
 ```
 
-可以看到，`before mutation`之前主要做一些变量赋值的准备工作。这一长串代码我们只需要关注最后赋值的`firstEffect`，在`commit`的三个阶段都会用到他。
+可以看到，`before mutation`之前主要做一些变量赋值，状态重置的工作。
+
+这一长串代码我们只需要关注最后赋值的`firstEffect`，在`commit`的三个子阶段都会用到他。
 
 ## layout之后
 
 接下来让我们简单看下`layout`阶段执行完后的代码，现在你还不需要理解他们：
 
 ```js
-
-// 处理useEffect相关
 const rootDidHavePassiveEffects = rootDoesHavePassiveEffects;
+
+// useEffect相关
 if (rootDoesHavePassiveEffects) {
   rootDoesHavePassiveEffects = false;
   rootWithPendingPassiveEffects = root;
   pendingPassiveEffectsLanes = lanes;
   pendingPassiveEffectsRenderPriority = renderPriorityLevel;
-} else {
-  nextEffect = firstEffect;
-  while (nextEffect !== null) {
-    const nextNextEffect = nextEffect.nextEffect;
-    nextEffect.nextEffect = null;
-    if (nextEffect.effectTag & Deletion) {
-      detachFiberAfterEffects(nextEffect);
-    }
-    nextEffect = nextNextEffect;
-  }
-}
+} else {}
 
-remainingLanes = root.pendingLanes;
-
-// 性能追踪相关
+// 性能优化相关
 if (remainingLanes !== NoLanes) {
   if (enableSchedulerTracing) {
-    if (spawnedWorkDuringRender !== null) {
-      const expirationTimes = spawnedWorkDuringRender;
-      spawnedWorkDuringRender = null;
-      for (let i = 0; i < expirationTimes.length; i++) {
-        scheduleInteractions(
-          root,
-          expirationTimes[i],
-          root.memoizedInteractions,
-        );
-      }
-    }
-    schedulePendingInteractions(root, remainingLanes);
+    // ...
   }
 } else {
-  legacyErrorBoundariesThatAlreadyFailed = null;
+  // ...
 }
 
-// 性能追踪相关
+// 性能优化相关
 if (enableSchedulerTracing) {
   if (!rootDidHavePassiveEffects) {
-    finishPendingInteractions(root, lanes);
+    // ...
   }
 }
 
-// 检测无限循环渲染
+// ...检测无限循环的同步任务
 if (remainingLanes === SyncLane) {
-  if (root === rootWithNestedUpdates) {
-    nestedUpdateCount++;
-  } else {
-    nestedUpdateCount = 0;
-    rootWithNestedUpdates = root;
-  }
-} else {
-  nestedUpdateCount = 0;
-}
+  // ...
+} 
 
-// 在离开commitRoot函数前调用，确保任何附加的任务被调度
+// 在离开commitRoot函数前调用，触发一次新的调度，确保任何附加的任务被调度
 ensureRootIsScheduled(root, now());
 
-// 记录错误
-if (hasUncaughtError) {
-  hasUncaughtError = false;
-  const error = firstUncaughtError;
-  firstUncaughtError = null;
-  throw error;
-}
+// ...处理未捕获错误及老版本遗留的边界问题
 
-// 遗留的边界情况
-if ((executionContext & LegacyUnbatchedContext) !== NoContext) {
-  return null;
-}
 
-// 在commit阶段有同步任务被调度，在这里率先执行他们，不需要等到浏览器下一个macroTask
+// 执行同步任务，这样同步任务不需要等到下次事件循环再执行
 // 比如在 componentDidMount 中执行 setState 创建的更新会在这里被同步执行
+// 或useLayoutEffect
 flushSyncCallbackQueue();
 
 return null;
 ```
 
+
+> 你可以在[这里](https://github.com/facebook/react/blob/1fb18e22ae66fdb1dc127347e169e73948778e5a/packages/react-reconciler/src/ReactFiberWorkLoop.new.js#L2195)看到这段代码
+
 主要包括三点内容：
 
 1. `useEffect`相关的处理。
 
-这点我们会在讲解`layout阶段`时一起讲解。
+我们会在讲解`layout阶段`时讲解。
 
 2. 性能追踪相关。
 
-源码里有很多和`interaction`相关的变量。他们都和追踪`React`渲染时间、性能相关。被用在[Profiler API](https://reactjs.bootcss.com/docs/profiler.html)和[DevTools](https://github.com/facebook/react-devtools/pull/1069)中。
+源码里有很多和`interaction`相关的变量。他们都和追踪`React`渲染时间、性能相关，在[Profiler API](https://reactjs.bootcss.com/docs/profiler.html)和[DevTools](https://github.com/facebook/react-devtools/pull/1069)中使用。
 
-> 你可以在这里看到[interaction的定义](https://gist.github.com/bvaughn/8de925562903afd2e7a12554adcdda16#overview)。
+> 你可以在这里看到[interaction的定义](https://gist.github.com/bvaughn/8de925562903afd2e7a12554adcdda16#overview)
 
 3. 在`commit`阶段会触发一些生命周期钩子（如 `componentDidXXX`）和`hook`（如`useLayoutEffect`、`useEffect`）。
 
@@ -209,6 +182,8 @@ flushSyncCallbackQueue();
 
 所以我们看不到页面中元素先变为0。
 
-[Demo](https://code.h5jun.com/vazos/edit?html,js,output)
+如果换成`useEffect`多点击几次就能看到区别。
+
+[Demo](https://code.h5jun.com/kakoy/1/edit?js,output)
 
 :::
