@@ -46,6 +46,16 @@ yarn
 yarn build react/index,react-dom/index,scheduler --type=NODE
 ```
 
+:::details 网络不好的同学看这里
+
+如果网络不好，执行`yarn`命令无法完成依赖安装，或者执行`yarn build`无法完成打包，可以使用我打好的包。
+
+版本为`17.0.0-alpha.0`
+
+[地址](https://gitee.com/kasong/react)
+
+:::
+
 现在源码目录`build/node_modules`下会生成最新代码的包。我们为`react`、`react-dom`创建`yarn link`。
 
 > 通过`yarn link`可以改变项目中依赖包的目录指向
