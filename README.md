@@ -4,7 +4,7 @@ React从理念到源码，这一本就够了。
 
 关注公众号拉你进源码交流群和小伙伴们一起交流`React`源码，`React Contributor`在线答疑。
 
-<img width="200" src="https://p2.ssl.qhimg.com/t0159a40299084c799d.jpg" />
+<img width="200" src="https://p4.ssl.qhimg.com/t0125877eac50823b5a.jpg" />
 
 ## 参考资料
 
