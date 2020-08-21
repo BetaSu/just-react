@@ -4,7 +4,9 @@
 
 ## 概览
 
-与前两个阶段类似，`layout阶段`也是遍历`effectList`，执行函数。这里执行的是`commitLayoutEffects`。
+与前两个阶段类似，`layout阶段`也是遍历`effectList`，执行函数。
+
+具体执行的函数是`commitLayoutEffects`。
 
 ```js
 root.current = finishedWork;
@@ -52,7 +54,7 @@ function commitLayoutEffects(root: FiberRoot, committedLanes: Lanes) {
 
 `commitLayoutEffects`一共做了两件事：
 
-1. commitLayoutEffectOnFiber（调用生命周期钩子和 hook）
+1. commitLayoutEffectOnFiber（调用`生命周期钩子`和`hook`相关操作）
 
 2. commitAttachRef（赋值 ref）
 
@@ -72,11 +74,34 @@ this.setState({ xxx: 1 }, () => {
 });
 ```
 
-- 对于`FunctionComponent`，他会调用`useLayoutEffect hook`的回调函数。
+- 对于`FunctionComponent`及相关类型，他会调用`useLayoutEffect hook`的`回调函数`，调度`useEffect`的`销毁`与`回调`函数
 
-在上一节介绍[Update effect](./mutation.html#update-effect)时介绍过，`mutation阶段`会执行`useLayoutEffect hook`的销毁函数。结合这里我们可以发现，`useLayoutEffect hook`从上一次更新的销毁函数调用到本次更新的回调函数调用是同步执行的。
+> `相关类型`指特殊处理后的`FunctionComponent`，比如`ForwardRef`、`React.memo`包裹的`FunctionComponent`
 
-而`useEffect`则需要先调度，在`commit阶段`完成后再异步执行。这就是`useLayoutEffect`与`useEffect`的区别。
+```js
+  switch (finishedWork.tag) {
+    // 以下都是FunctionComponent及相关类型
+    case FunctionComponent:
+    case ForwardRef:
+    case SimpleMemoComponent:
+    case Block: {
+      // 执行useLayoutEffect的回调函数
+      commitHookEffectListMount(HookLayout | HookHasEffect, finishedWork);
+      // 调度useEffect的销毁函数与回调函数
+      schedulePassiveEffects(finishedWork);
+      return;
+    }
+```
+
+> 你可以从[这里](https://github.com/facebook/react/blob/1fb18e22ae66fdb1dc127347e169e73948778e5a/packages/react-reconciler/src/ReactFiberCommitWork.old.js#L465-L491)看到这段代码
+
+在上一节介绍[Update effect](./mutation.html#update-effect)时介绍过，`mutation阶段`会执行`useLayoutEffect hook`的`销毁函数`。
+
+结合这里我们可以发现，`useLayoutEffect hook`从上一次更新的`销毁函数`调用到本次更新的`回调函数`调用是同步执行的。
+
+而`useEffect`则需要先调度，在`Layout阶段`完成后再异步执行。
+
+这就是`useLayoutEffect`与`useEffect`的区别。
 
 - 对于`HostRoot`，即`rootFiber`，如果赋值了第三个参数`回调函数`，也会在此时调用。
 

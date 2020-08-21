@@ -129,6 +129,8 @@ if ((effectTag & Passive) !== NoEffect) {
 
 在`flushPassiveEffects`方法内部会从全局变量`rootWithPendingPassiveEffects`获取`effectList`。
 
+关于`flushPassiveEffects`的具体讲解参照[useEffect与useLayoutEffect一节](../hooks/useeffect.html)
+
 在[completeWork一节](../process/completeWork.html#effectlist)我们讲到，`effectList`中保存了需要执行副作用的`Fiber节点`。其中副作用包括
 
 - 插入`DOM节点`（Placement）

@@ -21,7 +21,7 @@ do {
 
 代码如下：
 
-> 你可以在[这里](https://github.com/facebook/react/blob/970fa122d8188bafa600e9b5214833487fbf1092/packages/react-reconciler/src/ReactFiberWorkLoop.new.js#L2221)看到`commitMutationEffects`源码
+> 你可以在[这里](https://github.com/facebook/react/blob/1fb18e22ae66fdb1dc127347e169e73948778e5a/packages/react-reconciler/src/ReactFiberWorkLoop.old.js#L2091)看到`commitMutationEffects`源码
 
 ```js
 function commitMutationEffects(root: FiberRoot, renderPriorityLevel) {

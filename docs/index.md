@@ -102,7 +102,7 @@
 
 ✅ useState与useReducer
 
-:black_square_button: useEffect与useLayoutEffect
+✅ useEffect
 
 :black_square_button: useRef与useImperativeHandle
 
