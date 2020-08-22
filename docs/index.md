@@ -104,9 +104,9 @@
 
 ✅ useEffect
 
-:black_square_button: useRef与useImperativeHandle
+✅ useRef
 
-#### 第八章 异步调度
+#### 第八章 Concurrent Mode
 
 :black_square_button: 🏠🔧
 

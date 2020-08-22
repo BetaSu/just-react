@@ -199,6 +199,10 @@ module.exports = {
 							[
 								"/hooks/useeffect",
 								"useEffect"
+							],
+							[
+								"/hooks/useref",
+								"useRef"
 							]
 						]
 					}
