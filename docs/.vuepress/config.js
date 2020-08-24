@@ -203,7 +203,11 @@ module.exports = {
 							[
 								"/hooks/useref",
 								"useRef"
-							]
+							],
+							[
+								"/hooks/usememo",
+								"useMemo与useCallback"
+							],
 						]
 					}
 				]
