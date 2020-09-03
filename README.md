@@ -3,7 +3,7 @@
 React从理念到源码，这一本就够了。
 
 
-关注公众号，你可以收获
+关注公众号，你可以收获：
 
 - 结合`业务`与`源码`讲解`React`API的`系列文章`
 
@@ -12,7 +12,7 @@ React从理念到源码，这一本就够了。
 - 拉你进`源码交流群`和小伙伴们一起交流`React`源码，`React Contributor`在线答疑
 
 
-<img width="200" src="https://p4.ssl.qhimg.com/t0125877eac50823b5a.jpg" />
+<img width="200" src="https://p4.ssl.qhimg.com/t0125877eac50823b5a.jpg" alt="公众号：魔术师卡颂" />
 
 ## 参考资料
 
