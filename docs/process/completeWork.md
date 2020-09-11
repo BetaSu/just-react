@@ -190,7 +190,7 @@ rootFiber.firstEffect -----------> fiber -----------> fiber
 
 ## 流程结尾
 
-至此，`render阶段`全部工作完成。在`performSyncWorkOnRoot`函数中`rootFiber`被传递给`commitRoot`方法，开启`commit阶段`工作流程。
+至此，`render阶段`全部工作完成。在`performSyncWorkOnRoot`函数中`fiberRootNode`被传递给`commitRoot`方法，开启`commit阶段`工作流程。
 
 ```js
 commitRoot(root);
