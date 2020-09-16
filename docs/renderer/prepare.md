@@ -160,7 +160,7 @@ return null;
 
 2. 性能追踪相关。
 
-源码里有很多和`interaction`相关的变量。他们都和追踪`React`渲染时间、性能相关，在[Profiler API](https://reactjs.bootcss.com/docs/profiler.html)和[DevTools](https://github.com/facebook/react-devtools/pull/1069)中使用。
+源码里有很多和`interaction`相关的变量。他们都和追踪`React`渲染时间、性能相关，在[Profiler API](https://zh-hans.reactjs.org/docs/profiler.html)和[DevTools](https://github.com/facebook/react-devtools/pull/1069)中使用。
 
 > 你可以在这里看到[interaction的定义](https://gist.github.com/bvaughn/8de925562903afd2e7a12554adcdda16#overview)
 
