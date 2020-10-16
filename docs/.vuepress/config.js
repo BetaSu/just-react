@@ -20,6 +20,10 @@ module.exports = {
 			{
 				"text": "🙋‍♂️ 一起学习",
 				"link": "/me"
+			},
+			{
+				"text": "🔥 视频课程",
+				"link": "/course"
 			}
 		],
 		"sidebar": [
