@@ -283,5 +283,5 @@ function updateReducer(reducer, initialArg, init) {
 
 点击按钮后会随时间不同会出现`+1`或`-1`的效果
 
-[Demo](https://codesandbox.io/s/xenodochial-wave-3l21n?file=/src/App.js)
+[关注公众号](../me.html)，后台回复**582**获得在线Demo地址
 :::

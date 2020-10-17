@@ -59,7 +59,7 @@ JS脚本执行 -----  样式布局 ----- 样式绘制
 在上一节中，我们已经提出了解决办法——用**可中断的异步更新**代替**同步的更新**。那么React15的架构支持异步更新么？让我们看一个例子：
 
 ::: details 乘法小Demo
-[Demo](https://code.h5jun.com/jaluv/1/edit?html,js,output)
+[关注公众号](../me.html)，后台回复**222**获得在线Demo地址
 
 初始化时`state.count = 1`，每次点击按钮`state.count++`
 

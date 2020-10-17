@@ -184,6 +184,6 @@ flushSyncCallbackQueue();
 
 如果换成`useEffect`多点击几次就能看到区别。
 
-[Demo](https://code.h5jun.com/kakoy/1/edit?js,output)
+[关注公众号](../me.html)，后台回复**908**获得在线Demo地址
 
 :::

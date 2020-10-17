@@ -94,7 +94,7 @@ ReactDOM.render(<App />, document.getElementById("root"));
 
 相信多调试几次，你一定能明白方法的调用顺序
 
-[Demo](https://code.h5jun.com/kexev/edit?html,js,console,output)
+[关注公众号](../me.html)，后台回复**904**获得在线Demo地址
 :::
 
 ::: details performUnitOfWork 的递归版本

@@ -1,6 +1,4 @@
-为了更好理解`Hooks`原理，这一节我们遵循`React`的运行流程，实现一个不到100行代码的极简`useState Hook`。
-
-这是[在线Demo](./create.html#在线demo)，建议对照着代码来看本节内容。
+为了更好理解`Hooks`原理，这一节我们遵循`React`的运行流程，实现一个不到100行代码的极简`useState Hook`。建议对照着代码来看本节内容。
 
 ## 工作原理
 
@@ -404,7 +402,7 @@ function App() {
 }
 ```
 
-[Demo](https://code.h5jun.com/woniq/1/edit?js,console)
+[关注公众号](../me.html)，后台回复**616**获得在线Demo地址
 
 :::
 

@@ -62,7 +62,8 @@ export const Deletion = /*              */ 0b0000000001000;
 所以，对于我们在上一节使用过的Demo
 
 ::: details 乘法小Demo
-[Demo](https://code.h5jun.com/jaluv/1/edit?html,js,output)
+
+[关注公众号](../me.html)，后台回复**222**获得在线Demo地址
 
 `state.count = 1`，每次点击按钮`state.count++`
 

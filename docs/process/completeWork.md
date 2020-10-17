@@ -113,7 +113,7 @@ workInProgress.updateQueue = (updatePayload: any);
 
 你可以直观的感受`updatePayload`的数据结构
 
-[Demo](https://code.h5jun.com/peron/edit?js,console,output)
+[关注公众号](../me.html)，后台回复**431**获得在线Demo地址
 :::
 
 ## mount时

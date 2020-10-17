@@ -96,9 +96,7 @@ function App({name}) {
 ::: details 同步更新 vs 异步更新 Demo
 我们有个更新很耗时的大列表，让我们看看**同步更新**和**异步更新**时，输入框的响应速度
 
-[同步更新](https://codesandbox.io/s/pensive-shirley-wkp46)
-
-[异步更新](https://codesandbox.io/s/infallible-dewdney-9fkv9)
+[关注公众号](../me.html)，后台回复**323**获得在线Demo地址
 
 :::
 

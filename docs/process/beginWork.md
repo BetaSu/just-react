@@ -232,7 +232,7 @@ export const Deletion = /*                 */ 0b00000000001000;
 
 而之后通过`beginWork`创建的`Fiber节点`是不存在`current`的（即 `fiber.alternate === null`），会走`mountChildFibers`逻辑
 
-[Demo](https://code.h5jun.com/kexev/edit?html,js,console,output)
+[关注公众号](../me.html)，后台回复**531**获得在线Demo地址
 :::
 
 ## 参考资料

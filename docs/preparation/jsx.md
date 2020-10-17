@@ -10,10 +10,9 @@
 
 `JSX`在编译时会被`Babel`编译为`React.createElement`方法。
 
-::: details JSX编译 Demo
-[外网Demo](https://babeljs.io/en/repl#?browsers=defaults%2C%20not%20ie%2011%2C%20not%20ie_mob%2011&build=&builtIns=false&spec=false&loose=false&code_lz=AQ0g8CuA2B8BQYmnNAlsA1gUwJ4F4AiABkNmPAHp0FllUMcDCBGMlqmxOsBrPIgCYygzmlo8U6fswDMZWWIn1KMWEA&debug=false&forceAllTransforms=false&shippedProposals=false&circleciRepo=&evaluate=false&fileSize=false&timeTravel=false&sourceType=module&lineWrap=true&presets=env%2Creact%2Cstage-2%2Cenv&prettier=false&targets=&version=7.10.2&externalPlugins=)
+::: details JSX编译 
 
-[内网Demo](https://code.h5jun.com/pojo/1/edit?html,js,console)
+[关注公众号](../me.html)，后台回复**712**获得在线Demo地址
 :::
 
 这也是为什么在每个使用`JSX`的JS文件中，你必须显式的声明
@@ -130,7 +129,7 @@ console.log('这是Element：', <AppFunc/>);
 ```
 
 ::: details React Component 分类 Demo
-[React Component](https://code.h5jun.com/pefep/edit?js,console)
+[关注公众号](../me.html)，后台回复**901**获得在线Demo地址
 :::
 
 我们可以从Demo控制台打印的对象看出，`ClassComponent`对应的`Element`的`type`字段为`AppClass`自身。
