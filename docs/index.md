@@ -130,6 +130,16 @@
 
 #### 第八章 Concurrent Mode
 
-:black_square_button: 🏠🔧
+✅ 概览
 
-#### 第九章 context
+📝 Scheduler功能及原理
+
+📝 lane模型
+
+📝 异步可中断更新
+
+📝 高优任务打断机制
+
+📝 batchedUpdates
+
+📝 Suspense

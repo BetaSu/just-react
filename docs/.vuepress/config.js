@@ -217,10 +217,10 @@ module.exports = {
 					{
 						"title": "第八章 Concurrent Mode",
 						"children": [
-							// [
-							// 	"/concurrent/prepare",
-							// 	"章节概览"
-							// ],
+							[
+								"/concurrent/prepare",
+								"概览"
+							],
 							// [
 							// 	"/concurrent/time-slice",
 							// 	"时间切片"
