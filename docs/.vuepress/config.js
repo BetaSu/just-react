@@ -221,10 +221,10 @@ module.exports = {
 								"/concurrent/prepare",
 								"概览"
 							],
-							// [
-							// 	"/concurrent/time-slice",
-							// 	"时间切片"
-							// ]
+							[
+								"/concurrent/scheduler",
+								"Scheduler的原理与实现"
+							]
 						]
 					}
 				]

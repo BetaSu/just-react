@@ -98,7 +98,7 @@ const deferredValue = useDeferredValue(value, { timeoutMs: 2000 });
 
 除了以上介绍的实现，相信未来`React`还会开发更多基于`Concurrent Mode`的玩法。
 
-在本章接下来的部分，我们会按照上文的脉络，自底向上，从架构到实现讲解`Concurrent Mode`。
+`Fiber`架构在之前的章节已经学习了。所以，在本章接下来的部分，我们会按照上文的脉络，自底向上，从架构到实现讲解`Concurrent Mode`。
 
 
 
