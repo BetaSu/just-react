@@ -224,6 +224,10 @@ module.exports = {
 							[
 								"/concurrent/scheduler",
 								"Scheduler的原理与实现"
+							],
+							[
+								"/concurrent/lane",
+								"lane模型"
 							]
 						]
 					}
