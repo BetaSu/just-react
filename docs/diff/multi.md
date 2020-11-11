@@ -269,7 +269,7 @@ const existingChildren = mapRemainingChildren(returnFiber, oldFiber);
 
 我们用变量`oldIndex`表示`遍历到的可复用节点`在`oldFiber`中的位置索引。如果`oldIndex < lastPlacedIndex`，代表本次更新该节点需要向右移动。
 
-`lastPlacedIndex`初始为`0`，每遍历一个可复用的节点，如果`oldFiber >=  lastPlacedIndex`，则`lastPlacedIndex = oldFiber`。
+`lastPlacedIndex`初始为`0`，每遍历一个可复用的节点，如果`oldIndex >=  lastPlacedIndex`，则`lastPlacedIndex = oldIndex`。
 
 单纯文字表达比较晦涩，这里我们提供两个Demo，你可以对照着理解。
 
