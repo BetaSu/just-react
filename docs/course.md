@@ -10,8 +10,6 @@
 
 - 精心设计的Demo、实战练习
 
-- 限时4折
-
 部分评价：
 
 <img :src="$withBase('/img/appra.png')" alt="30sec">
