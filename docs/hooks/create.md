@@ -300,7 +300,7 @@ if (hook.queue.pending) {
     firstUpdate = firstUpdate.next;
 
     // 最后一个update执行完后跳出循环
-  } while (firstUpdate !== hook.queue.pending)
+  } while (firstUpdate !== hook.queue.pending.next)
 
   // 清空queue.pending
   hook.queue.pending = null;
