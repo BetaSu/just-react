@@ -44,7 +44,7 @@ yarn
 
 ```sh
 # 17.0.0 版本执行命令
-yarn build react,react-dom,scheduler --type=NODE
+yarn build react,react-dom,scheduler --type=NODE_DEV
 
 # 17.0.0 之前版本执行命令
 yarn build react/index,react-dom/index,scheduler --type=NODE
