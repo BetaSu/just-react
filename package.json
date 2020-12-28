@@ -13,7 +13,7 @@
   "scripts": {
     "start": "vuepress dev docs",
     "build": "vuepress build docs",
-    "deadlink": "node ./.bin/deadLink",
+    "tongji": "node ./.bin/create_tongji",
     "deploy": "sh deploy.sh"
   },
   "repository": {

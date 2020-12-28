@@ -3,6 +3,9 @@ module.exports = {
 	"description": "React源码解析",
 	"dest": "dist",
 	"serviceWorker": false,
+	"head": [
+		["script", { "src": "/assets/js/tj.js" }]
+	],
 	"configureWebpack": {
 		"resolve": {
 			"alias": {}

@@ -6,9 +6,13 @@
   steps:
   - name: build
     image: node
+    environment:
+      baidu_tongji_token:
+        from_secret: baidu_tongji_token
     commands:
       - npm install 
       - npm run build
+      - npm run tongji
 
   - name: deploy
     image: appleboy/drone-scp
