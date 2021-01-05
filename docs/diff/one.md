@@ -48,7 +48,7 @@ function reconcileSingleElement(
             return existing;
           }
           
-          // type不同则跳出循环
+          // type不同则跳出switch
           break;
         }
       }
