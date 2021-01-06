@@ -179,21 +179,35 @@ var expirationTime = startTime - 1;
 
 我们已经知道`优先级`意味着任务的过期时间。设想一个大型`React`项目，在某一刻，存在很多不同`优先级`的`任务`，对应不同的过期时间。
 
-我们可以将这些任务按是否过期分为：
+同时，又因为任务可以被延迟，所以我们可以将这些任务按是否被延迟分为：
 
-- 已过期任务
+- 已就绪任务
 
-- 未过期任务
+- 未就绪任务
+
+```js
+  if (typeof options === 'object' && options !== null) {
+    var delay = options.delay;
+    if (typeof delay === 'number' && delay > 0) {
+      // 任务被延迟
+      startTime = currentTime + delay;
+    } else {
+      startTime = currentTime;
+    }
+  } else {
+    startTime = currentTime;
+  }
+```
 
 所以，`Scheduler`存在两个队列：
 
-- timerQueue：保存未过期任务
+- timerQueue：保存未就绪任务
 
-- taskQueue：保存已过期任务
+- taskQueue：保存已就绪任务
 
-每当有新的未过期任务被注册，我们将其插入`timerQueue`并重新排列`timerQueue`中任务的顺序。
+每当有新的未就绪的任务被注册，我们将其插入`timerQueue`并根据开始时间重新排列`timerQueue`中任务的顺序。
 
-当`timerQueue`中有任务过期，我们将其取出并加入`taskQueue`。
+当`timerQueue`中有任务就绪，即`startTime <= currentTime `，我们将其取出并加入`taskQueue`。
 
 取出`taskQueue`中最早过期的任务并执行他。
 
