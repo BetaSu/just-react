@@ -68,7 +68,7 @@ function List () {
 
 // 之后 情况2 —— 节点类型更新
 <ul>
-  <div key="0">0<li>
+  <div key="0">0</div>
   <li key="1">1<li>
 </ul>
 ```
