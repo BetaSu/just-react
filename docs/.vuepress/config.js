@@ -231,6 +231,10 @@ module.exports = {
 							[
 								"/concurrent/lane",
 								"lane模型"
+							],
+							[
+								"/concurrent/disrupt",
+								"异步可中断更新"
 							]
 						]
 					}
