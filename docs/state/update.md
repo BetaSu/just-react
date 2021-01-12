@@ -145,7 +145,7 @@ const queue: UpdateQueue<State> = {
 
 > 你可以将`shared.pending`类比`心智模型`中本次需要提交的`commit`（节点ABC）。
 
-- effects：数组。保存`update.calback !== null`的`Update`。
+- effects：数组。保存`update.callback !== null`的`Update`。
 
 
 
