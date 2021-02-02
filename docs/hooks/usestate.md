@@ -6,7 +6,7 @@
 
 ## 流程概览
 
-我们将这两个`Hook`的工作流程分为`申明阶段`和`调用阶段`，对于：
+我们将这两个`Hook`的工作流程分为`声明阶段`和`调用阶段`，对于：
 
 ```js
 function App() {
@@ -23,11 +23,11 @@ function App() {
 }
 ```
 
-`申明阶段`即`App`调用时，会依次执行`useReducer`与`useState`方法。
+`声明阶段`即`App`调用时，会依次执行`useReducer`与`useState`方法。
 
 `调用阶段`即点击按钮后，`dispatch`或`updateNum`被调用时。
 
-## 申明阶段
+## 声明阶段
 
 当`FunctionComponent`进入`render阶段`的`beginWork`时，会调用[renderWithHooks](https://github.com/acdlite/react/blob/1fb18e22ae66fdb1dc127347e169e73948778e5a/packages/react-reconciler/src/ReactFiberBeginWork.new.js#L1419)方法。
 
