@@ -43,10 +43,7 @@ yarn
 > 我们的步骤只包含具体做法，对每一步更详细的介绍可以参考`React`文档[源码贡献章节](https://zh-hans.reactjs.org/docs/how-to-contribute.html#development-workflow)
 
 ```sh
-# 17.0.0 版本执行命令
-yarn build react,react-dom,scheduler --type=NODE
-
-# 17.0.0 之前版本执行命令
+# 执行打包命令
 yarn build react/index,react-dom/index,scheduler --type=NODE
 
 ```
