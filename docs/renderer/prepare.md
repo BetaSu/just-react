@@ -28,7 +28,7 @@ commitRoot(root);
 
 ## before mutation之前
 
-`commitRootImpl`方法中直到第一句`if (firstEffect !== null)`之前属于`before mutation之前`。
+`commitRootImpl`方法中直到第一句`if (firstEffect !== null)`之前属于`before mutation`之前。
 
 我们大体看下他做的工作，现在你还不需要理解他们：
 

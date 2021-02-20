@@ -43,8 +43,10 @@ yarn
 > 我们的步骤只包含具体做法，对每一步更详细的介绍可以参考`React`文档[源码贡献章节](https://zh-hans.reactjs.org/docs/how-to-contribute.html#development-workflow)
 
 ```sh
+
 # 执行打包命令
 yarn build react/index,react/jsx,react-dom/index,scheduler --type=NODE
+
 
 ```
 
