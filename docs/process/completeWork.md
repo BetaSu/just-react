@@ -103,7 +103,7 @@ if (current !== null && workInProgress.stateNode != null) {
 workInProgress.updateQueue = (updatePayload: any);
 ```
 
-其中`updatePayload`为数组形式，他的奇数索引的值为变化的`prop key`，偶数索引的值为变化的`prop value`。
+其中`updatePayload`为数组形式，他的偶数索引的值为变化的`prop key`，奇数索引的值为变化的`prop value`。
 
 > 具体渲染过程见[mutation阶段一节](../renderer/mutation.html#hostcomponent-mutation)
 
