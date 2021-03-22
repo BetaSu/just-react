@@ -21,13 +21,17 @@ module.exports = {
 		"lastUpdated": "上次更新",
 		"nav": [
 			{
-				"text": "🙋‍♂️ 一起学习",
+				"text": "🙋‍♂️ 一起成长",
 				"link": "/me"
 			},
 			{
 				"text": "🔥 视频课程",
-				"link": "/course"
-			}
+				"link": "https://ke.sifou.com/course/1650000023864436"
+			},
+			{
+				"text": "Vue技术揭秘",
+				"link": "https://ustbhuangyi.github.io/vue-analysis/"
+			},
 		],
 		"sidebar": [
 			[

@@ -97,6 +97,6 @@ export const Deletion = /*              */ 0b0000000001000;
 
 :::details 同步/Debounce/Throttle/并发 情况下性能对比Demo
 
-[关注公众号](../me.html)，后台回复**632**获得在线Demo地址
+[关注公众号](../me.html)，后台回复**323**获得在线Demo地址
 
 :::
