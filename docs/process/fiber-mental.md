@@ -12,8 +12,8 @@ React核心团队成员[Sebastian Markbåge](https://github.com/sebmarkbage/)（
 
 ```js
 function getTotalPicNum(user1, user2) {
-  const num1 = getPicNum(user1);
-  const num2 = getPicNum(user2);
+  const picNum1 = getPicNum(user1);
+  const picNum2 = getPicNum(user2);
 
   return picNum1 + picNum2;
 }
@@ -29,8 +29,8 @@ function getTotalPicNum(user1, user2) {
 
 ```js
 async function getTotalPicNum(user1, user2) {
-  const num1 = await getPicNum(user1);
-  const num2 = await getPicNum(user2);
+  const picNum1 = await getPicNum(user1);
+  const picNum2 = await getPicNum(user2);
 
   return picNum1 + picNum2;
 }
