@@ -343,7 +343,7 @@ function useState(initialState) {
       const action = firstUpdate.action;
       baseState = action(baseState);
       firstUpdate = firstUpdate.next;
-    } while (firstUpdate !== hook.queue.pending)
+    } while (firstUpdate !== hook.queue.pending.next)
 
     hook.queue.pending = null;
   }
