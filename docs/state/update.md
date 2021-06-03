@@ -171,23 +171,42 @@ u1.next === u2;
 fiber.updateQueue.baseUpdate: u1 --> u2
 ```
 
-现在我们在`fiber`上触发两次状态更新，这会产生两个新`Update`。
+现在我们在`fiber`上触发两次状态更新，这会先后产生两个新的`Update`，我们称为`u3`和`u4`。
 
-我们称其为`u3`和`u4`。
+每个 `update` 都会通过 `enqueueUpdate` 方法插入到 `updateQueue` 队列上
+
+当插入`u3`后：
 
 ```js
 fiber.updateQueue.shared.pending === u3;
-u3.next === u4;
-u4.next === u3;
+u3.next === u3;
 ```
 
-由于`shared.pending`是环状链表，用图表示为：
+`shared.pending`的环状链表，用图表示为：
 
 ```js
-fiber.updateQueue.shared.pending:   u3 --> u4 
+fiber.updateQueue.shared.pending:   u3 ─────┐ 
                                      ^      |                                    
-                                     |______|
+                                     └──────┘
 ```
+
+接着插入`u4`之后：
+
+```js
+fiber.updateQueue.shared.pending === u4;
+u4.next === u3;
+u3.next === u4;
+```
+
+`shared.pending`是环状链表，用图表示为：
+
+```js
+fiber.updateQueue.shared.pending:   u4 ──> u3
+                                     ^      |                                    
+                                     └──────┘
+```
+
+`shared.pending` 会保证始终指向最后一个插入的`update`，你可以在[这里](https://github.com/facebook/react/blob/1fb18e22ae66fdb1dc127347e169e73948778e5a/packages/react-reconciler/src/ReactUpdateQueue.new.js#L208)看到`enqueueUpdate`的源码
 
 更新调度完成后进入`render阶段`。
 
