@@ -201,7 +201,7 @@ u3.next === u4;
 `shared.pending`是环状链表，用图表示为：
 
 ```js
-fiber.updateQueue.shared.pending:   u3 ──> u4 
+fiber.updateQueue.shared.pending:   u4 ──> u3
                                      ^      |                                    
                                      └──────┘
 ```
