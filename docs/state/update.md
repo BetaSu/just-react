@@ -206,7 +206,7 @@ fiber.updateQueue.shared.pending:   u4 ──> u3
                                      └──────┘
 ```
 
-`shared.pending` 会保证始终指向最新的一个`update`，你可以在[这里](https://github.com/facebook/react/blob/1fb18e22ae66fdb1dc127347e169e73948778e5a/packages/react-reconciler/src/ReactUpdateQueue.new.js#L208)看到`enqueueUpdate`的源码
+`shared.pending` 会保证始终指向最后一个插入的`update`，你可以在[这里](https://github.com/facebook/react/blob/1fb18e22ae66fdb1dc127347e169e73948778e5a/packages/react-reconciler/src/ReactUpdateQueue.new.js#L208)看到`enqueueUpdate`的源码
 
 更新调度完成后进入`render阶段`。
 
