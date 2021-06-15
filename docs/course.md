@@ -1,4 +1,4 @@
-追求效率的同学可以考虑[视频课程](https://ke.sifou.com/course/1650000023864436)。
+追求效率的同学可以考虑[视频课程](https://ke.segmentfault.com/course/1650000023864436)。
 
 特点：
 

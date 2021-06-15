@@ -26,7 +26,7 @@ module.exports = {
 			},
 			{
 				"text": "🔥 视频课程",
-				"link": "https://ke.sifou.com/course/1650000023864436"
+				"link": "https://ke.segmentfault.com/course/1650000023864436"
 			},
 			{
 				"text": "Vue技术揭秘",
