@@ -73,11 +73,11 @@ let children = Component(props, secondArg);
 
 > 你可以在[这里](https://github.com/facebook/react/blob/1fb18e22ae66fdb1dc127347e169e73948778e5a/packages/react-reconciler/src/ReactFiberHooks.old.js#L415)看到这段代码
 
-我们知道`HostComponent`在`commit阶段`的`mutaion阶段`执行`DOM`操作。
+我们知道`HostComponent`在`commit阶段`的`mutation阶段`执行`DOM`操作。
 
-所以，对应`ref`的更新也是发生在`mutaion阶段`。
+所以，对应`ref`的更新也是发生在`mutation阶段`。
 
-再进一步，`mutaion阶段`执行`DOM`操作的依据为`effectTag`。
+再进一步，`mutation阶段`执行`DOM`操作的依据为`effectTag`。
 
 所以，对于`HostComponent`、`ClassComponent`如果包含`ref`操作，那么也会赋值相应的`effectTag`。
 
