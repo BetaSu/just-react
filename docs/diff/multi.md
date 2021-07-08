@@ -267,7 +267,7 @@ const existingChildren = mapRemainingChildren(returnFiber, oldFiber);
 
 那么我们只需要比较`遍历到的可复用节点`在上次更新时是否也在`lastPlacedIndex`对应的`oldFiber`后面，就能知道两次更新中这两个节点的相对位置改变没有。
 
-我们用变量`oldIndex`表示`遍历到的可复用节点`在`oldFiber`中的位置索引。如果`oldIndex < lastPlacedIndex`，代表本次更新该节点需要向右移动。
+我们用变量`oldIndex`表示`遍历到的可复用节点`在`oldFiber`中的位置索引。如果`oldIndex < lastPlacedIndex`，代表本次更新该节点需要移动到lastPlacedIndex位置。
 
 `lastPlacedIndex`初始为`0`，每遍历一个可复用的节点，如果`oldIndex >=  lastPlacedIndex`，则`lastPlacedIndex = oldIndex`。
 
@@ -315,7 +315,7 @@ const oldIndex = c（之前）.index;
 
 如果 oldIndex >= lastPlacedIndex 代表该可复用节点不需要移动
 并将 lastPlacedIndex = oldIndex;
-如果 oldIndex < lastplacedIndex 该可复用节点之前插入的位置索引小于这次更新需要插入的位置索引，代表该节点需要向右移动
+如果 oldIndex < lastplacedIndex 该可复用节点之前插入的位置索引小于这次更新需要插入的位置索引，代表该节点需要移动到lastPlacedIndex位置
 
 在例子中，oldIndex 2 > lastPlacedIndex 0，
 则 lastPlacedIndex = 2;
@@ -340,7 +340,7 @@ d节点位置不变
 key === b 在 oldFiber中存在
 const oldIndex = b（之前）.index;
 oldIndex 1 < lastPlacedIndex 3 // 之前节点为 abcd，所以b.index === 1
-则 b节点需要向右移动
+则 b节点需要移动到lastPlacedIndex位置
 ===第二轮遍历结束===
 
 最终acd 3个节点都没有移动，b节点被标记为移动
@@ -390,7 +390,7 @@ const oldIndex = a（之前）.index; // 之前节点为 abcd，所以a.index ==
 此时 oldIndex === 0;
 比较 oldIndex 与 lastPlacedIndex;
 oldIndex 0 < lastPlacedIndex 3
-则 a节点需要向右移动
+则 a节点需要移动到lastPlacedIndex位置
 
 继续遍历剩余newChildren
 
@@ -402,7 +402,7 @@ const oldIndex = b（之前）.index; // 之前节点为 abcd，所以b.index ==
 此时 oldIndex === 1;
 比较 oldIndex 与 lastPlacedIndex;
 oldIndex 1 < lastPlacedIndex 3
-则 b节点需要向右移动
+则 b节点需要移动到lastPlacedIndex位置
 
 继续遍历剩余newChildren
 
@@ -414,7 +414,7 @@ const oldIndex = c（之前）.index; // 之前节点为 abcd，所以c.index ==
 此时 oldIndex === 2;
 比较 oldIndex 与 lastPlacedIndex;
 oldIndex 2 < lastPlacedIndex 3
-则 c节点需要向右移动
+则 c节点需要移动到lastPlacedIndex位置
 
 ===第二轮遍历结束===
 
