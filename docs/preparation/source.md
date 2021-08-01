@@ -54,7 +54,7 @@ yarn build react/index,react/jsx,react-dom/index,scheduler --type=NODE
 
 如果网络不好，执行`yarn`命令无法完成依赖安装，或者执行`yarn build`无法完成打包，可以使用我打好的包。
 
-版本为`17.0.2`
+版本为`17.0.0-alpha.0`
 
 [地址](https://gitee.com/kasong/react)
 
