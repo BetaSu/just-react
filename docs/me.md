@@ -4,6 +4,6 @@
 
 - 我为了不上班都做了什么，没准儿你也可以借鉴
 
-- 拉你进`源码交流群`和小伙伴们一起交流`React`源码，`React Contributor`在线答疑
+- 拉你进`人类高质量前端框架交流群`和小伙伴们一起交流框架的方方面面
 
 <img style="width: 200px;height:200px;" :src="$withBase('/img/qrcode-fe.jpg')" alt="30sec">
