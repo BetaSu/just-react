@@ -29,7 +29,7 @@ React15架构可以分为两层：
 除此之外，还有：
 
 - [ReactNative](https://www.npmjs.com/package/react-native)渲染器，渲染App原生组件
-- [ReactTest](https://www.npmjs.com/package/react-test-Renderer)渲染器，渲染出纯Js对象用于测试
+- [ReactTest](https://www.npmjs.com/package/react-test-renderer)渲染器，渲染出纯Js对象用于测试
 - [ReactArt](https://www.npmjs.com/package/react-art)渲染器，渲染到Canvas, SVG 或 VML (IE8)
 
 在每次更新发生时，**Renderer**接到**Reconciler**通知，将变化的组件渲染在当前宿主环境。
