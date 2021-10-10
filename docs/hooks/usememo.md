@@ -33,7 +33,7 @@ function mountCallback<T>(callback: T, deps: Array<mixed> | void | null): T {
 
 - `mountMemo`会将`回调函数`(nextCreate)的执行结果作为`value`保存
 
-- `mountCallback`会保存`回调函数`果作为`value`保存
+- `mountCallback`会将`回调函数`作为`value`保存
 
 ## update
 
