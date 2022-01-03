@@ -28,7 +28,7 @@
 
 但是当我们配合`时间切片`，就能根据宿主环境性能，为每个`工作单元`分配一个`可运行时间`，实现“异步可中断的更新”。
 
-于是，[scheduler](https://github.com/facebook/react/tree/master/packages/scheduler)（调度器）产生了。
+于是，[scheduler](https://github.com/facebook/react/tree/main/packages/scheduler)（调度器）产生了。
 
 ## 架构运行策略 —— lane模型
 

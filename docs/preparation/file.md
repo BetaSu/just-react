@@ -23,7 +23,7 @@
 
 目录下的文件夹非常多，我们来看下：
 
-### [react](https://github.com/facebook/react/tree/master/packages/react)文件夹
+### [react](https://github.com/facebook/react/tree/main/packages/react)文件夹
 
 React的核心，包含所有全局 React API，如：
 
@@ -33,11 +33,11 @@ React的核心，包含所有全局 React API，如：
 
 这些 API 是全平台通用的，它不包含`ReactDOM`、`ReactNative`等平台特定的代码。在 NPM 上作为[单独的一个包](https://www.npmjs.com/package/react)发布。
 
-### [scheduler](https://github.com/facebook/react/tree/master/packages/scheduler)文件夹
+### [scheduler](https://github.com/facebook/react/tree/main/packages/scheduler)文件夹
 
 Scheduler（调度器）的实现。
 
-### [shared](https://github.com/facebook/react/tree/master/packages/shared)文件夹
+### [shared](https://github.com/facebook/react/tree/main/packages/shared)文件夹
 
 源码中其他模块公用的**方法**和**全局变量**，比如在[shared/ReactSymbols.js](https://github.com/facebook/react/blob/1fb18e22ae66fdb1dc127347e169e73948778e5a/packages/shared/ReactSymbols.js)中保存`React`不同组件类型的定义。
 
@@ -84,7 +84,7 @@ export let REACT_FRAGMENT_TYPE = 0xeacb;
 - react-refresh  # “热重载”的React官方实现
 ```
 
-### [react-reconciler](https://github.com/facebook/react/tree/master/packages/react-reconciler)文件夹
+### [react-reconciler](https://github.com/facebook/react/tree/main/packages/react-reconciler)文件夹
 
 我们需要重点关注**react-reconciler**，在接下来源码学习中 80%的代码量都来自这个包。
 
