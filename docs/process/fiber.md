@@ -116,7 +116,7 @@ this.key = key;
 this.elementType = null;
 // 对于 FunctionComponent，指函数本身，对于ClassComponent，指class，对于HostComponent，指DOM节点tagName
 this.type = null;
-// Fiber对应的Class Component 实例
+// Fiber对应的的真实DOM节点或Class Component实例
 this.stateNode = null;
 ```
 
