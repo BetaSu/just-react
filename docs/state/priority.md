@@ -78,7 +78,7 @@ u1.next === u2;
 
 接下来进入`u2`产生的`render阶段`。
 
-在`processUpdateQueue`方法中，`shared.pending`环状链表会被剪开并拼接在`baseUpdate`后面。
+在`processUpdateQueue`方法中，`shared.pending`环状链表会被剪开并拼接在`lastBaseUpdate`后面。
 
 需要明确一点，`shared.pending`指向最后一个`pending`的`update`，所以实际执行时`update`的顺序为：
 
