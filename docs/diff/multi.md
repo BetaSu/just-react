@@ -263,11 +263,9 @@ const existingChildren = mapRemainingChildren(returnFiber, oldFiber);
 
 我们的参照物是：最后一个可复用的节点在`oldFiber`中的位置索引（用变量`lastPlacedIndex`表示）。
 
-由于本次更新中节点是按`newChildren`的顺序排列。在遍历`newChildren`过程中，每个`遍历到的可复用节点`一定是当前遍历到的`所有可复用节点`中**最靠右的那个**，即一定在`lastPlacedIndex`对应的`可复用的节点`在本次更新中位置的后面。
+并且，我们用变量`oldIndex`表示`遍历到的可复用节点`在`oldFiber`中的位置索引，试想一下，如果`每个可复用的节点`都不需要移动，`oldIndex`的值应该是`递增序列`，反之，如果`不是递增序列`，那么必然存在节点的移动。
 
-那么我们只需要比较`遍历到的可复用节点`在上次更新时是否也在`lastPlacedIndex`对应的`oldFiber`后面，就能知道两次更新中这两个节点的相对位置改变没有。
-
-我们用变量`oldIndex`表示`遍历到的可复用节点`在`oldFiber`中的位置索引。如果`oldIndex < lastPlacedIndex`，代表本次更新该节点需要向右移动。
+所以我们只需要比较`遍历到的可复用节点`在上次更新时是否也在`lastPlacedIndex`对应的`oldFiber`后面，就能知道两次更新中这两个节点的相对位置改变没有，如果`oldIndex < lastPlacedIndex`，代表本次更新该节点需要向右移动。
 
 `lastPlacedIndex`初始为`0`，每遍历一个可复用的节点，如果`oldIndex >=  lastPlacedIndex`，则`lastPlacedIndex = oldIndex`。
 
