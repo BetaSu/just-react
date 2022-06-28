@@ -56,7 +56,7 @@ function useReducer(reducer, initialArg, init) {
 
 `mount`时，`useReducer`会调用[mountReducer](https://github.com/acdlite/react/blob/1fb18e22ae66fdb1dc127347e169e73948778e5a/packages/react-reconciler/src/ReactFiberHooks.new.js#L638)，`useState`会调用[mountState](https://github.com/acdlite/react/blob/1fb18e22ae66fdb1dc127347e169e73948778e5a/packages/react-reconciler/src/ReactFiberHooks.new.js#L1143)。
 
-我们来简单对比这这两个方法：
+我们来简单对比这两个方法：
 
 ```js
 function mountState<S>(
