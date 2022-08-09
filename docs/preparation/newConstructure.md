@@ -94,6 +94,7 @@ export const Deletion = /*              */ 0b0000000001000;
 ## 参考资料
 
 [「英文 外网」Building a Custom React Renderer | React前经理Sophie Alpert](https://www.youtube.com/watch?v=CGpMlWVcHok&list=PLPxbbTqCLbGHPxZpw4xj_Wwg8-fdNxJRh&index=7)
+[hello-world-custom-react-renderer](https://agent-hunt.medium.com/hello-world-custom-react-renderer-9a95b7cd04bc)
 
 :::details 同步/Debounce/Throttle/并发 情况下性能对比Demo
 
