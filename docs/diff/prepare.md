@@ -113,3 +113,6 @@ function reconcileChildFibers(
 2. 当`newChild`类型为`Array`，同级有多个节点
 
 在接下来两节我们会分别讨论这两类节点的`Diff`。
+
+## 参考资料
+https://overreacted.io/react-as-a-ui-runtime/#reconciliation
