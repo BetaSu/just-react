@@ -33,7 +33,7 @@ function beginWork(
 
 - `update`时：如果`current`存在，在满足一定条件时可以复用`current`节点，这样就能克隆`current.child`作为`workInProgress.child`，而不需要新建`workInProgress.child`。
 
-- `mount`时：除`fiberRootNode`以外，`current === null`。会根据`fiber.tag`不同，创建不同类型的`子Fiber节点`
+- `mount`时：除`rootFiber`以外，`current === null`。会根据`fiber.tag`不同，创建不同类型的`子Fiber节点`
 
 ```js
 function beginWork(
