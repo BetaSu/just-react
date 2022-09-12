@@ -22,7 +22,7 @@
 
 ## 如何调度优先级
 
-我们在[新的React结构一节](../preparation/newConstructure.html)讲到，`React`通过`Scheduler`调度任务。
+我们在[新的React架构一节](../preparation/newConstructure.html)讲到，`React`通过`Scheduler`调度任务。
 
 具体到代码，每当需要调度任务时，`React`会调用`Scheduler`提供的方法`runWithPriority`。
 
