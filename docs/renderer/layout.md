@@ -1,4 +1,6 @@
-该阶段之所以称为`layout`，因为该阶段的代码都是在`DOM`渲染完成（`mutation阶段`完成）后执行的。
+该阶段之所以称为`layout`，因为该阶段的代码都是在`DOM`修改完成（`mutation阶段`完成）后执行的。
+
+注意：由于 JS 的同步执行阻塞了主线程，所以此时 JS 已经可以获取到新的`DOM`，但是浏览器对新的`DOM`并没有完成渲染。
 
 该阶段触发的生命周期钩子和`hook`可以直接访问到已经改变后的`DOM`，即该阶段是可以参与`DOM layout`的阶段。
 
@@ -169,3 +171,8 @@ root.current = finishedWork;
 ## 总结
 
 从这节我们学到，`layout阶段`会遍历`effectList`，依次执行`commitLayoutEffects`。该方法的主要工作为“根据`effectTag`调用不同的处理函数处理`Fiber`并更新`ref`。
+
+## 参考资料
+[useeffect-vs-uselayouteffect-examples](https://blog.logrocket.com/useeffect-vs-uselayouteffect-examples/)
+
+[hooks-reference.html#uselayouteffect](https://reactjs.org/docs/hooks-reference.html#uselayouteffect)
