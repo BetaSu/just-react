@@ -1,7 +1,7 @@
 module.exports = {
   title: "React技术揭秘",
   description: "React源码解析",
-  dest: "dist",
+  // dest: "dist",
   serviceWorker: false,
   head: [["script", { src: "/assets/js/tj.js" }]],
   configureWebpack: {

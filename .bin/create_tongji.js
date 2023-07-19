@@ -16,7 +16,8 @@ function createScript(token) {
 }
 
 const str = createScript(token);
-const dist = path.resolve(__dirname, "../dist/assets/js/tj.js");
+// const dist = path.resolve(__dirname, "../dist/assets/js/tj.js");
+const dist = path.resolve(__dirname, "../docs/.vuepress/dist/assets/js/tj.js");
 
 console.log("统计脚本目录：", dist);
 
