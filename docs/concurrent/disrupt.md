@@ -1,3 +1,3 @@
 施工中...
 
-后续三节内容[视频课程](https://ke.segmentfault.com/course/1650000023864436)已更新。
+后续三节内容[视频课程](https://appjiz2zqrn2142.h5.xiaoeknow.com/v1/goods/goods_detail/p_638035c1e4b07b05581d25db?type=3)已更新。
