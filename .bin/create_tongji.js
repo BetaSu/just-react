@@ -1,6 +1,5 @@
-
-const fs = require('fs');
-const path = require('path');
+const fs = require("fs");
+const path = require("path");
 
 const token = process.env.baidu_tongji_token;
 
@@ -17,8 +16,8 @@ function createScript(token) {
 }
 
 const str = createScript(token);
-const dist = path.resolve(__dirname, '../dist/assets/js/tj.js');
+const dist = path.resolve(__dirname, "../dist/assets/js/tj.js");
 
-console.log(dist);
+console.log("统计脚本目录：", dist);
 
-fs.writeFile(dist, str, 'utf8', () => {});
+fs.writeFile(dist, str, "utf8", () => {});
