@@ -12,7 +12,7 @@
   },
   "scripts": {
     "start": "vuepress dev docs",
-    "build": "vuepress build docs",
+    "build": "vuepress build docs && npm run tongji",
     "tongji": "node ./.bin/create_tongji",
     "deploy": "sh deploy.sh"
   },
