@@ -1,12 +1,12 @@
 了解了源码的文件目录，这一节我们看看如何调试源码。
 
-即使版本号相同（当前最新版为`17.0.0 RC`），但是`facebook/react`项目`master`分支的代码和我们使用`create-react-app`创建的项目`node_modules`下的`react`项目代码还是有些区别。
+即使版本号相同（当前最新版为`17.0.2`），但是`facebook/react`项目`main`分支的代码和我们使用`create-react-app`创建的项目`node_modules`下的`react`项目代码还是有些区别。
 
-因为`React`的新代码都是直接提交到`master`分支，而`create-react-app`内的`react`使用的是稳定版的包。
+因为`React`的新代码都是直接提交到`main`分支，而`create-react-app`内的`react`使用的是稳定版的包。
 
 为了始终使用最新版`React`教学，我们调试源码遵循以下步骤：
 
-1. 从`facebook/react`项目`master`分支拉取最新源码
+1. 从`facebook/react`项目`main`分支拉取最新源码
 2. 基于最新源码构建`react`、`scheduler`、`react-dom`三个包
 3. 通过`create-react-app`创建测试项目，并使用步骤2创建的包作为项目依赖的包
 
