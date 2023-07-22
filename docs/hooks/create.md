@@ -100,7 +100,7 @@ function dispatchAction(queue, action) {
 然后`queue.pending = update;`即`queue.pending = u0`
 
 ```js
-queue.pending = u0 ---> u0
+queue.pending = u0 -----|
                 ^       |
                 |       |
                 ---------
