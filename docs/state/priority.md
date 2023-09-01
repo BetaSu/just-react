@@ -111,7 +111,7 @@ fiber.updateQueue = {
 };
 ```
 
-在`commit`阶段结尾会再调度一次更新。在该次更新中会基于`baseState`中`firstBaseUpdate`保存的`u1`，开启一次新的`render阶段`。
+在`commit`阶段结尾会再调度一次更新。在该次更新中会基于`baseUpdate`中`firstBaseUpdate`保存的`u1`，开启一次新的`render阶段`。
 
 最终两次`Update`都完成后的结果如下：
 
