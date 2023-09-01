@@ -111,7 +111,7 @@ onClick() {
 
 ## updateQueue
 
-`updateQueue`有三种类型，其中针对`HostComponent`的类型我们在[completeWork一节](../process/completeWork.html#update时)介绍过。
+`updateQueue`有三种类型，其中针对`FunctionComponent`的类型我们在[completeWork一节](../process/completeWork.html#update时)介绍过。
 
 剩下两种类型和`Update`的两种类型对应。
 
