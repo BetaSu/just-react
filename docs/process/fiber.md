@@ -4,7 +4,7 @@
 
 ## Fiber的起源
 
-> 最早的`Fiber`官方解释来源于[2016年React团队成员Acdlite的一篇介绍](https://github.com/acdlite/react-fiber-architecture)。
+> 最早的`Fiber`解释来源于[2016年Acdlite的一篇介绍](https://github.com/acdlite/react-fiber-architecture)。
 
 从上一章的学习我们知道：
 
