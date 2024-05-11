@@ -45,7 +45,7 @@ function workLoopConcurrent() {
 
 是否中断的依据，最重要的一点便是每个任务的剩余时间是否用完。
 
-在`Schdeduler`中，为任务分配的初始剩余时间为`5ms`。
+在`Scheduler`中，为任务分配的初始剩余时间为`5ms`。
 
 > 你可以从[这里](https://github.com/facebook/react/blob/1fb18e22ae66fdb1dc127347e169e73948778e5a/packages/scheduler/src/forks/SchedulerHostConfig.default.js#L119)看到初始剩余时间的定义
 
