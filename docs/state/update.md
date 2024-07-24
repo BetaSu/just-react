@@ -210,7 +210,7 @@ fiber.updateQueue.shared.pending:   u4 ──> u3
 
 更新调度完成后进入`render阶段`。
 
-此时`shared.pending`的环被剪开并连接在`updateQueue.lastBaseUpdate`后面：
+此时`shared.pending`的环被剪开并连接在`updateQueue.baseUpdate`后面：
 
 ```js
 fiber.updateQueue.baseUpdate: u1 --> u2 --> u3 --> u4
