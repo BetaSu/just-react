@@ -179,7 +179,7 @@ if (
 
 ```js
                        nextEffect         nextEffect
-rootFiber.firstEffect -----------> fiber -----------> fiber
+rootFiber.firstEffect -----------> fiber -----------> fiber <----------- rootFiber.lastEffect
 ```
 
 这样，在`commit阶段`只需要遍历`effectList`就能执行所有`effect`了。
