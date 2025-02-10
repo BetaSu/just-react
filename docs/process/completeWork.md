@@ -48,7 +48,7 @@ function completeWork(
 
 我们重点关注页面渲染所必须的`HostComponent`（即原生`DOM组件`对应的`Fiber节点`），其他类型`Fiber`的处理留在具体功能实现时讲解。
 
-## 处理HostComponent
+## 处理 HostComponent
 
 和`beginWork`一样，我们根据`current === null ?`判断是`mount`还是`update`。
 
@@ -71,7 +71,7 @@ case HostComponent: {
 }
 ```
 
-## update时
+## update 时
 
 当`update`时，`Fiber节点`已经存在对应`DOM节点`，所以不需要生成`DOM节点`。需要做的主要是处理`props`，比如：
 
@@ -90,7 +90,7 @@ if (current !== null && workInProgress.stateNode != null) {
     workInProgress,
     type,
     newProps,
-    rootContainerInstance,
+    rootContainerInstance
   );
 }
 ```
@@ -105,18 +105,18 @@ workInProgress.updateQueue = (updatePayload: any);
 
 其中`updatePayload`为数组形式，他的偶数索引的值为变化的`prop key`，奇数索引的值为变化的`prop value`。
 
-> 具体渲染过程见[mutation阶段一节](../renderer/mutation.html#hostcomponent-mutation)
+> 具体渲染过程见[mutation 阶段一节](../renderer/mutation.html#hostcomponent-mutation)
 
-::: details updatePayload属性 Demo
+::: details updatePayload 属性 Demo
 
 `updateHostComponent`方法内打印了`Fiber节点`对应的`type`与`updatePayload`。
 
 你可以直观的感受`updatePayload`的数据结构
 
-[关注公众号](../me.html)，后台回复**431**获得在线Demo地址
+[关注公众号 魔术师卡颂](../me.html)，后台回复**431**获得在线 Demo 地址
 :::
 
-## mount时
+## mount 时
 
 同样，我们省略了不相关的逻辑。可以看到，`mount`时的主要逻辑包括三个：
 
@@ -132,12 +132,12 @@ workInProgress.updateQueue = (updatePayload: any);
 const currentHostContext = getHostContext();
 // 为fiber创建对应DOM节点
 const instance = createInstance(
-    type,
-    newProps,
-    rootContainerInstance,
-    currentHostContext,
-    workInProgress,
-  );
+  type,
+  newProps,
+  rootContainerInstance,
+  currentHostContext,
+  workInProgress
+);
 // 将子孙DOM节点插入刚生成的DOM节点中
 appendAllChildren(instance, workInProgress, false, false);
 // DOM节点赋值给fiber.stateNode
@@ -150,7 +150,7 @@ if (
     type,
     newProps,
     rootContainerInstance,
-    currentHostContext,
+    currentHostContext
   )
 ) {
   markUpdate(workInProgress);

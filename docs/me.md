@@ -1,9 +1,9 @@
-欢迎加卡颂的微信（v：kasong555），我会：
+我是卡颂，以下是我的简介：
 
-- 每天在朋友圈分享 IT 最新八卦、资讯
+- 《React 设计原理》作者
+- 前 360、字节跳动技术专家
+- 自由职业 3 年
 
-- 拉你进`人类高质量前端框架交流群`和小伙伴们一起交流高端前端知识（备注：框架）
+致力于探索 AI 时代前端程序员的新出路，关注公号“魔术师卡颂”了解前端新出路～
 
-- 拉你进`程序员唠嗑群`和志同道合的小伙伴交流（备注：交流）
-
-<img style="width: 200px;height:200px;" :src="$withBase('/img/kasong555.jpeg')" alt="30sec">
+<img style="width: 205px;height:225px;" :src="$withBase('/img/gzh.png')" alt="30sec">

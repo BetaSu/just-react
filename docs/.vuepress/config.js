@@ -24,8 +24,7 @@ module.exports = {
       },
       {
         text: "🔥 视频课程",
-        link:
-          "https://appjiz2zqrn2142.h5.xiaoeknow.com/v1/goods/goods_detail/p_638035c1e4b07b05581d25db?type=3",
+        link: "https://appjiz2zqrn2142.h5.xiaoeknow.com/v1/goods/goods_detail/p_638035c1e4b07b05581d25db?type=3",
       },
       {
         text: "Vue技术揭秘",

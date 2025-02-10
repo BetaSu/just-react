@@ -1,4 +1,4 @@
-为了更好理解`Hooks`原理，这一节我们遵循`React`的运行流程，实现一个不到100行代码的极简`useState Hook`。建议对照着代码来看本节内容。
+为了更好理解`Hooks`原理，这一节我们遵循`React`的运行流程，实现一个不到 100 行代码的极简`useState Hook`。建议对照着代码来看本节内容。
 
 ## 工作原理
 
@@ -8,7 +8,7 @@
 function App() {
   const [num, updateNum] = useState(0);
 
-  return <p onClick={() => updateNum(num => num + 1)}>{num}</p>;
+  return <p onClick={() => updateNum((num) => num + 1)}>{num}</p>;
 }
 ```
 
@@ -39,8 +39,8 @@ const update = {
   // 更新执行的函数
   action,
   // 与同一个Hook的其他更新形成链表
-  next: null
-}
+  next: null,
+};
 ```
 
 对于`App`来说，点击`p`标签产生的`update`的`action`为`num => num + 1`。
@@ -49,19 +49,25 @@ const update = {
 
 ```js
 // 之前
-return <p onClick={() => updateNum(num => num + 1)}>{num}</p>;
+return <p onClick={() => updateNum((num) => num + 1)}>{num}</p>;
 
 // 之后
-return <p onClick={() => {
-  updateNum(num => num + 1);
-  updateNum(num => num + 1);
-  updateNum(num => num + 1);
-}}>{num}</p>;
+return (
+  <p
+    onClick={() => {
+      updateNum((num) => num + 1);
+      updateNum((num) => num + 1);
+      updateNum((num) => num + 1);
+    }}
+  >
+    {num}
+  </p>
+);
 ```
 
 那么点击`p`标签会产生三个`update`。
 
-## update数据结构
+## update 数据结构
 
 这些`update`是如何组合在一起呢？
 
@@ -74,8 +80,8 @@ function dispatchAction(queue, action) {
   // 创建update
   const update = {
     action,
-    next: null
-  }
+    next: null,
+  };
 
   // 环状单向链表操作
   if (queue.pending === null) {
@@ -114,7 +120,7 @@ queue.pending = u0 ---> u0
 然后`queue.pending = update;`即`queue.pending = u1`
 
 ```js
-queue.pending = u1 ---> u0   
+queue.pending = u1 ---> u0
                 ^       |
                 |       |
                 ---------
@@ -140,11 +146,11 @@ const fiber = {
   // 保存该FunctionComponent对应的Hooks链表
   memoizedState: null,
   // 指向App函数
-  stateNode: App
+  stateNode: App,
 };
 ```
 
-## Hook数据结构
+## Hook 数据结构
 
 接下来我们关注`fiber.memoizedState`中保存的`Hook`的数据结构。
 
@@ -154,13 +160,13 @@ const fiber = {
 hook = {
   // 保存update的queue，即上文介绍的queue
   queue: {
-    pending: null
+    pending: null,
   },
   // 保存hook对应的state
   memoizedState: initialState,
   // 与下一个Hook连接形成单向无环链表
-  next: null
-}
+  next: null,
+};
 ```
 
 ::: warning 注意
@@ -172,14 +178,14 @@ hook = {
 
 :::
 
-## 模拟React调度更新流程
+## 模拟 React 调度更新流程
 
 在上文`dispatchAction`末尾我们通过`schedule`方法模拟`React`调度更新流程。
 
 ```js
 function dispatchAction(queue, action) {
   // ...创建update
-  
+
   // ...环状单向链表操作
 
   // 模拟React开始调度更新
@@ -219,7 +225,6 @@ workInProgressHook = workInProgressHook.next;
 
 这样，只要每次组件`render`时`useState`的调用顺序及数量保持一致，那么始终可以通过`workInProgressHook`找到当前`useState`对应的`hook`对象。
 
-
 到此为止，我们已经完成第一步。
 
 > 1. 通过一些途径产生`更新`，`更新`会造成组件`render`。
@@ -228,7 +233,7 @@ workInProgressHook = workInProgressHook.next;
 
 > 2. 组件`render`时`useState`返回的`num`为更新后的结果。
 
-## 计算state
+## 计算 state
 
 组件`render`时会调用`useState`，他的大体逻辑如下：
 
@@ -260,11 +265,11 @@ if (isMount) {
   // mount时为该useState生成hook
   hook = {
     queue: {
-      pending: null
+      pending: null,
     },
     memoizedState: initialState,
-    next: null
-  }
+    next: null,
+  };
 
   // 将hook插入fiber.memoizedState链表末尾
   if (!fiber.memoizedState) {
@@ -280,7 +285,6 @@ if (isMount) {
   // 移动workInProgressHook指针
   workInProgressHook = workInProgressHook.next;
 }
-
 ```
 
 当找到该`useState`对应的`hook`后，如果该`hook.queue.pending`不为空（即存在`update`），则更新其`state`。
@@ -300,7 +304,7 @@ if (hook.queue.pending) {
     firstUpdate = firstUpdate.next;
 
     // 最后一个update执行完后跳出循环
-  } while (firstUpdate !== hook.queue.pending.next)
+  } while (firstUpdate !== hook.queue.pending.next);
 
   // 清空queue.pending
   hook.queue.pending = null;
@@ -319,11 +323,11 @@ function useState(initialState) {
   if (isMount) {
     hook = {
       queue: {
-        pending: null
+        pending: null,
       },
       memoizedState: initialState,
-      next: null
-    }
+      next: null,
+    };
     if (!fiber.memoizedState) {
       fiber.memoizedState = hook;
     } else {
@@ -343,7 +347,7 @@ function useState(initialState) {
       const action = firstUpdate.action;
       baseState = action(baseState);
       firstUpdate = firstUpdate.next;
-    } while (firstUpdate !== hook.queue.pending.next)
+    } while (firstUpdate !== hook.queue.pending.next);
 
     hook.queue.pending = null;
   }
@@ -363,21 +367,21 @@ function useState(initialState) {
 function App() {
   const [num, updateNum] = useState(0);
 
-  console.log(`${isMount ? 'mount' : 'update'} num: `, num);
+  console.log(`${isMount ? "mount" : "update"} num: `, num);
 
   return {
     click() {
-      updateNum(num => num + 1);
-    }
-  }
+      updateNum((num) => num + 1);
+    },
+  };
 }
 ```
 
-## 在线Demo
+## 在线 Demo
 
-至此，我们完成了一个不到100行代码的`Hooks`。重要的是，他与`React`的运行逻辑相同。
+至此，我们完成了一个不到 100 行代码的`Hooks`。重要的是，他与`React`的运行逻辑相同。
 
-::: details 精简Hooks的在线Demo
+::: details 精简 Hooks 的在线 Demo
 
 调用`window.app.click()`模拟组件点击事件。
 
@@ -388,25 +392,25 @@ function App() {
   const [num, updateNum] = useState(0);
   const [num1, updateNum1] = useState(100);
 
-  console.log(`${isMount ? 'mount' : 'update'} num: `, num);
-  console.log(`${isMount ? 'mount' : 'update'} num1: `, num1);
+  console.log(`${isMount ? "mount" : "update"} num: `, num);
+  console.log(`${isMount ? "mount" : "update"} num1: `, num1);
 
   return {
     click() {
-      updateNum(num => num + 1);
+      updateNum((num) => num + 1);
     },
     focus() {
-      updateNum1(num => num + 3);
-    }
-  }
+      updateNum1((num) => num + 3);
+    },
+  };
 }
 ```
 
-[关注公众号](../me.html)，后台回复**616**获得在线Demo地址
+[关注公众号 魔术师卡颂](../me.html)，后台回复**616**获得在线 Demo 地址
 
 :::
 
-## 与React的区别
+## 与 React 的区别
 
 我们用尽可能少的代码模拟了`Hooks`的运行，但是相比`React Hooks`，他还有很多不足。以下是他与`React Hooks`的区别：
 

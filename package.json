@@ -1,5 +1,6 @@
 {
   "devDependencies": {
+    "ali-oss": "^6.18.1",
     "markdown-it-mark": "^3.0.0",
     "vuepress": "^1.5.0"
   },
@@ -13,6 +14,8 @@
   "scripts": {
     "start": "vuepress dev docs",
     "build": "export NODE_OPTIONS=--openssl-legacy-provider && vuepress build docs && npm run tongji",
+    "build1": "vuepress build docs && npm run tongji",
+    "deploy1": "node publish_to_OSS.js",
     "tongji": "node ./.bin/create_tongji",
     "deploy": "sh deploy.sh"
   },

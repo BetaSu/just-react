@@ -6,7 +6,7 @@
 
 ## 什么是优先级
 
-在[React理念一节](../preparation/idea.html#理解-响应自然)我们聊到`React`将人机交互研究的结果整合到真实的`UI`中。具体到`React`运行上这是什么意思呢？
+在[React 理念一节](../preparation/idea.html#理解-响应自然)我们聊到`React`将人机交互研究的结果整合到真实的`UI`中。具体到`React`运行上这是什么意思呢？
 
 `状态更新`由`用户交互`产生，用户心里对`交互`执行顺序有个预期。`React`根据`人机交互研究的结果`中用户对`交互`的预期顺序为`交互`产生的`状态更新`赋予不同优先级。
 
@@ -22,7 +22,7 @@
 
 ## 如何调度优先级
 
-我们在[新的React结构一节](../preparation/newConstructure.html)讲到，`React`通过`Scheduler`调度任务。
+我们在[新的 React 结构一节](../preparation/newConstructure.html)讲到，`React`通过`Scheduler`调度任务。
 
 具体到代码，每当需要调度任务时，`React`会调用`Scheduler`提供的方法`runWithPriority`。
 
@@ -38,7 +38,7 @@
 
 接下来我们通过一个例子结合上一节介绍的`Update`相关字段讲解优先级如何决定更新的顺序。
 
-> 该例子来自[React Core Team Andrew向网友讲解Update工作流程的推文](https://twitter.com/acdlite/status/978412930973687808)
+> 该例子来自[React Core Team Andrew 向网友讲解 Update 工作流程的推文](https://twitter.com/acdlite/status/978412930973687808)
 
 <img :src="$withBase('/img/update-process.png')" alt="优先级如何决定更新的顺序">
 
@@ -167,26 +167,26 @@ shared.pending: A1 --> B2 --> C1 --> D2
 
 其中`字母`代表该`Update`要在页面插入的字母，`数字`代表`优先级`，值越低`优先级`越高。
 
-第一次`render`，`优先级`为1。
+第一次`render`，`优先级`为 1。
 
 ```js
-baseState: ''
-baseUpdate: null
-render阶段使用的Update: [A1, C1]
-memoizedState: 'AC'
+baseState: "";
+baseUpdate: null;
+render阶段使用的Update: [A1, C1];
+memoizedState: "AC";
 ```
 
-其中`B2`由于优先级为2，低于当前优先级，所以他及其后面的所有`Update`会被保存在`baseUpdate`中作为下次更新的`Update`（即`B2 C1 D2`）。
+其中`B2`由于优先级为 2，低于当前优先级，所以他及其后面的所有`Update`会被保存在`baseUpdate`中作为下次更新的`Update`（即`B2 C1 D2`）。
 
 这么做是为了保持`状态`的前后依赖顺序。
 
-第二次`render`，`优先级`为2。
+第二次`render`，`优先级`为 2。
 
 ```js
-baseState: 'A'
-baseUpdate: B2 --> C1 --> D2
-render阶段使用的Update: [B2, C1, D2]
-memoizedState: 'ABCD'
+baseState: "A";
+baseUpdate: B2-- > C1-- > D2;
+render阶段使用的Update: [B2, C1, D2];
+memoizedState: "ABCD";
 ```
 
 注意这里`baseState`并不是上一次更新的`memoizedState`。这是由于`B2`被跳过了。
@@ -197,18 +197,18 @@ memoizedState: 'ABCD'
 
 通过以上例子我们可以发现，`React`保证最终的状态一定和用户触发的`交互`一致，但是中间过程`状态`可能由于设备不同而不同。
 
-:::details 高优先级任务打断低优先级任务Demo
+:::details 高优先级任务打断低优先级任务 Demo
 
-[关注公众号](../me.html)，后台回复**815**获得在线Demo地址
+[关注公众号 魔术师卡颂](../me.html)，后台回复**815**获得在线 Demo 地址
 
 :::
 
 ## 参考资料
 
-[深入源码剖析componentWillXXX为什么UNSAFE](https://juejin.im/post/5f05a3e25188252e5c576cdb)
+[深入源码剖析 componentWillXXX 为什么 UNSAFE](https://juejin.im/post/5f05a3e25188252e5c576cdb)
 
-[React源码中讲解Update工作流程及优先级的注释](https://github.com/facebook/react/blob/970fa122d8188bafa600e9b5214833487fbf1092/packages/react-reconciler/src/ReactUpdateQueue.new.js#L10)
+[React 源码中讲解 Update 工作流程及优先级的注释](https://github.com/facebook/react/blob/970fa122d8188bafa600e9b5214833487fbf1092/packages/react-reconciler/src/ReactUpdateQueue.new.js#L10)
 
-[React Core Team Andrew向网友讲解Update工作流程的推文](https://twitter.com/acdlite/status/978412930973687808)
+[React Core Team Andrew 向网友讲解 Update 工作流程的推文](https://twitter.com/acdlite/status/978412930973687808)
 
 <!-- beginWork getStateFromUpdate -->

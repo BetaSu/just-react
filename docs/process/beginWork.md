@@ -1,9 +1,8 @@
 上一节我们了解到`render阶段`的工作可以分为“递”阶段和“归”阶段。其中“递”阶段会执行`beginWork`，“归”阶段会执行`completeWork`。这一节我们看看“递”阶段的`beginWork`方法究竟做了什么。
 
-
 ## 方法概览
 
-可以从[源码这里](https://github.com/facebook/react/blob/1fb18e22ae66fdb1dc127347e169e73948778e5a/packages/react-reconciler/src/ReactFiberBeginWork.new.js#L3075)看到`beginWork`的定义。整个方法大概有500行代码。
+可以从[源码这里](https://github.com/facebook/react/blob/1fb18e22ae66fdb1dc127347e169e73948778e5a/packages/react-reconciler/src/ReactFiberBeginWork.new.js#L3075)看到`beginWork`的定义。整个方法大概有 500 行代码。
 
 从上一节我们已经知道，`beginWork`的工作是传入`当前Fiber节点`，创建`子Fiber节点`，我们从传参来看看具体是如何做的。
 
@@ -13,12 +12,14 @@
 function beginWork(
   current: Fiber | null,
   workInProgress: Fiber,
-  renderLanes: Lanes,
+  renderLanes: Lanes
 ): Fiber | null {
   // ...省略函数体
 }
 ```
+
 其中传参：
+
 - current：当前组件对应的`Fiber节点`在上一次更新时的`Fiber节点`，即`workInProgress.alternate`
 - workInProgress：当前组件对应的`Fiber节点`
 - renderLanes：优先级相关，在讲解`Scheduler`时再讲解
@@ -41,43 +42,38 @@ function beginWork(
   workInProgress: Fiber,
   renderLanes: Lanes
 ): Fiber | null {
-
   // update时：如果current存在可能存在优化路径，可以复用current（即上一次更新的Fiber节点）
   if (current !== null) {
     // ...省略
 
     // 复用current
-    return bailoutOnAlreadyFinishedWork(
-      current,
-      workInProgress,
-      renderLanes,
-    );
+    return bailoutOnAlreadyFinishedWork(current, workInProgress, renderLanes);
   } else {
     didReceiveUpdate = false;
   }
 
   // mount时：根据tag不同，创建不同的子Fiber节点
   switch (workInProgress.tag) {
-    case IndeterminateComponent: 
-      // ...省略
-    case LazyComponent: 
-      // ...省略
-    case FunctionComponent: 
-      // ...省略
-    case ClassComponent: 
-      // ...省略
+    case IndeterminateComponent:
+    // ...省略
+    case LazyComponent:
+    // ...省略
+    case FunctionComponent:
+    // ...省略
+    case ClassComponent:
+    // ...省略
     case HostRoot:
-      // ...省略
+    // ...省略
     case HostComponent:
-      // ...省略
+    // ...省略
     case HostText:
-      // ...省略
+    // ...省略
     // ...省略其他类型
   }
 }
 ```
 
-## update时
+## update 时
 
 我们可以看到，满足如下情况时`didReceiveUpdate === false`（即可以直接复用前一次更新的`子Fiber`，不需要新建`子Fiber`）
 
@@ -86,33 +82,32 @@ function beginWork(
 
 ```js
 if (current !== null) {
-    const oldProps = current.memoizedProps;
-    const newProps = workInProgress.pendingProps;
+  const oldProps = current.memoizedProps;
+  const newProps = workInProgress.pendingProps;
 
-    if (
-      oldProps !== newProps ||
-      hasLegacyContextChanged() ||
-      (__DEV__ ? workInProgress.type !== current.type : false)
+  if (
+    oldProps !== newProps ||
+    hasLegacyContextChanged() ||
+    (__DEV__ ? workInProgress.type !== current.type : false)
+  ) {
+    didReceiveUpdate = true;
+  } else if (!includesSomeLane(renderLanes, updateLanes)) {
+    didReceiveUpdate = false;
+    switch (
+      workInProgress.tag
+      // 省略处理
     ) {
-      didReceiveUpdate = true;
-    } else if (!includesSomeLane(renderLanes, updateLanes)) {
-      didReceiveUpdate = false;
-      switch (workInProgress.tag) {
-        // 省略处理
-      }
-      return bailoutOnAlreadyFinishedWork(
-        current,
-        workInProgress,
-        renderLanes,
-      );
-    } else {
-      didReceiveUpdate = false;
     }
+    return bailoutOnAlreadyFinishedWork(current, workInProgress, renderLanes);
   } else {
     didReceiveUpdate = false;
   }
+} else {
+  didReceiveUpdate = false;
+}
 ```
-## mount时
+
+## mount 时
 
 当不满足优化路径时，我们就进入第二部分，新建`子Fiber`。
 
@@ -123,20 +118,20 @@ if (current !== null) {
 ```js
 // mount时：根据tag不同，创建不同的Fiber节点
 switch (workInProgress.tag) {
-  case IndeterminateComponent: 
-    // ...省略
-  case LazyComponent: 
-    // ...省略
-  case FunctionComponent: 
-    // ...省略
-  case ClassComponent: 
-    // ...省略
+  case IndeterminateComponent:
+  // ...省略
+  case LazyComponent:
+  // ...省略
+  case FunctionComponent:
+  // ...省略
+  case ClassComponent:
+  // ...省略
   case HostRoot:
-    // ...省略
+  // ...省略
   case HostComponent:
-    // ...省略
+  // ...省略
   case HostText:
-    // ...省略
+  // ...省略
   // ...省略其他类型
 }
 ```
@@ -164,7 +159,7 @@ export function reconcileChildren(
       workInProgress,
       null,
       nextChildren,
-      renderLanes,
+      renderLanes
     );
   } else {
     // 对于update的组件
@@ -172,7 +167,7 @@ export function reconcileChildren(
       workInProgress,
       current.child,
       nextChildren,
-      renderLanes,
+      renderLanes
     );
   }
 }
@@ -185,8 +180,6 @@ export function reconcileChildren(
 ::: warning 注意
 值得一提的是，`mountChildFibers`与`reconcileChildFibers`这两个方法的逻辑基本一致。唯一的区别是：`reconcileChildFibers`会为生成的`Fiber节点`带上`effectTag`属性，而`mountChildFibers`不会。
 :::
-
-
 
 ## effectTag
 
@@ -223,16 +216,16 @@ export const Deletion = /*                 */ 0b00000000001000;
 
 为了解决这个问题，在`mount`时只有`rootFiber`会赋值`Placement effectTag`，在`commit阶段`只会执行一次插入操作。
 
-::: details 根Fiber节点 Demo
-借用上一节的Demo，第一个进入`beginWork`方法的`Fiber节点`就是`rootFiber`，他的`alternate`指向`current rootFiber`（即他存在`current`）。
+::: details 根 Fiber 节点 Demo
+借用上一节的 Demo，第一个进入`beginWork`方法的`Fiber节点`就是`rootFiber`，他的`alternate`指向`current rootFiber`（即他存在`current`）。
 
-> 为什么`rootFiber`节点存在`current`（即`rootFiber.alternate`），我们在[双缓存机制一节mount时的第二步](./doubleBuffer.html)已经讲过
+> 为什么`rootFiber`节点存在`current`（即`rootFiber.alternate`），我们在[双缓存机制一节 mount 时的第二步](./doubleBuffer.html)已经讲过
 
 由于存在`current`，`rootFiber`在`reconcileChildren`时会走`reconcileChildFibers`逻辑。
 
 而之后通过`beginWork`创建的`Fiber节点`是不存在`current`的（即 `fiber.alternate === null`），会走`mountChildFibers`逻辑
 
-[关注公众号](../me.html)，后台回复**531**获得在线Demo地址
+[关注公众号 魔术师卡颂](../me.html)，后台回复**531**获得在线 Demo 地址
 :::
 
 ## 参考资料

@@ -32,7 +32,7 @@ function workLoopConcurrent() {
 
 ## “递”阶段
 
-首先从`rootFiber`开始向下深度优先遍历。为遍历到的每个`Fiber节点`调用[beginWork方法](https://github.com/facebook/react/blob/970fa122d8188bafa600e9b5214833487fbf1092/packages/react-reconciler/src/ReactFiberBeginWork.new.js#L3058)。
+首先从`rootFiber`开始向下深度优先遍历。为遍历到的每个`Fiber节点`调用[beginWork 方法](https://github.com/facebook/react/blob/970fa122d8188bafa600e9b5214833487fbf1092/packages/react-reconciler/src/ReactFiberBeginWork.new.js#L3058)。
 
 该方法会根据传入的`Fiber节点`创建`子Fiber节点`，并将这两个`Fiber节点`连接起来。
 
@@ -59,7 +59,7 @@ function App() {
       i am
       <span>KaSong</span>
     </div>
-  )
+  );
 }
 
 ReactDOM.render(<App />, document.getElementById("root"));
@@ -94,7 +94,7 @@ ReactDOM.render(<App />, document.getElementById("root"));
 
 相信多调试几次，你一定能明白方法的调用顺序
 
-[关注公众号](../me.html)，后台回复**904**获得在线Demo地址
+[关注公众号 魔术师卡颂](../me.html)，后台回复**904**获得在线 Demo 地址
 :::
 
 ::: details performUnitOfWork 的递归版本

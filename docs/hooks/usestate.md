@@ -10,16 +10,16 @@
 
 ```js
 function App() {
-  const [state, dispatch] = useReducer(reducer, {a: 1});
+  const [state, dispatch] = useReducer(reducer, { a: 1 });
 
   const [num, updateNum] = useState(0);
-  
+
   return (
     <div>
-      <button onClick={() => dispatch({type: 'a'})}>{state.a}</button>  
-      <button onClick={() => updateNum(num => num + 1)}>{num}</button>  
+      <button onClick={() => dispatch({ type: "a" })}>{state.a}</button>
+      <button onClick={() => updateNum((num) => num + 1)}>{num}</button>
     </div>
-  )
+  );
 }
 ```
 
@@ -52,7 +52,7 @@ function useReducer(reducer, initialArg, init) {
 
 我们分别讲解`mount`与`update`两个场景。
 
-### mount时
+### mount 时
 
 `mount`时，`useReducer`会调用[mountReducer](https://github.com/acdlite/react/blob/1fb18e22ae66fdb1dc127347e169e73948778e5a/packages/react-reconciler/src/ReactFiberHooks.new.js#L638)，`useState`会调用[mountState](https://github.com/acdlite/react/blob/1fb18e22ae66fdb1dc127347e169e73948778e5a/packages/react-reconciler/src/ReactFiberHooks.new.js#L1143)。
 
@@ -60,7 +60,7 @@ function useReducer(reducer, initialArg, init) {
 
 ```js
 function mountState<S>(
-  initialState: (() => S) | S,
+  initialState: (() => S) | S
 ): [S, Dispatch<BasicStateAction<S>>] {
   // 创建并返回当前的hook
   const hook = mountWorkInProgressHook();
@@ -82,7 +82,7 @@ function mountState<S>(
 function mountReducer<S, I, A>(
   reducer: (S, A) => S,
   initialArg: I,
-  init?: I => S,
+  init?: (I) => S
 ): [S, Dispatch<A>] {
   // 创建并返回当前的hook
   const hook = mountWorkInProgressHook();
@@ -127,7 +127,7 @@ const queue = (hook.queue = {
 
 ```js
 function basicStateReducer<S>(state: S, action: BasicStateAction<S>): S {
-  return typeof action === 'function' ? action(state) : action;
+  return typeof action === "function" ? action(state) : action;
 }
 ```
 
@@ -135,7 +135,7 @@ function basicStateReducer<S>(state: S, action: BasicStateAction<S>): S {
 
 `mount`时的整体运行逻辑与`极简实现`的`isMount`逻辑类似，你可以对照着看。
 
-### update时
+### update 时
 
 如果说`mount`时这两者还有区别，那`update`时，`useReducer`与`useState`调用的则是同一个函数[updateReducer](https://github.com/acdlite/react/blob/1fb18e22ae66fdb1dc127347e169e73948778e5a/packages/react-reconciler/src/ReactFiberHooks.new.js#L665)。
 
@@ -143,12 +143,12 @@ function basicStateReducer<S>(state: S, action: BasicStateAction<S>): S {
 function updateReducer<S, I, A>(
   reducer: (S, A) => S,
   initialArg: I,
-  init?: I => S,
+  init?: (I) => S
 ): [S, Dispatch<A>] {
   // 获取当前hook
   const hook = updateWorkInProgressHook();
   const queue = hook.queue;
-  
+
   queue.lastRenderedReducer = reducer;
 
   // ...同update与updateQueue类似的更新逻辑
@@ -162,7 +162,7 @@ function updateReducer<S, I, A>(
 
 > 找到对应的`hook`，根据`update`计算该`hook`的新`state`并返回。
 
-`mount`时获取当前`hook`使用的是`mountWorkInProgressHook`，而`update`时使用的是`updateWorkInProgressHook`，这里的原因是： 
+`mount`时获取当前`hook`使用的是`mountWorkInProgressHook`，而`update`时使用的是`updateWorkInProgressHook`，这里的原因是：
 
 - `mount`时可以确定是调用`ReactDOM.render`或相关初始化`API`产生的`更新`，只会执行一次。
 
@@ -173,12 +173,10 @@ function updateReducer<S, I, A>(
 ```js
 function App() {
   const [num, updateNum] = useState(0);
-  
+
   updateNum(num + 1);
 
-  return (
-    <button onClick={() => updateNum(num => num + 1)}>{num}</button>  
-  )
+  return <button onClick={() => updateNum((num) => num + 1)}>{num}</button>;
 }
 ```
 
@@ -190,7 +188,7 @@ function App() {
 
 `updateWorkInProgressHook`方法也会区分这两种情况来获取对应`hook`。
 
-获取对应`hook`，接下来会根据`hook`中保存的`state`计算新的`state`，这个步骤同[Update一节](../state/update.html)一致。
+获取对应`hook`，接下来会根据`hook`中保存的`state`计算新的`state`，这个步骤同[Update 一节](../state/update.html)一致。
 
 ## 调用阶段
 
@@ -198,7 +196,6 @@ function App() {
 
 ```js
 function dispatchAction(fiber, queue, action) {
-
   // ...创建update
   var update = {
     eventTime: eventTime,
@@ -207,18 +204,25 @@ function dispatchAction(fiber, queue, action) {
     action: action,
     eagerReducer: null,
     eagerState: null,
-    next: null
-  }; 
+    next: null,
+  };
 
   // ...将update加入queue.pending
-  
+
   var alternate = fiber.alternate;
 
-  if (fiber === currentlyRenderingFiber$1 || alternate !== null && alternate === currentlyRenderingFiber$1) {
+  if (
+    fiber === currentlyRenderingFiber$1 ||
+    (alternate !== null && alternate === currentlyRenderingFiber$1)
+  ) {
     // render阶段触发的更新
-    didScheduleRenderPhaseUpdateDuringThisPass = didScheduleRenderPhaseUpdate = true;
+    didScheduleRenderPhaseUpdateDuringThisPass =
+      didScheduleRenderPhaseUpdate = true;
   } else {
-    if (fiber.lanes === NoLanes && (alternate === null || alternate.lanes === NoLanes)) {
+    if (
+      fiber.lanes === NoLanes &&
+      (alternate === null || alternate.lanes === NoLanes)
+    ) {
       // ...fiber的updateQueue为空，优化路径
     }
 
@@ -261,7 +265,7 @@ if (fiber.lanes === NoLanes && (alternate === null || alternate.lanes === NoLane
 
 > 你可以在[这里](https://github.com/acdlite/react/blob/1fb18e22ae66fdb1dc127347e169e73948778e5a/packages/react-reconciler/src/ReactFiberHooks.new.js#L1727)看到这段提前计算`state`的逻辑
 
-## 小Tip
+## 小 Tip
 
 我们通常认为，`useReducer(reducer, initialState)`的传参为初始化参数，在以后的调用中都不可变。
 
@@ -278,10 +282,10 @@ function updateReducer(reducer, initialArg, init) {
 
 也就是说，`reducer`参数是随时可变的。
 
-::: details reducer可变Demo
+::: details reducer 可变 Demo
 每秒`useReducer`使用的`reducer`会改变一次
 
 点击按钮后会随时间不同会出现`+1`或`-1`的效果
 
-[关注公众号](../me.html)，后台回复**582**获得在线Demo地址
+[关注公众号 魔术师卡颂](../me.html)，后台回复**582**获得在线 Demo 地址
 :::
