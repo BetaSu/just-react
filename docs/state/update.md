@@ -135,7 +135,7 @@ const queue: UpdateQueue<State> = {
 
 - baseState：本次更新前该`Fiber节点`的`state`，`Update`基于该`state`计算更新后的`state`。
 
-> 你可以将`baseState`类比`心智模型`中的`master分支`。
+> 你可以将`baseState`类比`心智模型`中的`main分支`。
 
 - `firstBaseUpdate`与`lastBaseUpdate`：本次更新前该`Fiber节点`已保存的`Update`。以链表形式存在，链表头为`firstBaseUpdate`，链表尾为`lastBaseUpdate`。之所以在更新产生前该`Fiber节点`内就存在`Update`，是由于某些`Update`优先级较低所以在上次`render阶段`由`Update`计算`state`时被跳过。
 
