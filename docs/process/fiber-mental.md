@@ -38,7 +38,7 @@ async function getTotalPicNum(user1, user2) {
 
 但是，`async await`是有`传染性`的 —— 当一个函数变为`async`后，这意味着调用他的函数也需要是`async`，这破坏了`getTotalPicNum`的同步特性。
 
-有没有什么办法能保持`getTotalPicNum`保持现有调用方式不变的情况下实现异步请求呢？
+有没有什么办法能保持`getTotalPicNum`现有调用方式不变的情况下实现异步请求呢？
 
 没有。不过我们可以`虚构`一个。
 
