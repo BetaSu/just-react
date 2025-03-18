@@ -130,7 +130,7 @@ fiber.updateQueue = {
 };
 ```
 
-我们可以看见，`u2`对应的更新执行了两次，相应的`render阶段`的生命周期勾子`componentWillXXX`也会触发两次。这也是为什么这些勾子会被标记为`unsafe_`。
+我们可以看见，`u1`对应的更新执行了两次，相应的`render阶段`的生命周期勾子`componentWillXXX`也会触发两次。这也是为什么这些勾子会被标记为`unsafe_`。
 
 ## 如何保证状态正确
 
