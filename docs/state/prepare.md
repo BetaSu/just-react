@@ -121,6 +121,42 @@ performConcurrentWorkOnRoot.bind(null, root);
 
 至此，`状态更新`就和我们所熟知的`render阶段`连接上了。
 
+### 批量更新
+如果某个`fiber`上创建了多个同优先级的`update`，比如一次事件回调内调用多次`this.setState`，之后会返回多个`rootFiber`。但是这些`rootFiber`由于优先级`（lane）`是相同的，它们只被**调度一次更新**。也就是说只会进入一次`render - commit`阶段。
+产生的这种效果就是批量更新，注意它是在**调度更新**的帮助下而产生的一种优化手段。
+
+在`Legacy mode`时，默认开启批量更新，同时提供`unstable_batchedUpdate`方法供开发者使用。主要是通过`executionContext`(之前版本是`isBatchingUpdates`布尔判断，只调度一次) 位运算标记判断。
+是否批量更新的源头其实来自`scheduleUpdateOnFiber`方法：
+```js
+if (expirationTime === Sync) {
+	if (...) {
+	   ...
+	} else {
+	  //批量更新的模式下进入调度，但是同时多个setState操作会被return掉，确保异步更新
+	  ensureRootIsScheduled(root);
+	  //如果处于非批量更新的状态下会进入这里立即执行了
+	  // 这里解释了定时器中或者非react可控制的事件中连续的 setSate 操作是同步执行的问题
+	  if (executionContext === NoContext) {
+		//执行任务
+		flushSyncCallbackQueue();
+	  }
+	}
+}
+```
+在`ensureRootIsScheduled`调度中会真正的实现批量更新操作
+```js
+if (existingCallbackNode !== null) {
+	const existingCallbackPriority = root.callbackPriority;
+	if (existingCallbackPriority === newCallbackPriority) {
+	  // 任务优先级无变化，则认为是同一事件触发的多次更新（旧版代码中还会进行expirationTime比较）
+	  return;
+	}
+	//高优先级任务插入 打断之前的任务
+	cancelCallback(existingCallbackNode);
+}
+```
+在`Concurrent Mode`时是否`batchedUpdate`是根据优先级`（lane）`决定的，相近时间差被抹平，不需要标记变量，所以完全是自动的，开发者不需要手动介入。
+
 ## 总结
 
 让我们梳理下`状态更新`的整个调用路径的关键节点：
