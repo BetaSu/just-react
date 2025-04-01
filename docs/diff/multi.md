@@ -4,12 +4,12 @@
 ```jsx
 function List () {
   return (
-    <ul>
-      <li key="0">0</li>
-      <li key="1">1</li>
-      <li key="2">2</li>
-      <li key="3">3</li>
-    </ul>
+    <>
+      <p key="0">0</p>
+      <p key="1">1</p>
+      <p key="2">2</p>
+      <p key="3">3</p>
+    </>
   )
 }
 ```
@@ -21,10 +21,10 @@ function List () {
   key: null,
   props: {
     children: [
-      {$$typeof: Symbol(react.element), type: "li", key: "0", ref: null, props: {…}, …}
-      {$$typeof: Symbol(react.element), type: "li", key: "1", ref: null, props: {…}, …}
-      {$$typeof: Symbol(react.element), type: "li", key: "2", ref: null, props: {…}, …}
-      {$$typeof: Symbol(react.element), type: "li", key: "3", ref: null, props: {…}, …}
+      {$$typeof: Symbol(react.element), type: "p", key: "0", ref: null, props: {…}, …}
+      {$$typeof: Symbol(react.element), type: "p", key: "1", ref: null, props: {…}, …}
+      {$$typeof: Symbol(react.element), type: "p", key: "2", ref: null, props: {…}, …}
+      {$$typeof: Symbol(react.element), type: "p", key: "3", ref: null, props: {…}, …}
     ]
   },
   ref: null,
@@ -32,7 +32,7 @@ function List () {
 }
 ```
 
-这种情况下，`reconcileChildFibers`的`newChild`参数类型为`Array`，在`reconcileChildFibers`函数内部对应如下情况：
+通过[这里](https://github.com/facebook/react/blob/1fb18e22ae66fdb1dc127347e169e73948778e5a/packages/react-reconciler/src/ReactChildFiber.new.js#L1294)的逻辑，`newChild`会被转化成`newChild.props.children`，所以这种情况下，`reconcileChildFibers`的`newChild`参数类型为`Array`，在`reconcileChildFibers`函数内部对应如下情况：
 
 > 你可以在[这里](https://github.com/facebook/react/blob/1fb18e22ae66fdb1dc127347e169e73948778e5a/packages/react-reconciler/src/ReactChildFiber.new.js#L1352)看到这段源码逻辑
 
