@@ -5,6 +5,8 @@
 我们现在还不需要学习这两个方法，只需要知道在这两个方法中会调用如下两个方法：
 
 ```js
+//packages/react-reconciler/src/ReactFiberWorkLoop.new.js
+
 // performSyncWorkOnRoot会调用该方法
 function workLoopSync() {
   while (workInProgress !== null) {
